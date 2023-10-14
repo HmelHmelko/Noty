@@ -1,0 +1,84 @@
+﻿<Window x:Class="Noty.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Noty"
+        mc:Ignorable="d"
+        Title="*Untitled - Noty" Height="450" Width="800" Icon="/NotyIcon.png" 
+        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeMode="CanResizeWithGrip" 
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--Header-->
+            <RowDefinition Height="34"/>
+            <!--Body-->
+            <RowDefinition/>
+            <!--Footer-->
+            <RowDefinition Height="26"/>
+        </Grid.RowDefinitions>
+
+        <!--Header-->
+        <Rectangle Grid.Row="0" Fill="{StaticResource HeaderFooter}"/>
+        
+        <!--MainMenu-->
+        <Menu Grid.Row="0" Background="Transparent" Foreground="{StaticResource HeaderFooterText}" 
+              IsMainMenu="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            
+            <MenuItem Header="File">
+                <MenuItem Header="New" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="New window" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Open" HorizontalAlignment="Left"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Save" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Save As" HorizontalAlignment="Left"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Exit" HorizontalAlignment="Left"></MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="Edit">
+                <MenuItem Header="Undo" HorizontalAlignment="Left"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Cut" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Copy" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Paste" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Delete" HorizontalAlignment="Left"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Find" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Find Next" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Find Previous" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Replace" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Go to" HorizontalAlignment="Left"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Select All" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Time/Date" HorizontalAlignment="Left"></MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="Format">
+                <MenuItem Header="Word Wrap" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Font" HorizontalAlignment="Left"></MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="View">
+                <MenuItem Header="Zoom" HorizontalAlignment="Left">
+                    <MenuItem Header="Zoom In" HorizontalAlignment="Left"></MenuItem>
+                    <MenuItem Header="Zoom Out" HorizontalAlignment="Left"></MenuItem>
+                    <MenuItem Header="Restore Default Zoom" HorizontalAlignment="Left"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Status Bar" HorizontalAlignment="Left"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <!--Body-->
+        <Rectangle Grid.Row="1" Fill="{StaticResource Body}"/>
+        <RichTextBox Margin="2,4, -0.5, 4" Grid.Row="1" x:Name="text_area" BorderThickness="0" Foreground="{StaticResource BodyText}" Background="{StaticResource Body}">
+            <FlowDocument LineHeight="0.5">
+                <Paragraph LineHeight="0.5"/>
+            </FlowDocument>
+        </RichTextBox>
+        
+        <!--Footer-->
+        <Rectangle Grid.Row="2" Fill="{StaticResource HeaderFooter}" ScrollViewer.HorizontalScrollBarVisibility="Visible" />
+
+    </Grid>
+</Window>
