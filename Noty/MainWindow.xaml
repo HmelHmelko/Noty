@@ -71,7 +71,7 @@
 
         <!--Body-->
         <Rectangle Grid.Row="1" Fill="{StaticResource Body}"/>
-        <RichTextBox Margin="2,4, -0.5, 4" Grid.Row="1" x:Name="text_area" BorderThickness="0" Foreground="{StaticResource BodyText}" Background="{StaticResource Body}">
+        <RichTextBox FontSize="18" Margin="2,4, -0.6, 4" Grid.Row="1" x:Name="text_area" BorderThickness="0" Foreground="{StaticResource BodyText}" Background="{StaticResource Body}">
             <FlowDocument LineHeight="0.5">
                 <Paragraph LineHeight="0.5"/>
             </FlowDocument>
