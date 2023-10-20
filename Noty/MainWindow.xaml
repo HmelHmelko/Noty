@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Noty"
         mc:Ignorable="d"
-        Title="*Untitled - Noty" Height="450" Width="800" Icon="/NotyIcon.png" 
+        Title="*Untitled - Noty" Height="450" Width="800" MinHeight="400" MinWidth="700" Icon="/NotyIcon.png" 
         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterScreen">
     <Grid>
@@ -19,13 +19,13 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" MinWidth="10" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" MinWidth="10" />
         </Grid.ColumnDefinitions>
         
         <!--Header-->
-        <Rectangle Grid.Row="0" Grid.ColumnSpan="3"  Fill="{StaticResource HeaderFooter}"/>
+        <Canvas Grid.Row="0" Grid.ColumnSpan="3" Background="{StaticResource HeaderFooter}"/>
 
         <!--MainMenu-->
         <Menu Grid.Row="0" Grid.ColumnSpan="3" Background="Transparent" Foreground="{StaticResource HeaderFooterText}" 
@@ -89,7 +89,7 @@
         </RichTextBox>
         
         <!--Footer-->
-        <Rectangle Grid.Row="2" Grid.ColumnSpan="3" Fill="{StaticResource HeaderFooter}" ScrollViewer.HorizontalScrollBarVisibility="Visible" />
+        <Canvas Grid.Row="2" Grid.ColumnSpan="3" Background="{StaticResource HeaderFooter}" />
 
     </Grid>
 </Window>
