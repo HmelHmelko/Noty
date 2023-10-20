@@ -19,18 +19,18 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="10" />
+            <ColumnDefinition Width="0.1*" MinWidth="10" />
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*" MinWidth="10" />
         </Grid.ColumnDefinitions>
         
         <!--Header-->
-        <Canvas Grid.Row="0" Grid.ColumnSpan="3" Background="{StaticResource HeaderFooter}"/>
+        <Border Grid.Row="0" Grid.ColumnSpan="3" Background ="{StaticResource HeaderFooter}"/>
 
         <!--MainMenu-->
         <Menu Grid.Row="0" Grid.ColumnSpan="3" Background="Transparent" Foreground="{StaticResource HeaderFooterText}" 
-              IsMainMenu="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-            
+            IsMainMenu="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+
             <MenuItem Header="File">
                 <MenuItem Header="New" HorizontalAlignment="Left"></MenuItem>
                 <MenuItem Header="New window" HorizontalAlignment="Left"></MenuItem>
@@ -76,20 +76,21 @@
         </Menu>
 
         <!--Body-->
-        <Button Grid.Row="1" Grid.Column="0" Content="LEFT" Background="AliceBlue"></Button>
-        
+        <Border Grid.Row="1" Grid.Column="0" MinWidth="10" Background="AliceBlue"/>
+
         <GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
             HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />
-        
+
         <!--<Rectangle Grid.Row="1" Grid.ColumnSpan="3" Fill="{StaticResource Body}"/>-->
         <RichTextBox FontSize="18" Grid.Row="1" Grid.Column="2" x:Name="text_area" BorderThickness="0" Foreground="{StaticResource BodyText}" Background="{StaticResource Body}">
             <FlowDocument LineHeight="0.5">
                 <Paragraph LineHeight="0.5"/>
             </FlowDocument>
         </RichTextBox>
-        
+
+
         <!--Footer-->
-        <Canvas Grid.Row="2" Grid.ColumnSpan="3" Background="{StaticResource HeaderFooter}" />
+        <Border Grid.Row="2" Grid.ColumnSpan="3" Background="{StaticResource HeaderFooter}" />
 
     </Grid>
 </Window>
