@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.1*" MinWidth="10" />
+            <ColumnDefinition Width="0.025*" MinWidth="5" />
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*" MinWidth="10" />
         </Grid.ColumnDefinitions>
@@ -74,14 +74,15 @@
                 <MenuItem Header="Status Bar" HorizontalAlignment="Left"></MenuItem>
             </MenuItem>
         </Menu>
-
+        
         <!--Body-->
-        <Border Grid.Row="1" Grid.Column="0" MinWidth="10" Background="AliceBlue"/>
+        <!--left side-->
+        <Border Grid.Row="1" Grid.Column="0" Background="{StaticResource HeaderFooter}"></Border>
 
-        <GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
-            HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />
-
-        <!--<Rectangle Grid.Row="1" Grid.ColumnSpan="3" Fill="{StaticResource Body}"/>-->
+        <!--<GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
+            HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />-->
+        
+        <!--middle side-->
         <RichTextBox FontSize="18" Grid.Row="1" Grid.Column="2" x:Name="text_area" BorderThickness="0" Foreground="{StaticResource BodyText}" Background="{StaticResource Body}">
             <FlowDocument LineHeight="0.5">
                 <Paragraph LineHeight="0.5"/>
