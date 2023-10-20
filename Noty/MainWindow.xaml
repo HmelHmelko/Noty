@@ -22,6 +22,7 @@
             <Setter Property="Control.BorderBrush" Value="Transparent"/>
             <Setter Property="Control.BorderThickness" Value="0"/>
             <Setter Property="Control.Foreground" Value="{StaticResource HeaderFooterText}"/>
+            <Setter Property="Control.FontSize" Value="14"/>
         </Style>
 
         <Style x:Key="inner_ProgressiveGrey">
@@ -45,7 +46,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.025*" MinWidth="5" />
+            <ColumnDefinition Width="0.04*" MinWidth="5" />
             <ColumnDefinition Width="*" MinWidth="10" />
         </Grid.ColumnDefinitions>
 
@@ -102,6 +103,39 @@
         <!--Body-->
         <!--left side-->
         <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource overhead_ProgressiveGrey}"></Border>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+            <DockPanel>
+                
+                <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                        x:Name="leftContextToolbox" RenderTransformOrigin="0.5, 0.5" 
+                        Style="{StaticResource inner_ProgressiveGrey}" MinWidth="80" MinHeight="10" FontSize="14">
+
+                    <Button.LayoutTransform>
+                        <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
+                    </Button.LayoutTransform>
+
+                    <TextBlock TextAlignment="Center" Text="Toolbox" Foreground="{StaticResource HeaderFooterText}">
+                    </TextBlock>
+                 
+                </Button>
+            </DockPanel>
+
+            <DockPanel>
+
+                <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                        x:Name="leftContextExplorer" RenderTransformOrigin="0.5, 0.5" 
+                        Style="{StaticResource inner_ProgressiveGrey}" MinWidth="80" MinHeight="10" FontSize="14">
+
+                    <Button.LayoutTransform>
+                        <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
+                    </Button.LayoutTransform>
+
+                    <TextBlock TextAlignment="Center" Text="Explorer" Foreground="{StaticResource HeaderFooterText}">
+                    </TextBlock>
+
+                </Button>
+            </DockPanel>
+        </StackPanel>
 
         <!--<GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
             HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />-->
@@ -134,7 +168,7 @@
 
             <!--Right side-->
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <TextBlock Name="LnCount" Text="Ln: " FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
+                <TextBlock Name="LnCountHolder" Text="Ln: " FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
                 <TextBlock Name="ChCount" Text="Ch: " FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
             </StackPanel>
             
