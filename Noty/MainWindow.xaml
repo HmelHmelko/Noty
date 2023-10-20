@@ -13,26 +13,24 @@
 
         <Style x:Key="overhead_ProgressiveGrey">
             <Setter Property="Control.Background" Value="{StaticResource HeaderFooter}"/>
+            <Setter Property="Control.BorderBrush" Value="Transparent"/>
+            <Setter Property="Control.BorderThickness" Value="0"/>
         </Style>
 
         <Style x:Key="overhead_ProgressiveGreyText">
             <Setter Property="Control.Background" Value="Transparent"/>
+            <Setter Property="Control.BorderBrush" Value="Transparent"/>
+            <Setter Property="Control.BorderThickness" Value="0"/>
             <Setter Property="Control.Foreground" Value="{StaticResource HeaderFooterText}"/>
         </Style>
 
-        <Style x:Key="innter_ProgressiveGrey">
+        <Style x:Key="inner_ProgressiveGrey">
+            <Setter Property="Control.BorderThickness" Value="0"/>
+            <Setter Property="Control.BorderBrush" Value="Transparent"/>
             <Setter Property="Control.Background" Value="{StaticResource Body}"/>
             <Setter Property="Control.Foreground" Value="{StaticResource BodyText}"/>
             <Setter Property="Control.FontSize" Value="18"/>
         </Style>
-
-        <Style TargetType="{x:Type ScrollBar}">
-            <Setter Property="Background" Value="#FF191919"/>
-            <Setter Property="BorderBrush" Value="#FF191919"/>
-            <Setter Property="Cursor" Value="Arrow"/>
-            <Setter Property="Foreground" Value="Aqua"/>
-        </Style>
-
 
     </Window.Resources>
     
@@ -48,7 +46,6 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.025*" MinWidth="5" />
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*" MinWidth="10" />
         </Grid.ColumnDefinitions>
 
@@ -110,17 +107,16 @@
             HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />-->
 
         <!--middle side-->
-        <ScrollViewer Grid.Row="1" Grid.Column="2" ScrollViewer.VerticalScrollBarVisibility="Visible">
-            <RichTextBox x:Name="text_area" BorderThickness="0" Style ="{StaticResource innter_ProgressiveGrey}">
+        <ScrollViewer Grid.Row="1" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <RichTextBox x:Name="text_area" Style ="{StaticResource inner_ProgressiveGrey}">
                 <FlowDocument LineHeight="0.5">
                     <Paragraph LineHeight="0.5"/>
                 </FlowDocument>
             </RichTextBox>
         </ScrollViewer>
 
-
         <!--Footer-->
-        <Border Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource overhead_ProgressiveGrey}" />
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource overhead_ProgressiveGrey}" />
         <Grid Grid.Row="2" Grid.Column="2">
 
             <Grid.ColumnDefinitions>
@@ -131,15 +127,15 @@
             
             <!--Left side-->
             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <TextBlock Name="currentFunc" Text="Method: " Foreground="{StaticResource BodyText}"></TextBlock>
+                <TextBlock Name="currentFunc" Text="Method: " FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
             </StackPanel>
             
             <!--Middle side-->
 
             <!--Right side-->
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <TextBlock Name="LnCount" Text="Ln: " Foreground="{StaticResource BodyText}"></TextBlock>
-                <TextBlock Name="ChCount" Text="Ch: " Foreground="{StaticResource BodyText}"></TextBlock>
+                <TextBlock Name="LnCount" Text="Ln: " FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
+                <TextBlock Name="ChCount" Text="Ch: " FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
             </StackPanel>
             
         </Grid>
