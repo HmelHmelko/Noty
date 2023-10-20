@@ -11,18 +11,24 @@
     <Grid>
         <Grid.RowDefinitions>
             <!--Header-->
-            <RowDefinition Height="34"/>
+            <RowDefinition Height="30"/>
             <!--Body-->
             <RowDefinition/>
             <!--Footer-->
-            <RowDefinition Height="26"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <!--Header-->
-        <Rectangle Grid.Row="0" Fill="{StaticResource HeaderFooter}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         
+        <!--Header-->
+        <Rectangle Grid.Row="0" Grid.ColumnSpan="3"  Fill="{StaticResource HeaderFooter}"/>
+
         <!--MainMenu-->
-        <Menu Grid.Row="0" Background="Transparent" Foreground="{StaticResource HeaderFooterText}" 
+        <Menu Grid.Row="0" Grid.ColumnSpan="3" Background="Transparent" Foreground="{StaticResource HeaderFooterText}" 
               IsMainMenu="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
             
             <MenuItem Header="File">
@@ -70,15 +76,20 @@
         </Menu>
 
         <!--Body-->
-        <Rectangle Grid.Row="1" Fill="{StaticResource Body}"/>
-        <RichTextBox FontSize="18" Margin="2,4, -0.6, 4" Grid.Row="1" x:Name="text_area" BorderThickness="0" Foreground="{StaticResource BodyText}" Background="{StaticResource Body}">
+        <Button Grid.Row="1" Grid.Column="0" Content="LEFT" Background="AliceBlue"></Button>
+        
+        <GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
+            HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />
+        
+        <!--<Rectangle Grid.Row="1" Grid.ColumnSpan="3" Fill="{StaticResource Body}"/>-->
+        <RichTextBox FontSize="18" Grid.Row="1" Grid.Column="2" x:Name="text_area" BorderThickness="0" Foreground="{StaticResource BodyText}" Background="{StaticResource Body}">
             <FlowDocument LineHeight="0.5">
                 <Paragraph LineHeight="0.5"/>
             </FlowDocument>
         </RichTextBox>
         
         <!--Footer-->
-        <Rectangle Grid.Row="2" Fill="{StaticResource HeaderFooter}" ScrollViewer.HorizontalScrollBarVisibility="Visible" />
+        <Rectangle Grid.Row="2" Grid.ColumnSpan="3" Fill="{StaticResource HeaderFooter}" ScrollViewer.HorizontalScrollBarVisibility="Visible" />
 
     </Grid>
 </Window>
