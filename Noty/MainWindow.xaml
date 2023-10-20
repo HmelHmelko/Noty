@@ -82,12 +82,14 @@
         <!--<GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
             HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />-->
         
-        <!--middle side-->
-        <RichTextBox FontSize="18" Grid.Row="1" Grid.Column="2" x:Name="text_area" BorderThickness="0" Foreground="{StaticResource BodyText}" Background="{StaticResource Body}">
-            <FlowDocument LineHeight="0.5">
-                <Paragraph LineHeight="0.5"/>
-            </FlowDocument>
-        </RichTextBox>
+        <!--middle side-->   
+        <ScrollViewer Grid.Row="1" Grid.Column="2" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <RichTextBox FontSize="18" x:Name="text_area" BorderThickness="0" Foreground="{StaticResource BodyText}" Background="{StaticResource Body}">
+                <FlowDocument LineHeight="0.5">
+                    <Paragraph LineHeight="0.5"/>
+                </FlowDocument>
+            </RichTextBox>
+        </ScrollViewer>
 
 
         <!--Footer-->
