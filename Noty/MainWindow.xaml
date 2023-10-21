@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Noty"
         mc:Ignorable="d"
-        Title="*Untitled - Noty" Height="450" Width="800" MinHeight="400" MinWidth="700" Icon="/NotyIcon.png" 
+        Title="*Untitled - Noty" Height="450" Width="800" MinHeight="400" MinWidth="700"
         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
 

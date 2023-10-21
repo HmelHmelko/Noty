@@ -5,10 +5,15 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>NotyVar01.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="NotyIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="NotyVar01.ico" />
   </ItemGroup>
 
   <ItemGroup>
