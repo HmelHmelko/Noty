@@ -31,6 +31,6 @@ namespace Noty
 
         private void OpenMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.OpenFile(textArea);
         private void NewMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.NewFile(textArea);
-        private void SaveMenuItem_Click(object sender, RoutedEventArgs e) => throw new NotImplementedException();
+        private void SaveMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.SaveFile(textArea);
     }
 }

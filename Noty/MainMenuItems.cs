@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Shapes;
 
 namespace Noty
 {
@@ -47,6 +46,19 @@ namespace Noty
         }
 
         public void NewFile(RichTextBox textArea) => textArea.Document.Blocks.Clear();
+
+        public void SaveFile(RichTextBox textArea)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            if (sfd.ShowDialog() == true)
+            {
+                TextRange doc = new TextRange(textArea.Document.ContentStart, textArea.Document.ContentEnd);
+                using (FileStream fs = File.Create(sfd.FileName))
+                {
+                    doc.Save(fs, DataFormats.Text);
+                }
+            }
+        }
 
     }
 }
