@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Noty"
         mc:Ignorable="d"
-        Title="*Untitled - Noty" Height="450" Width="800" MinHeight="400" MinWidth="700"
+        Title="*Untitled - Noty" Height="720" Width="1024" MinHeight="400" MinWidth="700"
         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
 
@@ -74,7 +74,7 @@
 
             <MenuItem Header="File">
                 <MenuItem Header="New" InputGestureText="Ctrl+N"></MenuItem>
-                <MenuItem Header="Open" InputGestureText="Ctrl+O"></MenuItem>
+                <MenuItem Header="Open" InputGestureText="Ctrl+O" x:Name="OpenMenuItem" Click="OpenMenuItemClick"></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="Save" InputGestureText="Ctrl+S"></MenuItem>
                 <MenuItem Header="Save As"></MenuItem>
@@ -156,13 +156,13 @@
             HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />-->
 
         <!--Middle side-->
-        <ScrollViewer Grid.Row="1" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Visible">
-            <RichTextBox x:Name="text_area" Style ="{StaticResource inner_ProgressiveGrey}" >
-                <FlowDocument LineHeight="0.5">
-                    <Paragraph LineHeight="0.5"/>
-                </FlowDocument>
-            </RichTextBox>
-        </ScrollViewer>
+        <RichTextBox Grid.Row="1" Grid.Column="1" x:Name="textArea" Style ="{StaticResource inner_ProgressiveGrey}" 
+                     HorizontalScrollBarVisibility="Auto"
+                     VerticalScrollBarVisibility="Visible">
+            <FlowDocument LineHeight="0.5" PageWidth="10000">
+                <Paragraph LineHeight="0.5"/>
+            </FlowDocument>
+        </RichTextBox>
 
         <!--Footer-->
         <Border Grid.Row="2" Grid.Column="2" BorderThickness="0 1 0 0" BorderBrush="Black" Style="{StaticResource overhead_ProgressiveGrey}">
