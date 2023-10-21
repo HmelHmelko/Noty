@@ -102,9 +102,9 @@
 
         <!--Body-->
         <!--left side-->
-        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource overhead_ProgressiveGrey}"></Border>
-        
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+        <Border Grid.Row="1" Grid.Column="0" BorderThickness="0 0 1 0" BorderBrush="Black" Style="{StaticResource overhead_ProgressiveGrey}">
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
             <DockPanel>
 
                 <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
@@ -131,6 +131,7 @@
                 </Button>
             </DockPanel>
         </StackPanel>
+        </Border>
 
         <!--<GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
             HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />-->
