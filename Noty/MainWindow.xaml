@@ -122,9 +122,9 @@
 
                     </Button>
                 </DockPanel>
-                
-                <Label/>
-                
+
+                <Rectangle HorizontalAlignment="Stretch" Height="10"/>
+
                 <DockPanel>
 
                     <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
