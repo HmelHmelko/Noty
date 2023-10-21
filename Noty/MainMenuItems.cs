@@ -1,22 +1,52 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Shapes;
 
 namespace Noty
 {
-    public class MainMenuItems
+    public class MainMenuItems : INotifyPropertyChanged
     {
-        Menu MainMenu;      
-        public MainMenuItems(Menu menu)
+        string DocumentContent { get; set; }    
+        string TitleName { get; set; }  
+        string FilePath { get; set; }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            this.MainMenu = menu;
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+
+        public void OpenFile(RichTextBox textArea)
+        {
+            textArea.Document.Blocks.Clear();
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            if (ofd.ShowDialog() == true)
+            {
+                //Path to document
+                FilePath = ofd.FileName;
+                //Document name
+                TitleName = ofd.SafeFileName;
+
+                StreamReader fileReader = new StreamReader(FilePath);
+                DocumentContent = fileReader.ReadToEnd(); ;
+                textArea.AppendText(DocumentContent);
+            }
+        }
+
+        public void NewFile(RichTextBox textArea) => textArea.Document.Blocks.Clear();
+
     }
 }

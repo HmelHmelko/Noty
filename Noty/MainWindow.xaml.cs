@@ -22,69 +22,15 @@ namespace Noty
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool match = true;
-        string filePath = string.Empty;
-        string titleName = string.Empty;
-        string documentContent = string.Empty;
-
-        string DocumentContent 
-        { 
-            get { return documentContent; } 
-            set { documentContent = value; } 
-        }
-
-        string TitleName
-        {
-            get { return titleName; }
-            set { titleName = value; }
-        }
-
-        string FilePath
-        {
-            get { return filePath; }
-            set { filePath = value; }
-        }
-
-        bool Match
-        {
-            get { return match; }
-            set { match = value; }
-        }
-
         public MainMenuItems MainMenu;
         public MainWindow()
         {
             InitializeComponent();
-            MainMenu = new MainMenuItems(TopMainMenu);
+            MainMenu = new MainMenuItems();
         }
 
-        private void OpenMenuItemClick(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog();
-        }
-
-        private void OpenFileDialog()
-        {
-            textArea.Document.Blocks.Clear();
-
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.ShowDialog();
-            
-            if(ofd.FileName != string.Empty)
-            {
-                //Path to document
-                FilePath = ofd.FileName;
-
-                //Document name
-                TitleName = ofd.SafeFileName;
-
-                //if the document matches the textbox
-                Match = true;
-
-                StreamReader fileReader = new StreamReader(FilePath);
-                DocumentContent = fileReader.ReadToEnd();;
-                textArea.AppendText(documentContent);
-            }
-        }
+        private void OpenMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.OpenFile(textArea);
+        private void NewMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.NewFile(textArea);
+        private void SaveMenuItem_Click(object sender, RoutedEventArgs e) => throw new NotImplementedException();
     }
 }

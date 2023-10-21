@@ -73,10 +73,10 @@
               TextOptions.TextFormattingMode="Display">
 
             <MenuItem Header="File">
-                <MenuItem Header="New" InputGestureText="Ctrl+N"></MenuItem>
-                <MenuItem Header="Open" InputGestureText="Ctrl+O" x:Name="OpenMenuItem" Click="OpenMenuItemClick"></MenuItem>
+                <MenuItem Header="New" InputGestureText="Ctrl+N" x:Name="NewMenuItem" Click="NewMenuItem_Click"></MenuItem>
+                <MenuItem Header="Open" InputGestureText="Ctrl+O" x:Name="OpenMenuItem" Click="OpenMenuItem_Click"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="Save" InputGestureText="Ctrl+S"></MenuItem>
+                <MenuItem Header="Save" InputGestureText="Ctrl+S" x:Name="SaveMenuItem" Click="SaveMenuItem_Click"></MenuItem>
                 <MenuItem Header="Save As"></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="Exit" InputGestureText="Alt+F4"></MenuItem>
