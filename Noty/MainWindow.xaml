@@ -61,52 +61,49 @@
         <Menu Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource textMenu_ProgressiveGrey}" IsMainMenu="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
             <MenuItem Header="File">
-                <MenuItem Header="New" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="New window" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Open" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="New" InputGestureText="Ctrl+N"></MenuItem>
+                <MenuItem Header="Open" InputGestureText="Ctrl+O"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="Save" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Save As" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Save" InputGestureText="Ctrl+S"></MenuItem>
+                <MenuItem Header="Save As"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="Exit" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Exit" InputGestureText="Alt+F4"></MenuItem>
             </MenuItem>
 
             <MenuItem Header="Edit">
-                <MenuItem Header="Undo" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Undo" InputGestureText="Ctrl+Z"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="Cut" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Copy" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Paste" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Delete" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Cut" InputGestureText="Ctrl+X"></MenuItem>
+                <MenuItem Header="Copy" InputGestureText="Ctrl+C"></MenuItem>
+                <MenuItem Header="Paste" InputGestureText="Ctrl+D"></MenuItem>
+                <MenuItem Header="Delete" InputGestureText="Del"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="Find" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Find Next" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Find Previous" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Replace" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Go to" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Select All" InputGestureText="Ctrl+A"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="Select All" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Time/Date" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Find" InputGestureText="Ctrl+F"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Replace All" InputGestureText="Ctrl+R"></MenuItem>
             </MenuItem>
 
             <MenuItem Header="Format">
-                <MenuItem Header="Word Wrap" HorizontalAlignment="Left"></MenuItem>
-                <MenuItem Header="Font" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Word Wrap" IsCheckable="True" IsChecked="True"></MenuItem>
+                <MenuItem Header="Font"></MenuItem>
             </MenuItem>
 
             <MenuItem Header="View">
-                <MenuItem Header="Zoom" HorizontalAlignment="Left">
-                    <MenuItem Header="Zoom In" HorizontalAlignment="Left"></MenuItem>
-                    <MenuItem Header="Zoom Out" HorizontalAlignment="Left"></MenuItem>
-                    <MenuItem Header="Restore Default Zoom" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Zoom">
+                    <MenuItem Header="Zoom In"></MenuItem>
+                    <MenuItem Header="Zoom Out"></MenuItem>
+                    <MenuItem Header="Restore Default Zoom"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Status Bar" HorizontalAlignment="Left"></MenuItem>
+                <MenuItem Header="Status Bar"></MenuItem>
             </MenuItem>
         </Menu>
 
         <!--Body-->
         <!--left side-->
         <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource overhead_ProgressiveGrey}"></Border>
+        
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
             <DockPanel>
 
@@ -133,7 +130,6 @@
 
                 </Button>
             </DockPanel>
-
         </StackPanel>
 
         <!--<GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
@@ -175,5 +171,6 @@
             </StackPanel>
 
         </Grid>
+        
     </Grid>
 </Window>
