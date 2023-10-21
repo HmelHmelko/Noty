@@ -102,35 +102,35 @@
 
         <!--Body-->
         <!--left side-->
-        <Border Grid.Row="1" Grid.Column="0" BorderThickness="0 0 1 0" BorderBrush="Black" Style="{StaticResource overhead_ProgressiveGrey}">
+        <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" BorderThickness="0 0 1 0" BorderBrush="Black" Style="{StaticResource overhead_ProgressiveGrey}">
 
             <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
-            <DockPanel>
+                <DockPanel>
 
-                <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                    <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
                         x:Name="leftContextToolbox" RenderTransformOrigin="0.5, 0.5" 
                         Style="{StaticResource inner_ProgressiveGrey}" MinWidth="80" Content="Toolbox" FontSize="14" TextOptions.TextFormattingMode="Display">
 
-                    <Button.LayoutTransform>
-                        <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
-                    </Button.LayoutTransform>
+                        <Button.LayoutTransform>
+                            <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
+                        </Button.LayoutTransform>
 
-                </Button>
-            </DockPanel>
+                    </Button>
+                </DockPanel>
 
-            <DockPanel>
+                <DockPanel>
 
-                <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                    <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
                         x:Name="leftContextExplorer" RenderTransformOrigin="0.5, 0.5" 
                         Style="{StaticResource inner_ProgressiveGrey}" MinWidth="80" Content ="Explorer" FontSize="14" TextOptions.TextFormattingMode="Display">
 
-                    <Button.LayoutTransform>
-                        <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
-                    </Button.LayoutTransform>
+                        <Button.LayoutTransform>
+                            <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
+                        </Button.LayoutTransform>
 
-                </Button>
-            </DockPanel>
-        </StackPanel>
+                    </Button>
+                </DockPanel>
+            </StackPanel>
         </Border>
 
         <!--<GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
@@ -146,32 +146,32 @@
         </ScrollViewer>
 
         <!--Footer-->
-        <Border Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource overhead_ProgressiveGrey}" />
-        <Grid Grid.Row="2" Grid.Column="2">
+        <Border Grid.Row="2" Grid.Column="2" BorderThickness="0 1 0 0" BorderBrush="Black" Style="{StaticResource overhead_ProgressiveGrey}">
+            <Grid Grid.Row="2" Grid.Column="2">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="100*"/>
-                <ColumnDefinition Width="20*"/>
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="20*"/>
+                </Grid.ColumnDefinitions>
 
-            <!--Left side-->
-            <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <TextBlock Text="Method:" Margin="0,0,2,0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
-                <TextBlock x:Name="currentFunc" Text="0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
-            </StackPanel>
+                <!--Left side-->
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="Method:" Margin="0,0,2,0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
+                    <TextBlock x:Name="currentFunc" Text="0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
+                </StackPanel>
 
-            <!--Middle side-->
+                <!--Middle side-->
 
-            <!--Right side-->
-            <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <TextBlock Text="Ln:" Margin="0,0,2,0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
-                <TextBlock x:Name="LnCountHolder" Text="0" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
-                <TextBlock Text="Ch:" Margin="0,0,2,0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
-                <TextBlock x:Name="ChCount" Text="0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
-            </StackPanel>
+                <!--Right side-->
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <TextBlock Text="Ln:" Margin="0,0,2,0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
+                    <TextBlock x:Name="LnCountHolder" Text="0" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
+                    <TextBlock Text="Ch:" Margin="0,0,2,0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
+                    <TextBlock x:Name="ChCount" Text="0" VerticalAlignment="Center" FontSize="10" Style="{StaticResource inner_ProgressiveGrey}"></TextBlock>
+                </StackPanel>
 
-        </Grid>
-        
+            </Grid>
+        </Border>
     </Grid>
 </Window>
