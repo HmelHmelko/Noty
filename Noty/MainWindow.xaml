@@ -54,11 +54,18 @@
             <ColumnDefinition Width="*" MinWidth="10" />
         </Grid.ColumnDefinitions>
 
+        <!--Right Top Corner-->
+        <Rectangle Grid.Column="0" Grid.Row="0" Fill="{StaticResource HeaderFooter}">
+            
+        </Rectangle>
+        
         <!--Header-->
-        <Border x:Name="mainBorder" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource overhead_ProgressiveGrey}" />
+        <Border x:Name="mainBorder" Grid.Row="0" Grid.Column="2" Style="{StaticResource overhead_ProgressiveGrey}" >
+            
+        </Border>
 
         <!--MainMenu-->
-        <Menu Grid.Row="0" Grid.ColumnSpan="3" 
+        <Menu Grid.Row="0" Grid.Column="2" 
               Style="{StaticResource textMenu_ProgressiveGrey}" 
               IsMainMenu="True" 
               VerticalAlignment="Center" 
@@ -106,7 +113,7 @@
         </Menu>
 
         <!--Body-->
-        <!--left side-->
+        <!--Left Side-->
         <Border Grid.Row="1" Grid.Column="0" BorderThickness="0 0 1 0" BorderBrush="Black" Style="{StaticResource overhead_ProgressiveGrey}">
 
             <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
@@ -140,7 +147,7 @@
             </StackPanel>
         </Border>
         
-        <!--Left bottom corner-->
+        <!--Left Bottom Corner-->
         <Rectangle Grid.Row="2" Grid.Column="0" Fill="{StaticResource HeaderFooter}">
             
         </Rectangle>
@@ -148,7 +155,7 @@
         <!--<GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
             HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />-->
 
-        <!--middle side-->
+        <!--Middle side-->
         <ScrollViewer Grid.Row="1" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <RichTextBox x:Name="text_area" Style ="{StaticResource inner_ProgressiveGrey}" >
                 <FlowDocument LineHeight="0.5">
