@@ -58,7 +58,12 @@
         <Border x:Name="mainBorder" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource overhead_ProgressiveGrey}" />
 
         <!--MainMenu-->
-        <Menu Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource textMenu_ProgressiveGrey}" IsMainMenu="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+        <Menu Grid.Row="0" Grid.ColumnSpan="3" 
+              Style="{StaticResource textMenu_ProgressiveGrey}" 
+              IsMainMenu="True" 
+              VerticalAlignment="Center" 
+              HorizontalAlignment="Stretch" 
+              TextOptions.TextFormattingMode="Display">
 
             <MenuItem Header="File">
                 <MenuItem Header="New" InputGestureText="Ctrl+N"></MenuItem>
@@ -117,7 +122,9 @@
 
                     </Button>
                 </DockPanel>
-
+                
+                <Label/>
+                
                 <DockPanel>
 
                     <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
