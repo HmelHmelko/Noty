@@ -51,9 +51,11 @@ namespace Noty
             set { match = value; }
         }
 
+        public MainMenuItems MainMenu;
         public MainWindow()
         {
             InitializeComponent();
+            MainMenu = new MainMenuItems(TopMainMenu);
         }
 
         private void OpenMenuItemClick(object sender, RoutedEventArgs e)
@@ -63,10 +65,12 @@ namespace Noty
 
         private void OpenFileDialog()
         {
+            textArea.Document.Blocks.Clear();
+
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.ShowDialog();
             
-            if(ofd.FileName != null)
+            if(ofd.FileName != string.Empty)
             {
                 //Path to document
                 FilePath = ofd.FileName;

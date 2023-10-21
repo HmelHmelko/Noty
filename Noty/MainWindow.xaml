@@ -65,7 +65,7 @@
         </Border>
 
         <!--MainMenu-->
-        <Menu Grid.Row="0" Grid.Column="2" 
+        <Menu x:Name="TopMainMenu" Grid.Column="2" 
               Style="{StaticResource textMenu_ProgressiveGrey}" 
               IsMainMenu="True" 
               VerticalAlignment="Center" 
