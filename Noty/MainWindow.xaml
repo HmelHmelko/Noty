@@ -11,18 +11,22 @@
 
     <Window.Resources>
 
+        <Style x:Key="textMenu_ProgressiveGrey">
+            <Setter Property="Control.Background" Value="Transparent"/>
+            <Setter Property="Control.Foreground" Value="{StaticResource HeaderFooterText}"/>
+            <Setter Property="Control.FontSize" Value="14"/>
+        </Style>
+
+        <Style x:Key="inputText_ProgressiveGrey">
+            <Setter Property="Control.Background" Value="Transparent"/>
+            <Setter Property="Control.Foreground" Value="{StaticResource BodyText}"/>
+            <Setter Property="Control.FontSize" Value="16"/>
+        </Style>
+        
         <Style x:Key="overhead_ProgressiveGrey">
             <Setter Property="Control.Background" Value="{StaticResource HeaderFooter}"/>
             <Setter Property="Control.BorderBrush" Value="Transparent"/>
             <Setter Property="Control.BorderThickness" Value="0"/>
-        </Style>
-
-        <Style x:Key="overhead_ProgressiveGreyText">
-            <Setter Property="Control.Background" Value="Transparent"/>
-            <Setter Property="Control.BorderBrush" Value="Transparent"/>
-            <Setter Property="Control.BorderThickness" Value="0"/>
-            <Setter Property="Control.Foreground" Value="{StaticResource HeaderFooterText}"/>
-            <Setter Property="Control.FontSize" Value="14"/>
         </Style>
 
         <Style x:Key="inner_ProgressiveGrey">
@@ -46,7 +50,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.04*" MinWidth="5" />
+            <ColumnDefinition Width="*" MinWidth="30" MaxWidth="30" />
             <ColumnDefinition Width="*" MinWidth="10" />
         </Grid.ColumnDefinitions>
 
@@ -54,7 +58,7 @@
         <Border Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource overhead_ProgressiveGrey}"/>
 
         <!--MainMenu-->
-        <Menu Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource overhead_ProgressiveGreyText}" IsMainMenu="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+        <Menu Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource textMenu_ProgressiveGrey}" IsMainMenu="True" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
             <MenuItem Header="File">
                 <MenuItem Header="New" HorizontalAlignment="Left"></MenuItem>
@@ -108,29 +112,29 @@
                 
                 <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
                         x:Name="leftContextToolbox" RenderTransformOrigin="0.5, 0.5" 
-                        Style="{StaticResource inner_ProgressiveGrey}" MinWidth="80" MinHeight="10" FontSize="14">
+                        Style="{StaticResource inner_ProgressiveGrey}" MinWidth="80" MinHeight="10" TextOptions.TextFormattingMode="Display">
 
                     <Button.LayoutTransform>
                         <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
                     </Button.LayoutTransform>
 
-                    <TextBlock TextAlignment="Center" Text="Toolbox" Foreground="{StaticResource HeaderFooterText}">
-                    </TextBlock>
-                 
+                    <TextBlock DockPanel.Dock="Left" TextAlignment="Center" Text="Toolbox" Style="{StaticResource textMenu_ProgressiveGrey}"/>
+                    
                 </Button>
+                
             </DockPanel>
 
             <DockPanel>
 
                 <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
                         x:Name="leftContextExplorer" RenderTransformOrigin="0.5, 0.5" 
-                        Style="{StaticResource inner_ProgressiveGrey}" MinWidth="80" MinHeight="10" FontSize="14">
+                        Style="{StaticResource inner_ProgressiveGrey}" MinWidth="80" MinHeight="10" TextOptions.TextFormattingMode="Display">
 
                     <Button.LayoutTransform>
                         <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
                     </Button.LayoutTransform>
 
-                    <TextBlock TextAlignment="Center" Text="Explorer" Foreground="{StaticResource HeaderFooterText}">
+                    <TextBlock TextAlignment="Center" Text="Explorer" Style="{StaticResource textMenu_ProgressiveGrey}">
                     </TextBlock>
 
                 </Button>
