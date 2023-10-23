@@ -1,4 +1,5 @@
-﻿using Noty.Shared.ViewModels;
+﻿using Noty.Services;
+using Noty.Shared.ViewModels;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,12 +11,13 @@ namespace Noty
         { 
             InitializeComponent();
 
-            DataContext = new MainWindowViewModel();
+            DataContext = new MainWindowViewModel(new DefaultDialogService());
         }
         private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var hm = e.GetPosition(this);
             textArea.Document.FontSize += 1;
         }
+
     }
 }
