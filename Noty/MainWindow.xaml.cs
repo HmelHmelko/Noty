@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Noty.Shared.ViewModels;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Noty
@@ -6,9 +7,10 @@ namespace Noty
     public partial class MainWindow : Window
     {
         public MainWindow()
-        {
-            DataContext = this;
+        { 
             InitializeComponent();
+
+            DataContext = new MainWindowViewModel();
         }
         private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

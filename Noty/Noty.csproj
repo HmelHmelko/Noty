@@ -23,4 +23,8 @@
     <Content Include="NotyVar01.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Noty.Shared.ViewModels\Noty.Shared.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
