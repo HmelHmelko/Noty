@@ -9,15 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="NotyIcon.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="NotyVar01.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="NotyIcon.png" />
+    <Folder Include="Model\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
 
 </Project>

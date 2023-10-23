@@ -2,6 +2,7 @@
 using Noty.View.UserControls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,13 +22,25 @@ namespace Noty
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public RichTextBox textContent;
         public MainWindow()
         {
+            DataContext = this;
             InitializeComponent();
-            this.textContent = textArea;
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private string textContent;
+        public string TextContent 
+        { 
+            get { return textContent; }
+            set 
+            { 
+                textContent = value; 
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TextContent"));
+            }
         }
 
         private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
