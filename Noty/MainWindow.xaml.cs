@@ -32,5 +32,11 @@ namespace Noty
         private void OpenMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.OpenFile(textArea);
         private void NewMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.NewFile(textArea);
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.SaveFile(textArea);
+
+        private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var hm = e.GetPosition(this);
+            textArea.Document.FontSize += 1;
+        }
     }
 }

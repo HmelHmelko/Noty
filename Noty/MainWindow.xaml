@@ -60,57 +60,55 @@
         </Rectangle>
         
         <!--Header-->
-        <Border x:Name="mainBorder" Grid.Row="0" Grid.Column="2" Style="{StaticResource overhead_ProgressiveGrey}" >
-            
-        </Border>
+        <Border x:Name="mainBorder" Grid.Row="0" Grid.Column="2" Style="{StaticResource overhead_ProgressiveGrey}">
 
-        <!--MainMenu-->
-        <Menu x:Name="TopMainMenu" Grid.Column="2" 
-              Style="{StaticResource textMenu_ProgressiveGrey}" 
-              IsMainMenu="True" 
-              VerticalAlignment="Center" 
-              HorizontalAlignment="Stretch" 
-              TextOptions.TextFormattingMode="Display">
+            <!--MainMenu-->
+            <Menu x:Name="TopMainMenu" Grid.Column="2" 
+                Style="{StaticResource textMenu_ProgressiveGrey}" 
+                IsMainMenu="True" 
+                VerticalAlignment="Center" 
+                TextOptions.TextFormattingMode="Display" Margin="0,0,800,0">
 
-            <MenuItem Header="File">
-                <MenuItem Header="New" InputGestureText="Ctrl+N" x:Name="NewMenuItem" Click="NewMenuItem_Click"></MenuItem>
-                <MenuItem Header="Open" InputGestureText="Ctrl+O" x:Name="OpenMenuItem" Click="OpenMenuItem_Click"></MenuItem>
-                <Separator></Separator>
-                <MenuItem Header="Save" InputGestureText="Ctrl+S" x:Name="SaveMenuItem" Click="SaveMenuItem_Click"></MenuItem>
-                <MenuItem Header="Save As"></MenuItem>
-                <Separator></Separator>
-                <MenuItem Header="Exit" InputGestureText="Alt+F4"></MenuItem>
-            </MenuItem>
-
-            <MenuItem Header="Edit">
-                <MenuItem Header="Undo" InputGestureText="Ctrl+Z"></MenuItem>
-                <Separator></Separator>
-                <MenuItem Header="Cut" InputGestureText="Ctrl+X"></MenuItem>
-                <MenuItem Header="Copy" InputGestureText="Ctrl+C"></MenuItem>
-                <MenuItem Header="Paste" InputGestureText="Ctrl+D"></MenuItem>
-                <MenuItem Header="Delete" InputGestureText="Del"></MenuItem>
-                <Separator></Separator>
-                <MenuItem Header="Select All" InputGestureText="Ctrl+A"></MenuItem>
-                <Separator></Separator>
-                <MenuItem Header="Find" InputGestureText="Ctrl+F"></MenuItem>
-                <Separator></Separator>
-                <MenuItem Header="Replace All" InputGestureText="Ctrl+R"></MenuItem>
-            </MenuItem>
-
-            <MenuItem Header="Format">
-                <MenuItem Header="Word Wrap" IsCheckable="True" IsChecked="True"></MenuItem>
-                <MenuItem Header="Font"></MenuItem>
-            </MenuItem>
-
-            <MenuItem Header="View">
-                <MenuItem Header="Zoom">
-                    <MenuItem Header="Zoom In"></MenuItem>
-                    <MenuItem Header="Zoom Out"></MenuItem>
-                    <MenuItem Header="Restore Default Zoom"></MenuItem>
+                <MenuItem Header="File">
+                    <MenuItem Header="New" InputGestureText="Ctrl+N" x:Name="NewMenuItem" Click="NewMenuItem_Click"></MenuItem>
+                    <MenuItem Header="Open" InputGestureText="Ctrl+O" x:Name="OpenMenuItem" Click="OpenMenuItem_Click"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="Save" InputGestureText="Ctrl+S" x:Name="SaveMenuItem" Click="SaveMenuItem_Click"></MenuItem>
+                    <MenuItem Header="Save As"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="Exit" InputGestureText="Alt+F4"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Status Bar"></MenuItem>
-            </MenuItem>
-        </Menu>
+
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Undo" InputGestureText="Ctrl+Z"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="Cut" InputGestureText="Ctrl+X"></MenuItem>
+                    <MenuItem Header="Copy" InputGestureText="Ctrl+C"></MenuItem>
+                    <MenuItem Header="Paste" InputGestureText="Ctrl+D"></MenuItem>
+                    <MenuItem Header="Delete" InputGestureText="Del"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="Select All" InputGestureText="Ctrl+A"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="Find" InputGestureText="Ctrl+F"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="Replace All" InputGestureText="Ctrl+R"></MenuItem>
+                </MenuItem>
+
+                <MenuItem Header="Format">
+                    <MenuItem Header="Word Wrap" IsCheckable="True" IsChecked="True"></MenuItem>
+                    <MenuItem Header="Font"></MenuItem>
+                </MenuItem>
+
+                <MenuItem Header="View">
+                    <MenuItem Header="Zoom">
+                        <MenuItem Header="Zoom In"></MenuItem>
+                        <MenuItem Header="Zoom Out"></MenuItem>
+                        <MenuItem Header="Restore Default Zoom"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Status Bar"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </Border>
 
         <!--Body-->
         <!--Left Side-->
@@ -120,8 +118,9 @@
                 <DockPanel>
 
                     <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                        x:Name="leftContextToolbox" RenderTransformOrigin="0.5, 0.5" 
-                        Style="{StaticResource inner_ProgressiveGrey}" MinWidth="80" Content="Toolbox" FontSize="14" TextOptions.TextFormattingMode="Display">
+                        x:Name="leftContextToolbox"
+                        Style="{StaticResource inner_ProgressiveGrey}" 
+                        MinWidth="80" Content="Toolbox" FontSize="14" TextOptions.TextFormattingMode="Display">
 
                         <Button.LayoutTransform>
                             <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
@@ -135,8 +134,9 @@
                 <DockPanel>
 
                     <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                        x:Name="leftContextExplorer" RenderTransformOrigin="0.5, 0.5" 
-                        Style="{StaticResource inner_ProgressiveGrey}" MinWidth="80" Content ="Explorer" FontSize="14" TextOptions.TextFormattingMode="Display">
+                        x:Name="leftContextExplorer"
+                        Style="{StaticResource inner_ProgressiveGrey}" 
+                        MinWidth="80" Content ="Explorer" FontSize="14" TextOptions.TextFormattingMode="Display">
 
                         <Button.LayoutTransform>
                             <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
