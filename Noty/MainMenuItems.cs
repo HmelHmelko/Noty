@@ -45,6 +45,7 @@ namespace Noty
             }
         }
 
+        //Just clear
         public void NewFile(RichTextBox textArea) => textArea.Document.Blocks.Clear();
 
         public void SaveFile(RichTextBox textArea)
@@ -59,6 +60,5 @@ namespace Noty
                 }
             }
         }
-
     }
 }
