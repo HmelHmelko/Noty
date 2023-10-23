@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Noty"
+        xmlns:userControls="clr-namespace:Noty.View.UserControls"
         mc:Ignorable="d"
         Title="*Untitled - Noty" Height="720" Width="1024" MinHeight="400" MinWidth="700"
         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeMode="CanResizeWithGrip" 
@@ -60,54 +61,8 @@
         </Rectangle>
         
         <!--Header-->
-        <Border x:Name="mainBorder" Grid.Row="0" Grid.Column="2" Style="{StaticResource overhead_ProgressiveGrey}">
-
-            <!--MainMenu-->
-            <Menu x:Name="TopMainMenu" Grid.Column="2" 
-                Style="{StaticResource textMenu_ProgressiveGrey}" 
-                IsMainMenu="True" 
-                VerticalAlignment="Center" 
-                TextOptions.TextFormattingMode="Display" Margin="0,0,800,0">
-
-                <MenuItem Header="File">
-                    <MenuItem Header="New" InputGestureText="Ctrl+N" x:Name="NewMenuItem" Click="NewMenuItem_Click"></MenuItem>
-                    <MenuItem Header="Open" InputGestureText="Ctrl+O" x:Name="OpenMenuItem" Click="OpenMenuItem_Click"></MenuItem>
-                    <Separator></Separator>
-                    <MenuItem Header="Save" InputGestureText="Ctrl+S" x:Name="SaveMenuItem" Click="SaveMenuItem_Click"></MenuItem>
-                    <MenuItem Header="Save As"></MenuItem>
-                    <Separator></Separator>
-                    <MenuItem Header="Exit" InputGestureText="Alt+F4"></MenuItem>
-                </MenuItem>
-
-                <MenuItem Header="Edit">
-                    <MenuItem Header="Undo" InputGestureText="Ctrl+Z"></MenuItem>
-                    <Separator></Separator>
-                    <MenuItem Header="Cut" InputGestureText="Ctrl+X"></MenuItem>
-                    <MenuItem Header="Copy" InputGestureText="Ctrl+C"></MenuItem>
-                    <MenuItem Header="Paste" InputGestureText="Ctrl+D"></MenuItem>
-                    <MenuItem Header="Delete" InputGestureText="Del"></MenuItem>
-                    <Separator></Separator>
-                    <MenuItem Header="Select All" InputGestureText="Ctrl+A"></MenuItem>
-                    <Separator></Separator>
-                    <MenuItem Header="Find" InputGestureText="Ctrl+F"></MenuItem>
-                    <Separator></Separator>
-                    <MenuItem Header="Replace All" InputGestureText="Ctrl+R"></MenuItem>
-                </MenuItem>
-
-                <MenuItem Header="Format">
-                    <MenuItem Header="Word Wrap" IsCheckable="True" IsChecked="True"></MenuItem>
-                    <MenuItem Header="Font"></MenuItem>
-                </MenuItem>
-
-                <MenuItem Header="View">
-                    <MenuItem Header="Zoom">
-                        <MenuItem Header="Zoom In"></MenuItem>
-                        <MenuItem Header="Zoom Out"></MenuItem>
-                        <MenuItem Header="Restore Default Zoom"></MenuItem>
-                    </MenuItem>
-                    <MenuItem Header="Status Bar"></MenuItem>
-                </MenuItem>
-            </Menu>
+        <Border x:Name="mainBorder" Grid.Row="0" Grid.Column="2" Style="{StaticResource overhead_ProgressiveGrey}" MouseDown="Rectangle_MouseLeftButtonDown">
+            <userControls:TopMenu x:Name="topMenu" />
         </Border>
 
         <!--Body-->

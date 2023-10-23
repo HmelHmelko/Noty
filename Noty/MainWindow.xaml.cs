@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Noty.View.UserControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,16 +23,12 @@ namespace Noty
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainMenuItems MainMenu;
+        public RichTextBox textContent;
         public MainWindow()
         {
             InitializeComponent();
-            MainMenu = new MainMenuItems();
+            this.textContent = textArea;
         }
-
-        private void OpenMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.OpenFile(textArea);
-        private void NewMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.NewFile(textArea);
-        private void SaveMenuItem_Click(object sender, RoutedEventArgs e) => MainMenu.SaveFile(textArea);
 
         private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
