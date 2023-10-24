@@ -6,7 +6,8 @@ namespace Noty.Shared.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         #region private Properties
-        private IFileService fileService;
+        private IFileService txtFileService;
+        private IFileService rtfFileService;
         private IDialogService dialogService;
 
         #endregion
@@ -21,32 +22,11 @@ namespace Noty.Shared.ViewModels
         public ICommand NewFileCommand { get; }
         public ICommand OpenFileCommand { get; }
         public ICommand SaveFileCommand { get; }
-        public ICommand CloseAppCommand { get; }
         public ICommand IncreaseFontSizeCommand { get; }
 
         #endregion
 
         #region DelegateCommands
-
-        private DelegateCommand closeCommand;
-/*        public DelegateCommand CloseCommand
-        {
-            get
-            {
-                return closeCommand ??
-                  (closeCommand = new DelegateCommand(obj =>
-                  {
-                      try
-                      {
-                          Window
-                      }
-                      catch (Exception ex)
-                      {
-                          //dialogService.ShowMessage(ex.Message);
-                      }
-                  }));
-            }
-        }*/
 
         private DelegateCommand newCommand;
         public DelegateCommand NewCommand
@@ -108,7 +88,7 @@ namespace Noty.Shared.ViewModels
                       {
                           if (dialogService.OpenFileDialog() == true)
                           {
-                              TextContent = fileService.Open(dialogService.FilePath);
+                              TextContent = txtFileService.Open(dialogService.FilePath);
                               //dialogService.ShowMessage("Файл открыт");
                           }
                       }
@@ -132,7 +112,11 @@ namespace Noty.Shared.ViewModels
                       {
                           if (dialogService.SaveFileDialog() == true)
                           {
-                              fileService.Save(dialogService.FilePath, TextContent);
+                              if(dialogService.FileExtansion == ".txt")
+                                txtFileService.Save(dialogService.FilePath, TextContent);
+                              else
+                                  rtfFileService.Save(dialogService.FilePath, TextContent);
+                              
                               //dialogService.ShowMessage("Файл сохранен");
                           }
                       }
@@ -147,10 +131,11 @@ namespace Noty.Shared.ViewModels
         #endregion
 
         #region Constructor
-        public MainWindowViewModel(IDialogService dialogService, IFileService fileService)
+        public MainWindowViewModel(IDialogService dialogService, IFileService txtfileService, IFileService rtfFileService)
         {
             this.dialogService = dialogService;
-            this.fileService = fileService;
+            this.txtFileService = txtfileService;
+            this.rtfFileService = rtfFileService;
 
             NewFileCommand = NewCommand;
             OpenFileCommand = OpenCommand;

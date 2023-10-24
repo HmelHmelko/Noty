@@ -168,18 +168,16 @@
         <wpfToolkit:RichTextBox Grid.Row="1" Grid.Column="1" x:Name="TextArea"
             Style ="{StaticResource inner_ProgressiveGrey}" 
             HorizontalScrollBarVisibility="Auto"
+            SpellCheck.IsEnabled="True"
             VerticalScrollBarVisibility="Visible" 
             FontSize="{Binding TextFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            Text="{Binding TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+            Text="{Binding TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            TextFormatter="{Binding TextFormat}" >
 
             <wpfToolkit:RichTextBoxFormatBarManager.FormatBar>
                 <wpfToolkit:RichTextBoxFormatBar />
             </wpfToolkit:RichTextBoxFormatBarManager.FormatBar>
-
-            <wpfToolkit:RichTextBox.TextFormatter>
-                <wpfToolkit:PlainTextFormatter />
-            </wpfToolkit:RichTextBox.TextFormatter>
-            
+  
             <FlowDocument LineHeight="0.5" >
                 <Paragraph LineHeight="0.5">
                 </Paragraph>

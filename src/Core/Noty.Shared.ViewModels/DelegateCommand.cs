@@ -15,14 +15,7 @@ namespace Noty.Shared.ViewModels
             this.canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return this.canExecute == null || this.canExecute(parameter);
-        }
-
-        public void Execute(object parameter)
-        {
-            this.execute(parameter);
-        }
+        public bool CanExecute(object parameter) => this.canExecute == null || this.canExecute(parameter);
+        public void Execute(object parameter) => this.execute(parameter);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Noty.Services;
 using Noty.Shared.ViewModels;
 using System.Windows;
-using System.Windows.Input;
+using Xceed.Wpf.Toolkit;
 
 namespace Noty
 {
@@ -10,7 +10,10 @@ namespace Noty
         public MainWindow()
         { 
             InitializeComponent();
-            DataContext = new MainWindowViewModel(new DefaultDialogService(), new TxtFileService());
+            DataContext = new MainWindowViewModel(new DefaultDialogService(), new FileService(), new RtfFileService());
+
+            //TextArea.TextFormatter = new PlainTextFormatter();
+            TextArea.TextFormatter = new RtfFormatter();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
