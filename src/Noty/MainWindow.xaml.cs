@@ -1,5 +1,6 @@
 ﻿using Noty.Services;
 using Noty.Shared.ViewModels;
+using Noty.Shared.FileOperations;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,8 +11,7 @@ namespace Noty
         public MainWindow()
         { 
             InitializeComponent();
-
-            DataContext = new MainWindowViewModel(new DefaultDialogService());
+            DataContext = new MainWindowViewModel(new DefaultDialogService(), new TxtFileService(textArea));
         }
         private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

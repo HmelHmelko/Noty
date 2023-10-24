@@ -1,4 +1,4 @@
-﻿namespace Noty.Shared.ViewModels
+﻿namespace Noty.Shared.FileOperations
 {
     public interface IDialogService
     {

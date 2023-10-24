@@ -1,10 +1,11 @@
 ﻿using System.Windows.Input;
-using System.Runtime.CompilerServices;
+using Noty.Shared.FileOperations;
 
 namespace Noty.Shared.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private IFileService fileService;
         private IDialogService dialogService;
         public string FilePath { get; set; }
         public string TextContent { get; set; }
@@ -23,7 +24,8 @@ namespace Noty.Shared.ViewModels
                       {
                           if (dialogService.OpenFileDialog() == true)
                           {
-                              dialogService.ShowMessage("Файл открыт");
+                              fileService.Open(dialogService.FilePath);
+                              //dialogService.ShowMessage("Файл открыт");
                           }
                       }
                       catch (Exception ex)
@@ -46,6 +48,7 @@ namespace Noty.Shared.ViewModels
                       {
                           if (dialogService.SaveFileDialog() == true)
                           {
+                              fileService.Save(dialogService.FilePath, TextContent);
                               dialogService.ShowMessage("Файл сохранен");
                           }
                       }
@@ -56,16 +59,18 @@ namespace Noty.Shared.ViewModels
                   }));
             }
         }
-        public MainWindowViewModel(IDialogService dialogService)
+        public MainWindowViewModel(IDialogService dialogService, IFileService fileService)
         {
             this.dialogService = dialogService;
+            this.fileService = fileService;
+
             OpenFileCommand = OpenCommand;
             SaveFileCommand = SaveCommand;
         }
 
         private void Open(object parameter)
         {
-            dialogService.OpenFileDialog();
+                dialogService.OpenFileDialog();
         }
     }
 }

@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Noty.Shared.ViewModels\Noty.Shared.ViewModels.csproj" />
+    <ProjectReference Include="..\Others\Noty.Shared.FileOperations\Noty.Shared.FileOperations.csproj" />
   </ItemGroup>
 
   <ItemGroup>

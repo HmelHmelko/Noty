@@ -164,10 +164,10 @@
             HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />-->
 
         <!--Middle side-->
-        <wpfToolkit:RichTextBox Grid.Row="1" Grid.Column="1" x:Name="textArea" Text="{Binding TextContent}"
+        <wpfToolkit:RichTextBox Grid.Row="1" Grid.Column="1" x:Name="textArea"
             Style ="{StaticResource inner_ProgressiveGrey}" 
             HorizontalScrollBarVisibility="Auto"
-            VerticalScrollBarVisibility="Visible">
+            VerticalScrollBarVisibility="Visible" Text="{Binding TextContent}" >
             <FlowDocument LineHeight="0.5" PageWidth="10000" >
                 <Paragraph LineHeight="0.5">
                 </Paragraph>
