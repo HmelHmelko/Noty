@@ -14,17 +14,39 @@ namespace Noty.Shared.ViewModels
         #region Properties
         public string TextContent { get; set; }
         public double TextFontSize { get; set; } = 14;
+
         #endregion
 
         #region Commands
         public ICommand NewFileCommand { get; }
         public ICommand OpenFileCommand { get; }
         public ICommand SaveFileCommand { get; }
+        public ICommand CloseAppCommand { get; }
         public ICommand IncreaseFontSizeCommand { get; }
 
         #endregion
 
         #region DelegateCommands
+
+        private DelegateCommand closeCommand;
+/*        public DelegateCommand CloseCommand
+        {
+            get
+            {
+                return closeCommand ??
+                  (closeCommand = new DelegateCommand(obj =>
+                  {
+                      try
+                      {
+                          Window
+                      }
+                      catch (Exception ex)
+                      {
+                          //dialogService.ShowMessage(ex.Message);
+                      }
+                  }));
+            }
+        }*/
 
         private DelegateCommand newCommand;
         public DelegateCommand NewCommand
