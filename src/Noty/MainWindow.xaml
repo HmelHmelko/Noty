@@ -61,7 +61,9 @@
         </Rectangle>
         
         <!--Header-->
-        <Border x:Name="mainBorder" Grid.Row="0" Grid.Column="2" Style="{StaticResource overhead_ProgressiveGrey}" MouseDown="Rectangle_MouseLeftButtonDown">
+        <!--MainMenu-->
+        <Border x:Name="mainBorder" Grid.Row="0" Grid.Column="2" 
+                Style="{StaticResource overhead_ProgressiveGrey}">
             
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -77,7 +79,7 @@
                 TextOptions.TextFormattingMode="Display">
 
                     <MenuItem Header="File">
-                        <MenuItem Header="New" InputGestureText="Ctrl+N" x:Name="NewMenuItem"></MenuItem>
+                        <MenuItem Command="{Binding NewFileCommand}" Header="New" InputGestureText="Ctrl+N" x:Name="NewMenuItem"></MenuItem>
                         <MenuItem Command="{Binding OpenFileCommand}" Header="Open" InputGestureText="Ctrl+O" x:Name="OpenMenuItem"></MenuItem>
                         <Separator></Separator>
                         <MenuItem Command="{Binding SaveFileCommand}" Header="Save" InputGestureText="Ctrl+S" x:Name="SaveMenuItem" ></MenuItem>
@@ -103,7 +105,7 @@
 
                     <MenuItem Header="Format">
                         <MenuItem Header="Word Wrap" IsCheckable="True" IsChecked="True"></MenuItem>
-                        <MenuItem Header="Font"></MenuItem>
+                        <MenuItem Command="{Binding IncreaseFontSizeCommand}" Header="Font +"></MenuItem>
                     </MenuItem>
 
                     <MenuItem Header="View">
@@ -167,13 +169,17 @@
         <wpfToolkit:RichTextBox Grid.Row="1" Grid.Column="1" x:Name="textArea"
             Style ="{StaticResource inner_ProgressiveGrey}" 
             HorizontalScrollBarVisibility="Auto"
-            VerticalScrollBarVisibility="Visible" Text="{Binding TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
-            
+            VerticalScrollBarVisibility="Visible" FontSize="{Binding TextFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+
+            <wpfToolkit:RichTextBoxFormatBarManager.FormatBar>
+                <wpfToolkit:RichTextBoxFormatBar />
+            </wpfToolkit:RichTextBoxFormatBarManager.FormatBar>
+
             <wpfToolkit:RichTextBox.TextFormatter>
                 <wpfToolkit:PlainTextFormatter />
             </wpfToolkit:RichTextBox.TextFormatter>
             
-            <FlowDocument LineHeight="0.5" PageWidth="10000" >
+            <FlowDocument LineHeight="0.5" >
                 <Paragraph LineHeight="0.5">
                 </Paragraph>
             </FlowDocument>

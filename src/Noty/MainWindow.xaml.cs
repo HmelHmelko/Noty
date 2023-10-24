@@ -12,11 +12,5 @@ namespace Noty
             InitializeComponent();
             DataContext = new MainWindowViewModel(new DefaultDialogService(), new TxtFileService());
         }
-        private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var hm = e.GetPosition(this);
-            textArea.Document.FontSize += 1;
-        }
-
     }
 }
