@@ -10,6 +10,8 @@ namespace Noty.Services
         public bool OpenFileDialog()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+
             if (openFileDialog.ShowDialog() == true)
             {
                 FilePath = openFileDialog.FileName;
@@ -21,6 +23,8 @@ namespace Noty.Services
         public bool SaveFileDialog()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+
             if (saveFileDialog.ShowDialog() == true)
             {
                 FilePath = saveFileDialog.FileName;
@@ -31,7 +35,7 @@ namespace Noty.Services
 
         public void ShowMessage(string message)
         {
-            
+            //
         }
     }
 }

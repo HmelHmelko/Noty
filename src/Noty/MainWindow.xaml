@@ -167,7 +167,12 @@
         <wpfToolkit:RichTextBox Grid.Row="1" Grid.Column="1" x:Name="textArea"
             Style ="{StaticResource inner_ProgressiveGrey}" 
             HorizontalScrollBarVisibility="Auto"
-            VerticalScrollBarVisibility="Visible" Text="{Binding TextContent}" >
+            VerticalScrollBarVisibility="Visible" Text="{Binding TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+            
+            <wpfToolkit:RichTextBox.TextFormatter>
+                <wpfToolkit:PlainTextFormatter />
+            </wpfToolkit:RichTextBox.TextFormatter>
+            
             <FlowDocument LineHeight="0.5" PageWidth="10000" >
                 <Paragraph LineHeight="0.5">
                 </Paragraph>

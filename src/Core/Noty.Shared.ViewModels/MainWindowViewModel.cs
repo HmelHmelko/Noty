@@ -7,54 +7,60 @@ namespace Noty.Shared.ViewModels
     {
         private IFileService fileService;
         private IDialogService dialogService;
-        public string FilePath { get; set; }
+
+        #region Properties
         public string TextContent { get; set; }
+
+        #endregion
+        #region Commands
         public ICommand OpenFileCommand { get; }
         public ICommand SaveFileCommand { get; }
 
-        private RelayCommand openCommand;
-        public RelayCommand OpenCommand
+        #endregion
+
+        private DelegateCommand openCommand;
+        public DelegateCommand OpenCommand
         {
             get
             {
                 return openCommand ??
-                  (openCommand = new RelayCommand(obj =>
+                  (openCommand = new DelegateCommand(obj =>
                   {
                       try
                       {
                           if (dialogService.OpenFileDialog() == true)
                           {
-                              fileService.Open(dialogService.FilePath);
+                              TextContent = fileService.Open(dialogService.FilePath);
                               //dialogService.ShowMessage("Файл открыт");
                           }
                       }
                       catch (Exception ex)
                       {
-                          dialogService.ShowMessage(ex.Message);
+                          //dialogService.ShowMessage(ex.Message);
                       }
                   }));
             }
         }
 
-        private RelayCommand saveCommand;
-        public RelayCommand SaveCommand
+        private DelegateCommand saveCommand;
+        public DelegateCommand SaveCommand
         {
             get
             {
                 return saveCommand ??
-                  (saveCommand = new RelayCommand(obj =>
+                  (saveCommand = new DelegateCommand(obj =>
                   {
                       try
                       {
                           if (dialogService.SaveFileDialog() == true)
                           {
                               fileService.Save(dialogService.FilePath, TextContent);
-                              dialogService.ShowMessage("Файл сохранен");
+                              //dialogService.ShowMessage("Файл сохранен");
                           }
                       }
                       catch (Exception ex)
                       {
-                          dialogService.ShowMessage(ex.Message);
+                          //dialogService.ShowMessage(ex.Message);
                       }
                   }));
             }
@@ -66,11 +72,6 @@ namespace Noty.Shared.ViewModels
 
             OpenFileCommand = OpenCommand;
             SaveFileCommand = SaveCommand;
-        }
-
-        private void Open(object parameter)
-        {
-                dialogService.OpenFileDialog();
         }
     }
 }
