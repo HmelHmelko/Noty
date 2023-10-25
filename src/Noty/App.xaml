@@ -6,7 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Assets/CustomTheme.xaml"/>
+                <ResourceDictionary Source="Resources/CustomTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <SolidColorBrush x:Key="Menu.Static.Background" Color="#333333"/>

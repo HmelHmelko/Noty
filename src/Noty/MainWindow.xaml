@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Noty"
+        xmlns:test="clr-namespace:Noty.Shared.ViewModels;assembly=Noty.Shared.ViewModels"
         xmlns:wpfToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="*Untitled - Noty" Height="720" Width="1024" MinHeight="400" MinWidth="700"
-        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeMode="CanResizeWithGrip" 
-        WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
+        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeMode="CanResizeWithGrip" AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" x:Name="MainAppWindow">
     
     <Window.Resources>
 
@@ -55,7 +56,7 @@
             <ColumnDefinition Width="*" MinWidth="10" />
         </Grid.ColumnDefinitions>
 
-        <!--Right Top Corner-->
+        <!--Left Top Corner-->
         <Rectangle Grid.Column="0" Grid.Row="0" Fill="{StaticResource HeaderFooter}">
             
         </Rectangle>
@@ -63,12 +64,14 @@
         <!--Header-->
         <!--MainMenu-->
         <Border x:Name="mainBorder" Grid.Row="0" Grid.Column="2" 
-                Style="{StaticResource overhead_ProgressiveGrey}">
-            
+                Style="{StaticResource overhead_ProgressiveGrey}"
+                MouseLeftButtonDown="mainBorder_MouseLeftButtonDown">
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <!--MainMenu-->
@@ -78,32 +81,32 @@
                 VerticalAlignment="Center" 
                 TextOptions.TextFormattingMode="Display">
 
-                    <MenuItem Header="File" IsSubmenuOpen="True">
+                    <MenuItem Header="File">
                         <MenuItem Command="{Binding NewFileCommand}" Header="New" InputGestureText="Ctrl+N" ></MenuItem>
                         <MenuItem Command="{Binding OpenFileCommand}" Header="Open" InputGestureText="Ctrl+O" ></MenuItem>
                         <Separator></Separator>
                         <MenuItem Command="{Binding SaveFileCommand}" Header="Save" InputGestureText="Ctrl+S" ></MenuItem>
-                        <MenuItem Header="Save As"></MenuItem>
+                        <MenuItem Command="{Binding SaveAsFileCommand}" Header="Save As"></MenuItem>
                         <Separator></Separator>
-                        <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Exit_Click"></MenuItem>
+                        <MenuItem Command="{Binding CloseAppCommand}" CommandParameter="{Binding ElementName=MainAppWindow}"  Header="Exit" InputGestureText="Alt+F4"></MenuItem>
                     </MenuItem>
 
-                    <MenuItem Header="Edit" IsSubmenuOpen="True">
+                    <MenuItem Header="Edit">
                         <MenuItem Header="Undo" InputGestureText="Ctrl+Z" Command="ApplicationCommands.Undo"></MenuItem>
                         <Separator></Separator>
-                        <MenuItem Header="Cut" InputGestureText="Ctrl+X"  Command="ApplicationCommands.Cut"></MenuItem>
+                        <MenuItem Header="Cut" InputGestureText="Ctrl+X" Command="ApplicationCommands.Cut"></MenuItem>
                         <MenuItem Header="Copy" InputGestureText="Ctrl+C" Command="ApplicationCommands.Copy"></MenuItem>
                         <MenuItem Header="Paste" InputGestureText="Ctrl+V" Command="ApplicationCommands.Paste"></MenuItem>
-                        <MenuItem Header="Delete" InputGestureText="Del"  Command="ApplicationCommands.Delete"></MenuItem>
+                        <MenuItem Header="Delete" InputGestureText="Del" Command="ApplicationCommands.Delete"></MenuItem>
                         <Separator></Separator>
-                        <MenuItem Header="Select All" InputGestureText="Ctrl+A" Command="ApplicationCommands.SelectAll"></MenuItem>
+                        <MenuItem Header="Select All" InputGestureText="Ctrl+A"  Command="ApplicationCommands.SelectAll"></MenuItem>
                         <Separator></Separator>
                         <MenuItem Header="Find" InputGestureText="Ctrl+F" Command="ApplicationCommands.Find"></MenuItem>
                         <Separator></Separator>
                         <MenuItem Header="Replace All" InputGestureText="Ctrl+R"></MenuItem>
                     </MenuItem>
 
-                    <MenuItem Header="Format" IsSubmenuOpen="True">
+                    <MenuItem Header="Format">
                         <MenuItem Header="Word Wrap" IsCheckable="True" IsChecked="True"></MenuItem>
                     </MenuItem>
 
@@ -116,14 +119,28 @@
                         <MenuItem Header="Status Bar"></MenuItem>
                     </MenuItem>
                 </Menu>
+
+                <!--Right side-->
+                <DockPanel Grid.Column="2">
+                    <Button Command="{Binding MinimizeWindowCommand}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0" >
+                        <Image Source="Resources/Icons/icons_collapse_button.png" Margin="2,2,2,2" Stretch="Fill" />
+                    </Button>
+                    <Button Command="{Binding ChangeWindowStateCommand}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0" >
+                        <Image Source="Resources/Icons/icons_expand_button.png" Margin="2,2,2,2"/>
+                    </Button>
+                    <Button Command="{Binding CloseAppCommand}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0">
+                        <Image Source="Resources/Icons/icons_close_button.png" Margin="2,2,2,2"/>
+                    </Button>
+                </DockPanel>
+
             </Grid>
         </Border>
 
         <!--Body-->
         <!--Left Side-->
-        <Border Grid.Row="1" Grid.Column="0" BorderThickness="0 0 1 0" BorderBrush="Black" Style="{StaticResource overhead_ProgressiveGrey}">
+        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource overhead_ProgressiveGrey}">
 
-            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="0 0 5 0">
                 <DockPanel>
 
                     <Button DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top"
@@ -156,6 +173,54 @@
             </StackPanel>
         </Border>
         
+        <!--Middle Side-->
+        <!--Tab files menu-->
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource overhead_ProgressiveGrey}">
+        </Border>
+
+        <TabControl Grid.Row="1" Grid.Column="1" 
+                    Style="{StaticResource overhead_ProgressiveGrey}"
+                    ItemsSource="{Binding TabFileItems}"
+                    SelectedItem="{Binding CurrentTabFileItem, UpdateSourceTrigger=Explicit}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Left" Text="{Binding FileName}"/>
+
+                        <Button Command="{Binding DataContext.PinTabFileCommand, ElementName=MainAppWindow}"
+                                CommandParameter="{Binding}"
+                                MinHeight="10"
+                                MinWidth="10"
+                                Margin="5,0,0,0" 
+                                BorderBrush="Transparent" 
+                                BorderThickness="0" 
+                                Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Stretch" >
+                            <Image Source="Resources/Icons/icons_pin_tab_button.png" Stretch="Fill" Height="15" Width="15" />
+                        </Button>
+                        
+                        <Button Command="{Binding DataContext.CloseTabFileCommand, ElementName=MainAppWindow}" 
+                                CommandParameter="{Binding}"
+                                DockPanel.Dock="Right"
+                                MinHeight="10"
+                                MinWidth="10"
+                                Margin="5,0,0,0" 
+                                BorderBrush="Transparent" 
+                                BorderThickness="0" 
+                                Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Stretch" >
+                            <Image Source="Resources/Icons/icons_close_tab_button.png" Stretch="Fill" Height="15" Width="15" /> 
+                        </Button>
+                        <!--<Button Command="{Binding DataContext.CloseTabFileCommand, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow} }" Margin="5,0,0,0"/>-->
+                    </DockPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <local:FileTabItem/>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+      
         <!--Left Bottom Corner-->
         <Rectangle Grid.Row="2" Grid.Column="0" Fill="{StaticResource HeaderFooter}">
             
@@ -164,28 +229,8 @@
         <!--<GridSplitter Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="4"
             HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource HeaderFooter}" BorderThickness="0" />-->
 
-        <!--Middle side-->
-        <wpfToolkit:RichTextBox Grid.Row="1" Grid.Column="1" x:Name="TextArea"
-            Style ="{StaticResource inner_ProgressiveGrey}" 
-            HorizontalScrollBarVisibility="Auto"
-            SpellCheck.IsEnabled="True"
-            VerticalScrollBarVisibility="Visible" 
-            FontSize="{Binding TextFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            Text="{Binding TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            TextFormatter="{Binding TextFormat}" >
-
-            <wpfToolkit:RichTextBoxFormatBarManager.FormatBar>
-                <wpfToolkit:RichTextBoxFormatBar />
-            </wpfToolkit:RichTextBoxFormatBarManager.FormatBar>
-  
-            <FlowDocument LineHeight="0.5" >
-                <Paragraph LineHeight="0.5">
-                </Paragraph>
-            </FlowDocument>
-        </wpfToolkit:RichTextBox>
-
         <!--Footer-->
-        <Border Grid.Row="2" Grid.Column="2" BorderThickness="0 1 0 0" BorderBrush="Black" Style="{StaticResource overhead_ProgressiveGrey}">
+        <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource overhead_ProgressiveGrey}">
             <Grid Grid.Row="2" Grid.Column="2">
 
                 <Grid.ColumnDefinitions>
