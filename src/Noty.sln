@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noty.Shared.ViewModels", "C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{A423D920-073C-421C-BDB2-9506EA2A84BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noty.Shared.FileOperations", "Others\Noty.Shared.FileOperations\Noty.Shared.FileOperations.csproj", "{26125BDB-0D2A-4D86-85B2-D46D53F43824}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noty.Shared.FileOperations", "Others\Noty.Shared.FileOperations\Noty.Shared.FileOperations.csproj", "{26125BDB-0D2A-4D86-85B2-D46D53F43824}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

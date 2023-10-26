@@ -22,7 +22,7 @@
                     HorizontalScrollBarVisibility="Visible"
                     VerticalScrollBarVisibility="Visible" 
                     FontSize="{Binding TextFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                    Text="{Binding TextContent, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                    Text="{Binding TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Border>
     </Grid>
 </UserControl>

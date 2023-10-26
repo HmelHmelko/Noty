@@ -5,6 +5,11 @@ namespace Noty.Services
 {
     public class RtfFileService : IFileService
     {
+        public void NewFile(string path, string name)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public string Open(string path)
         {
             throw new System.NotImplementedException();
@@ -18,6 +23,11 @@ namespace Noty.Services
                 writer.Write(content);
                 writer.Close();
             }
+        }
+
+        public void SaveAs(string fileName, string content)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
