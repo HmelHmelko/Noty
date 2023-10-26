@@ -1,13 +1,33 @@
 ﻿using Noty.Shared.FileOperations;
 using System.IO;
+using System.Text;
 
 namespace Noty.Services
 {
-    public class TxtFileService : FileService, IFileService
+    public class TxtFileService : IFileService
     {
-        public override void NewFile(string path, string name) => base.NewFile(path, name);
-        public override string Open(string path) => base.Open(path);
-        public override void Save(string path, string content) => base.Save(path, content);
-        public override void SaveAs(string fileName, string content) => base.SaveAs(fileName, content);
+        public void NewFile(string path) => File.Create(path);
+        public string Open(string path)
+        {
+            lock (this)
+            {
+                var strBuilder = new StringBuilder();
+
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    strBuilder.Append(reader.ReadToEnd());
+                    reader.Close();
+                }
+
+                return strBuilder.ToString();
+            }
+        }
+
+        public  void Save(string path, string content) => File.WriteAllText(path, content);
+
+        public void SaveAs(string path, string content, string extension)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

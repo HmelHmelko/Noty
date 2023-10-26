@@ -6,11 +6,10 @@ namespace Noty.Shared.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         #region private Properties
-        private IFileService txtFileService;
-        private IFileService rtfFileService;
-        private IDialogService dialogService;
-
-        private int LastPinnedTab
+        private IFileIdentifier FileIdentifier;
+        private IDialogService DialogService;
+        private IFileService FileService { get { return FileIdentifier.IdentifyFileExtension(DialogService); } }
+        private int LastPinnedTab 
         {
             get
             {
@@ -36,27 +35,15 @@ namespace Noty.Shared.ViewModels
         #endregion
 
         #region Properties
-        public ObservableCollection<FileTabViewModel> TabFileItems { get; set; } = new ObservableCollection<FileTabViewModel>();
+        public ObservableCollection<FileTabViewModel> TabFileItems { get; set; } =
+            new ObservableCollection<FileTabViewModel>();
         public FileTabViewModel CurrentTabFileItem { get; set; }
         #endregion
 
         #region DelegateCommands
-
         #region Tabs
-        public DelegateCommand AddTabItemCommand
-        {
-            get
-            {
-                return new DelegateCommand(obj =>
-                    {
-                        lock (this)
-                        {
-                            NewFileCommand.Execute(obj);
-                        }
-                    });
-            }
-        }
-
+        public DelegateCommand AddTabItemCommand => 
+            new DelegateCommand(obj => NewFileCommand.Execute(obj));
         public DelegateCommand PinTabFileCommand
         {
             get
@@ -102,103 +89,51 @@ namespace Noty.Shared.ViewModels
         #endregion
 
         #region Menu
-        public DelegateCommand NewFileCommand
-        {
-            get
+        public DelegateCommand NewFileCommand => new DelegateCommand(obj =>
             {
-                return new DelegateCommand(obj =>
-                    {
-                        if (dialogService.SaveFileDialog() == true)
-                        {
-                            CurrentTabFileItem = new FileTabViewModel(string.Empty, new FileInfo(dialogService.FilePath).Name, dialogService.FilePath);                          
-                            TabFileItems.Add(CurrentTabFileItem);
-                            txtFileService.NewFile(dialogService.FilePath, CurrentTabFileItem.FileName);
-                        }
-                    });
-            }
-        }
-        public DelegateCommand IncreaseFontSizeCommand
-        {
-            get
-            {
-                return new DelegateCommand(obj =>
-                    {
-                        CurrentTabFileItem.TextFontSize += 1.0;
-                    });
-            }
-        }
+                if (DialogService.SaveFileDialog() == true)
+                {
+                    CurrentTabFileItem = new FileTabViewModel(string.Empty, Path.GetFileName(DialogService.FilePath), DialogService.FilePath);                          
+                    TabFileItems.Add(CurrentTabFileItem);
 
-        public DelegateCommand OpenFileCommand
-        {
-            get
-            {
-                return new DelegateCommand(obj =>
-                    {
-                        if (dialogService.OpenFileDialog() == true)
-                        {
-                            CurrentTabFileItem = new FileTabViewModel(txtFileService.Open(dialogService.FilePath), 
-                                new FileInfo(dialogService.FilePath).Name, dialogService.FilePath);
-                            TabFileItems.Add(CurrentTabFileItem);
-                        }
-                    });
-            }
-        }
+                    FileService.NewFile(DialogService.FilePath);
+                }
+            });
 
-        public DelegateCommand SaveFileCommand
-        {
-            get
+        public DelegateCommand OpenFileCommand =>  new DelegateCommand(obj => 
             {
-                return new DelegateCommand(obj =>
-                    {
-                        lock(CurrentTabFileItem)
-                        {
-                            txtFileService.Save(CurrentTabFileItem.FilePath, CurrentTabFileItem.TextContent);
-                        }                 
-                    });
-            }
-        }
+                if (DialogService.OpenFileDialog() == true)
+                {
+                    CurrentTabFileItem = new FileTabViewModel(FileService.Open(DialogService.FilePath), 
+                        Path.GetFileName(DialogService.FilePath), DialogService.FilePath);
 
-        public DelegateCommand SaveAsFileCommand
-        {
-            get
+                    TabFileItems.Add(CurrentTabFileItem);
+                }
+            });
+
+        public DelegateCommand SaveFileCommand => 
+            new DelegateCommand(obj => FileService.Save(CurrentTabFileItem.FilePath, CurrentTabFileItem.TextContent));
+
+        public DelegateCommand SaveAsFileCommand => new DelegateCommand(obj =>
             {
-                return new DelegateCommand(obj =>
-                    {
-                        if (dialogService.SaveFileDialog() == true)
-                        {
-                            if (dialogService.FileExtansion == ".txt")
-                                txtFileService.Save(dialogService.FilePath, CurrentTabFileItem.TextContent);
-                            else
-                                rtfFileService.Save(dialogService.FilePath, CurrentTabFileItem.TextContent);
-                        }
-                    });
-            }
-        }
-
+                if (DialogService.SaveFileDialog() == true)
+                {
+                    SaveFileCommand.Execute(obj);
+                    FileService.SaveAs(DialogService.FilePath, CurrentTabFileItem.TextContent, Path.GetExtension(DialogService.FilePath));
+                }
+            });
         #endregion
 
         #region Application OnCloseExtraLogic
-        public DelegateCommand CloseAppCommand
-        {
-            get
-            {
-                return new DelegateCommand(obj =>
-                    {
-
-                    });
-            }
-        }
-
+        public DelegateCommand AppClosing => new DelegateCommand(obj => { });
         #endregion
-
         #endregion
 
         #region Constructor
-        public MainWindowViewModel(IDialogService dialogService, IFileService txtFileService, IFileService rtfFileService)
+        public MainWindowViewModel(IDialogService dialogService, IFileIdentifier FileService)
         {
-            this.dialogService = dialogService;
-            this.txtFileService = txtFileService;
-            this.rtfFileService = rtfFileService;
+            this.DialogService = dialogService;
+            this.FileIdentifier = FileService;
         }
 
         #endregion

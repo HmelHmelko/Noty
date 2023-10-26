@@ -1,18 +1,17 @@
 ﻿using Microsoft.Win32;
 using Noty.Shared.FileOperations;
-using System.IO;
 
 namespace Noty.Services
 {
     public class DefaultDialogService : IDialogService
     {
-        public string FileExtansion => Path.GetExtension(FilePath);
-        public string FilePath { get; set; }        
+        private string dialogFilter = "txt files (*.txt)|*.txt|rtf files (*rtf)|*.rtf|All files (*.*)|*.*";
+        public string FilePath { get; private set; }        
         public bool OpenFileDialog()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.Filter = "txt files (*.txt)|*.txt|rtf files (*rtf)|*.rtf|All files (*.*)|*.*";
+            openFileDialog.Filter = dialogFilter;
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
 
@@ -28,7 +27,7 @@ namespace Noty.Services
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-            saveFileDialog.Filter = "txt files (*.txt)|*.txt|rtf files (*rtf)|*.rtf|All files (*.*)|*.*";
+            saveFileDialog.Filter = dialogFilter;
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
 

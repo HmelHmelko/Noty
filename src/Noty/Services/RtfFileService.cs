@@ -5,7 +5,7 @@ namespace Noty.Services
 {
     public class RtfFileService : IFileService
     {
-        public void NewFile(string path, string name)
+        public void NewFile(string path)
         {
             throw new System.NotImplementedException();
         }
@@ -15,19 +15,14 @@ namespace Noty.Services
             throw new System.NotImplementedException();
         }
 
-        public void Save(string filePath, string content)
+        public void Save(string filePath, string content) => File.WriteAllText(filePath, content);
+        public void SaveAs(string path, string content, string extension)
         {
-            Path.ChangeExtension(filePath, ".rtf");
-            using (StreamWriter writer = new StreamWriter(File.Create(filePath)))
-            {
-                writer.Write(content);
-                writer.Close();
-            }
-        }
-
-        public void SaveAs(string fileName, string content)
-        {
-            throw new System.NotImplementedException();
+            //Тут должен вызывать форматтер, который преобразует файл в другое расширение
+            FileStream fs = new FileStream(path, FileMode.CreateNew);
+            fs.Close();
+            File.WriteAllText(path, content);
+            Path.ChangeExtension(path, extension);
         }
     }
 }

@@ -1,52 +1,31 @@
 ﻿using Noty.Services;
+using Noty.Shared.FileOperations;
 using Noty.Shared.ViewModels;
 using System.Windows;
 
 namespace Noty
 {
-    public partial class MainWindow : Window, IClosable, IMinimizable
+    public partial class MainWindow : Window, IOnApplicationAction, IMinimizable
     {
+        #region readonly
         private readonly MainWindowViewModel mainVM;
-        
+
+        #endregion
+
         #region Constructor
         public MainWindow()
         { 
             InitializeComponent();
 
-            mainVM = new MainWindowViewModel(new DefaultDialogService(), new TxtFileService(), new RtfFileService());
+            mainVM = new MainWindowViewModel(new DefaultDialogService(), new FileIdentifier<IFileService>());
             DataContext = mainVM;
 
         }
         #endregion
 
         #region Window States/Position Changing
-
-        private DelegateCommand changeStateCommand;
-        public DelegateCommand ChangeWindowStateCommand
-        {
-            get
-            {
-                return changeStateCommand ??
-                    (changeStateCommand = new DelegateCommand(obj =>
-                    {
-                        ChangeSizeState();
-                    }));
-            }
-        }
-
-        private DelegateCommand minimizeCommand;
-        public DelegateCommand MinimizeWindowCommand
-        {
-            get
-            {
-                return minimizeCommand ??
-                    (minimizeCommand = new DelegateCommand(obj =>
-                    {
-                        MinimizeToTaskBar();
-                    }));
-            }
-        }
-
+        public DelegateCommand ChangeWindowStateCommand => new DelegateCommand(obj => ChangeSizeState());
+        public DelegateCommand MinimizeWindowCommand => new DelegateCommand(obj => MinimizeToTaskBar());
         public void MinimizeToTaskBar()
         {
             this.ShowInTaskbar = true;
@@ -55,27 +34,23 @@ namespace Noty
 
         public void ChangeSizeState() => this.WindowState = 
             this.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
-
         private void mainBorder_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
         #endregion
 
         #region App close
-
-        private DelegateCommand closeApplicationCommand;
         public DelegateCommand CloseApplicationCommand
         {
             get
             {
-                return closeApplicationCommand ??
-                    (closeApplicationCommand = new DelegateCommand(obj =>
+                return new DelegateCommand(obj =>
                     {
-                        mainVM.CloseAppCommand.Execute(obj);
-                        CloseWindow();
-                    }));
+                        mainVM.AppClosing.Execute(obj);
+                        ApplicationClosing();
+                    });
             }
         }
 
-        public void CloseWindow() => Application.Current.Shutdown();
+        public void ApplicationClosing() => Application.Current.Shutdown();
         #endregion
     }
 }
