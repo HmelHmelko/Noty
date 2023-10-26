@@ -15,24 +15,67 @@ namespace Noty
 
             mainVM = new MainWindowViewModel(new DefaultDialogService(), new TxtFileService(), new RtfFileService());
             DataContext = mainVM;
+
         }
         #endregion
 
         #region Window States/Position Changing
-        void IMinimizable.MinimizeToTaskBar()
+
+        private DelegateCommand changeStateCommand;
+        public DelegateCommand ChangeWindowStateCommand
+        {
+            get
+            {
+                return changeStateCommand ??
+                    (changeStateCommand = new DelegateCommand(obj =>
+                    {
+                        ChangeSizeState();
+                    }));
+            }
+        }
+
+        private DelegateCommand minimizeCommand;
+        public DelegateCommand MinimizeWindowCommand
+        {
+            get
+            {
+                return minimizeCommand ??
+                    (minimizeCommand = new DelegateCommand(obj =>
+                    {
+                        MinimizeToTaskBar();
+                    }));
+            }
+        }
+
+        public void MinimizeToTaskBar()
         {
             this.ShowInTaskbar = true;
             this.WindowState = WindowState.Minimized;
         }
 
-        void IMinimizable.ChangeSizeState() => this.WindowState = 
+        public void ChangeSizeState() => this.WindowState = 
             this.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
 
         private void mainBorder_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
         #endregion
 
         #region App close
-        void IClosable.Close() => Application.Current.Shutdown();
+
+        private DelegateCommand closeApplicationCommand;
+        public DelegateCommand CloseApplicationCommand
+        {
+            get
+            {
+                return closeApplicationCommand ??
+                    (closeApplicationCommand = new DelegateCommand(obj =>
+                    {
+                        mainVM.CloseAppCommand.Execute(obj);
+                        CloseWindow();
+                    }));
+            }
+        }
+
+        public void CloseWindow() => Application.Current.Shutdown();
         #endregion
     }
 }

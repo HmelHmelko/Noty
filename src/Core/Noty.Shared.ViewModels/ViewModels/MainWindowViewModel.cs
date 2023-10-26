@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
 using Noty.Shared.FileOperations;
 
 namespace Noty.Shared.ViewModels
@@ -54,6 +53,7 @@ namespace Noty.Shared.ViewModels
                     {
                         var tab = ((FileTabViewModel)obj);
                         TabFileItems.Add(new FileTabViewModel());
+                        CurrentTabFileItem = TabFileItems.LastOrDefault();
                     }));
             }
         }
@@ -99,52 +99,6 @@ namespace Noty.Shared.ViewModels
                         TabFileItems.Remove(tab);
                         if (tab == CurrentTabFileItem)
                         CurrentTabFileItem = TabFileItems.LastOrDefault();
-                    }));
-            }
-        }
-
-        #endregion
-
-        #region Window
-
-        private DelegateCommand changeStateCommand;
-        public DelegateCommand ChangeWindowStateCommand
-        {
-            get
-            {
-                return changeStateCommand ??
-                    (changeStateCommand = new DelegateCommand(obj =>
-                    {
-                        var myWindow = (IMinimizable)obj;
-                        myWindow.ChangeSizeState();
-                    }));
-            }
-        }
-
-        private DelegateCommand minimizeCommand;
-        public DelegateCommand MinimizeWindowCommand
-        {
-            get
-            {
-                return minimizeCommand ??
-                    (minimizeCommand = new DelegateCommand(obj =>
-                    {
-                        var myWindow = (IMinimizable)obj;
-                        myWindow.MinimizeToTaskBar();
-                    }));
-            }
-        }
-
-        private DelegateCommand closeCommand;
-        public DelegateCommand CloseAppCommand
-        {
-            get
-            {
-                return closeCommand ??
-                    (closeCommand = new DelegateCommand(obj =>
-                    {
-                        var myWindow = (IClosable)obj;
-                        myWindow.Close();
                     }));
             }
         }
@@ -240,6 +194,23 @@ namespace Noty.Shared.ViewModels
                         //dialogService.ShowMessage("Файл сохранен");
                     }
                 }));
+            }
+        }
+
+        #endregion
+
+        #region Application OnCloseLogic
+
+        private DelegateCommand closeCommand;
+        public DelegateCommand CloseAppCommand
+        {
+            get
+            {
+                return closeCommand ??
+                    (closeCommand = new DelegateCommand(obj =>
+                    {
+
+                    }));
             }
         }
 

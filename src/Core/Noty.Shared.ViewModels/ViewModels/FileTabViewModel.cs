@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace Noty.Shared.ViewModels
+﻿namespace Noty.Shared.ViewModels
 {
     public class FileTabViewModel : BaseViewModel
     {

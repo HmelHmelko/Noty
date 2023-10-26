@@ -7,12 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Border BorderThickness="0" BorderBrush="Transparent" Background="{StaticResource Body}">
+        <Border BorderThickness="0" BorderBrush="{StaticResource Transparent}" Background="{StaticResource Body}">
             <!--Content midle side-->
             <TextBox x:Name="TextArea"
                     BorderThickness="0" 
-                    BorderBrush="Transparent"
-                    Background="Transparent"
+                    BorderBrush="{StaticResource Transparent}"
+                    Background="{StaticResource Transparent}"
                     Foreground="{StaticResource BodyText}"
                     CaretBrush="Aquamarine"
                     TextWrapping="NoWrap"
