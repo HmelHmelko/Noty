@@ -305,8 +305,6 @@
                                     Background="{StaticResource Transparent}" HorizontalAlignment="Right" VerticalAlignment="Stretch" >
                                 <Image Source="Resources/Icons/icons_close_tab_button.png" Stretch="Fill" Height="15" Width="15" />
                             </Button>
-                            <!--<Button Command="{Binding DataContext.CloseTabFileCommand, 
-                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow} }" Margin="5,0,0,0"/>-->
                         </DockPanel>
                     </DataTemplate>
                 </TabControl.ItemTemplate>
