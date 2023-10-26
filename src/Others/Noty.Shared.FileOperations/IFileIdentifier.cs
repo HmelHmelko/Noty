@@ -2,6 +2,6 @@
 {
     public interface IFileIdentifier
     {
-        IFileService IdentifyFileExtension(IDialogService dialog);
+        IFileService CreateService(string filePath);
     }
 }

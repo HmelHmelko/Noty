@@ -5,8 +5,8 @@ namespace Noty.Services
 {
     public class DefaultDialogService : IDialogService
     {
-        private string dialogFilter = "txt files (*.txt)|*.txt|rtf files (*rtf)|*.rtf|All files (*.*)|*.*";
-        public string FilePath { get; private set; }        
+        private string dialogFilter = "Txt files (*.txt)|*.txt|Rtf files (*rtf)|*.rtf|JSON files (*.json*)|*.json|XAML files (*.xaml)|*.xaml|All files (*.*)|*.*";
+        public string FilePath { get; private set; }
         public bool OpenFileDialog()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();

@@ -2,9 +2,9 @@
 {
     public interface IFileService
     {
-        void NewFile(string path);
-        string Open(string path);
-        void Save(string path, string content);      
-        void SaveAs(string path, string content, string extension);
+        void NewFile();
+        string Open();
+        void Save(string content);      
+        void SaveAs(string content, string extension);
     }
 }

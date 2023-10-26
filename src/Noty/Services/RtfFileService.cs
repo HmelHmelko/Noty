@@ -1,28 +1,35 @@
-﻿using Noty.Shared.FileOperations;
-using System.IO;
+﻿using System.IO;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Noty.Services
 {
-    public class RtfFileService : IFileService
+    public class RtfFileService : BaseFileService
     {
-        public void NewFile(string path)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public string Open(string path)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Save(string filePath, string content) => File.WriteAllText(filePath, content);
-        public void SaveAs(string path, string content, string extension)
+        public RtfFileService(string filePath) : base(filePath) { }
+        public override void NewFile() => File.Create(FilePath);
+        public override string Open()
         {
             //Тут должен вызывать форматтер, который преобразует файл в другое расширение
-            FileStream fs = new FileStream(path, FileMode.CreateNew);
-            fs.Close();
-            File.WriteAllText(path, content);
-            Path.ChangeExtension(path, extension);
+            lock (this)
+            {
+                var strBuilder = new StringBuilder();
+
+                using (StreamReader reader = new StreamReader(FilePath))
+                {
+                    strBuilder.Append(reader.ReadToEnd());
+                    reader.Close();
+                }
+
+                return strBuilder.ToString();
+            }
+        }
+
+        public override void Save(string content) => File.WriteAllText(FilePath, content);
+        public override void SaveAs(string content, string extension)
+        {
+            //Тут должен вызывать форматтер, который преобразует файл в другое расширение
+            base.SaveAs(content, extension);
         }
     }
 }

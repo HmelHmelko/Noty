@@ -6,9 +6,7 @@ namespace Noty.Shared.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         #region private Properties
-        private IFileIdentifier FileIdentifier;
-        private IDialogService DialogService;
-        private IFileService FileService { get { return FileIdentifier.IdentifyFileExtension(DialogService); } }
+        private IFileIdentifier FileServiceCreator;
         private int LastPinnedTab 
         {
             get
@@ -42,8 +40,8 @@ namespace Noty.Shared.ViewModels
 
         #region DelegateCommands
         #region Tabs
-        public DelegateCommand AddTabItemCommand => 
-            new DelegateCommand(obj => NewFileCommand.Execute(obj));
+        public DelegateCommand AddTabItemCommand =>
+            new DelegateCommand(obj => TabFileItems.Add(CurrentTabFileItem = new FileTabViewModel()));
         public DelegateCommand PinTabFileCommand
         {
             get
@@ -76,13 +74,13 @@ namespace Noty.Shared.ViewModels
             get
             {
                 return new DelegateCommand(obj =>
-                    {
-                        var tab = ((FileTabViewModel)obj);
-                        TabFileItems.Remove(tab);
+                {
+                    var tab = ((FileTabViewModel)obj);
+                    TabFileItems.Remove(tab);
 
-                        if (tab == CurrentTabFileItem)
-                            CurrentTabFileItem = TabFileItems.LastOrDefault();
-                    });
+                    if (tab == CurrentTabFileItem)
+                        CurrentTabFileItem = TabFileItems.LastOrDefault();
+                });
             }
         }
 
@@ -90,38 +88,31 @@ namespace Noty.Shared.ViewModels
 
         #region Menu
         public DelegateCommand NewFileCommand => new DelegateCommand(obj =>
-            {
-                if (DialogService.SaveFileDialog() == true)
-                {
-                    CurrentTabFileItem = new FileTabViewModel(string.Empty, Path.GetFileName(DialogService.FilePath), DialogService.FilePath);                          
-                    TabFileItems.Add(CurrentTabFileItem);
+        {
+            var path = obj.ToString();
+            CurrentTabFileItem = new FileTabViewModel(string.Empty, Path.GetFileName(path), path);                          
+            TabFileItems.Add(CurrentTabFileItem);
 
-                    FileService.NewFile(DialogService.FilePath);
-                }
-            });
+            FileServiceCreator.CreateService(path).NewFile();
+        });
 
         public DelegateCommand OpenFileCommand =>  new DelegateCommand(obj => 
-            {
-                if (DialogService.OpenFileDialog() == true)
-                {
-                    CurrentTabFileItem = new FileTabViewModel(FileService.Open(DialogService.FilePath), 
-                        Path.GetFileName(DialogService.FilePath), DialogService.FilePath);
+        {
+            var path = obj.ToString();
+            CurrentTabFileItem = new FileTabViewModel(FileServiceCreator.CreateService(path).Open(), Path.GetFileName(path), path);
 
-                    TabFileItems.Add(CurrentTabFileItem);
-                }
-            });
+            TabFileItems.Add(CurrentTabFileItem);
+        });
 
         public DelegateCommand SaveFileCommand => 
-            new DelegateCommand(obj => FileService.Save(CurrentTabFileItem.FilePath, CurrentTabFileItem.TextContent));
+            new DelegateCommand(obj => FileServiceCreator.CreateService(CurrentTabFileItem.FilePath).Save(CurrentTabFileItem.TextContent));
 
         public DelegateCommand SaveAsFileCommand => new DelegateCommand(obj =>
-            {
-                if (DialogService.SaveFileDialog() == true)
-                {
-                    SaveFileCommand.Execute(obj);
-                    FileService.SaveAs(DialogService.FilePath, CurrentTabFileItem.TextContent, Path.GetExtension(DialogService.FilePath));
-                }
-            });
+        {
+            var path = obj.ToString();
+            SaveFileCommand.Execute(path);
+            FileServiceCreator.CreateService(path).SaveAs(CurrentTabFileItem.TextContent, Path.GetExtension(path));
+        });
         #endregion
 
         #region Application OnCloseExtraLogic
@@ -130,10 +121,9 @@ namespace Noty.Shared.ViewModels
         #endregion
 
         #region Constructor
-        public MainWindowViewModel(IDialogService dialogService, IFileIdentifier FileService)
+        public MainWindowViewModel(IFileIdentifier FileService)
         {
-            this.DialogService = dialogService;
-            this.FileIdentifier = FileService;
+            this.FileServiceCreator = FileService;
         }
 
         #endregion

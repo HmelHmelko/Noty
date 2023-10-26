@@ -5,7 +5,7 @@ namespace Noty.Services
 {
     public class FileIdentifier<TFileService> : IFileIdentifier where TFileService : IFileService
     {
-        public IFileService IdentifyFileExtension(IDialogService dialog) => Path.GetExtension(dialog.FilePath) == ".txt" ?
-            new TxtFileService() :  new RtfFileService();
+        public IFileService CreateService(string filePath) => Path.GetExtension(filePath) == ".txt" ?
+            new TxtFileService(filePath) : new RtfFileService(filePath);
     }
 }

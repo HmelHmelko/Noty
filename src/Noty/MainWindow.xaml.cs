@@ -1,5 +1,4 @@
 ﻿using Noty.Services;
-using Noty.Shared.FileOperations;
 using Noty.Shared.ViewModels;
 using System.Windows;
 
@@ -17,10 +16,32 @@ namespace Noty
         { 
             InitializeComponent();
 
-            mainVM = new MainWindowViewModel(new DefaultDialogService(), new FileIdentifier<IFileService>());
+            mainVM = new MainWindowViewModel(new FileIdentifier<BaseFileService>());
             DataContext = mainVM;
 
         }
+        #endregion
+
+        #region FileDialog Commands
+        public DelegateCommand OpenFileDialogCommand => new DelegateCommand(obj =>
+        {
+            var dialog = new DefaultDialogService();
+            if (dialog.OpenFileDialog())
+                mainVM.OpenFileCommand.Execute(dialog.FilePath);
+        });
+
+        public DelegateCommand SaveFileDialogCommand => new DelegateCommand(obj =>
+        {
+            var dialog = new DefaultDialogService();
+            if (dialog.SaveFileDialog())
+                mainVM.NewFileCommand.Execute(dialog.FilePath);
+        });
+        public DelegateCommand SaveAsNewFileDialogCommand => new DelegateCommand(obj =>
+        {
+            var dialog = new DefaultDialogService();
+            if (dialog.SaveFileDialog())
+                mainVM.SaveAsFileCommand.Execute(dialog.FilePath);
+        });
         #endregion
 
         #region Window States/Position Changing

@@ -170,11 +170,11 @@
                             TextOptions.TextFormattingMode="Display">
 
                         <MenuItem Header="File">
-                            <MenuItem Command="{Binding NewFileCommand}" Header="New" InputGestureText="Ctrl+N" ></MenuItem>
-                            <MenuItem Command="{Binding OpenFileCommand}" Header="Open" InputGestureText="Ctrl+O" ></MenuItem>
+                            <MenuItem Command="{Binding SaveFileDialogCommand, ElementName=MainAppWindow}" Header="New" InputGestureText="Ctrl+N" ></MenuItem>
+                            <MenuItem Command="{Binding OpenFileDialogCommand, ElementName=MainAppWindow}" Header="Open" InputGestureText="Ctrl+O" ></MenuItem>
                             <Separator></Separator>
                             <MenuItem Command="{Binding SaveFileCommand}" Header="Save" InputGestureText="Ctrl+S" ></MenuItem>
-                            <MenuItem Command="{Binding SaveAsFileCommand}" Header="Save As"></MenuItem>
+                            <MenuItem Command="{Binding SaveAsNewFileDialogCommand, ElementName=MainAppWindow}" Header="Save As"></MenuItem>
                             <Separator></Separator>
                             <MenuItem Command="{Binding CloseApplicationCommand , ElementName=MainAppWindow}" CommandParameter="{Binding ElementName=MainAppWindow}"  Header="Exit" InputGestureText="Alt+F4"></MenuItem>
                         </MenuItem>
