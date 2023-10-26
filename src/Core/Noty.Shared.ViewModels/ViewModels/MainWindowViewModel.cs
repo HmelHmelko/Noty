@@ -56,6 +56,7 @@ namespace Noty.Shared.ViewModels
                     });
             }
         }
+
         public DelegateCommand PinTabFileCommand
         {
             get
@@ -126,6 +127,7 @@ namespace Noty.Shared.ViewModels
                     });
             }
         }
+
         public DelegateCommand OpenFileCommand
         {
             get
@@ -141,6 +143,7 @@ namespace Noty.Shared.ViewModels
                     });
             }
         }
+
         public DelegateCommand SaveFileCommand
         {
             get
@@ -174,7 +177,7 @@ namespace Noty.Shared.ViewModels
 
         #endregion
 
-        #region Application OnCloseLogic
+        #region Application OnCloseExtraLogic
         public DelegateCommand CloseAppCommand
         {
             get
