@@ -51,9 +51,13 @@ namespace Noty.Shared.ViewModels
                 return addTabCommand ??
                     (addTabCommand = new DelegateCommand(obj =>
                     {
-                        var tab = ((FileTabViewModel)obj);
+                        lock (this)
+                        {
+                            NewFileCommand.Execute(obj);
+                        }
+/*                        var tab = ((FileTabViewModel)obj);
                         TabFileItems.Add(new FileTabViewModel());
-                        CurrentTabFileItem = TabFileItems.LastOrDefault();
+                        CurrentTabFileItem = TabFileItems.LastOrDefault();*/
                     }));
             }
         }
@@ -167,10 +171,10 @@ namespace Noty.Shared.ViewModels
                 return saveCommand ??
                     (saveCommand = new DelegateCommand(obj =>
                     {
-                        if (dialogService.FileExtansion == ".txt")
-                            txtFileService.Save(dialogService.FilePath, CurrentTabFileItem.TextContent);
-                        else
-                            rtfFileService.Save(dialogService.FilePath, CurrentTabFileItem.TextContent);                 
+                        lock(CurrentTabFileItem)
+                        {
+                            txtFileService.Save(CurrentTabFileItem.FilePath, CurrentTabFileItem.TextContent);
+                        }                 
                         
                         //dialogService.ShowMessage("Файл сохранен");
                     }));

@@ -277,7 +277,7 @@
             <!--Tab files menu-->
             <TabControl Template="{DynamicResource TabTemplate}" Grid.Row="1" Grid.Column="1"
                         ItemsSource="{Binding TabFileItems}"
-                        SelectedItem="{Binding CurrentTabFileItem, UpdateSourceTrigger=Explicit}">
+                        SelectedItem="{Binding CurrentTabFileItem, UpdateSourceTrigger=PropertyChanged}">
                 <TabControl.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Background="{StaticResource Transparent}">

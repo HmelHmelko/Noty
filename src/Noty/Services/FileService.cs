@@ -6,21 +6,36 @@ namespace Noty.Services
 {
     public class FileService : IFileService
     {
-        public virtual void NewFile(string path, string name) => File.Create(path);
+        public virtual void NewFile(string path, string name)
+        {
+            lock (this)
+            {
+                File.Create(path);
+            }
+        }
         public virtual string Open(string path)
         {
-            var strBuilder = new StringBuilder();
-
-            using (StreamReader reader = new StreamReader(path))
+            lock (this)
             {
-                strBuilder.Append(reader.ReadToEnd());
-                reader.Close();
-            }
+                var strBuilder = new StringBuilder();
 
-            return strBuilder.ToString();
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    strBuilder.Append(reader.ReadToEnd());
+                    reader.Close();
+                }
+
+                return strBuilder.ToString();
+            }
         }
 
-        public virtual void Save(string path, string content) => File.AppendAllText(path, content);
+        public virtual void Save(string path, string content)
+        {
+            lock (this)
+            {
+                File.WriteAllText(path, content);
+            }
+        }
         public virtual void SaveAs(string fileName, string content)
         {
             throw new System.NotImplementedException();
