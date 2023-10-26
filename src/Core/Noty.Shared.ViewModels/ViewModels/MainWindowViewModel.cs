@@ -43,32 +43,24 @@ namespace Noty.Shared.ViewModels
         #region DelegateCommands
 
         #region Tabs
-        private DelegateCommand addTabCommand;
         public DelegateCommand AddTabItemCommand
         {
             get
             {
-                return addTabCommand ??
-                    (addTabCommand = new DelegateCommand(obj =>
+                return new DelegateCommand(obj =>
                     {
                         lock (this)
                         {
                             NewFileCommand.Execute(obj);
                         }
-/*                        var tab = ((FileTabViewModel)obj);
-                        TabFileItems.Add(new FileTabViewModel());
-                        CurrentTabFileItem = TabFileItems.LastOrDefault();*/
-                    }));
+                    });
             }
         }
-
-        private DelegateCommand pinTabCommand;
         public DelegateCommand PinTabFileCommand
         {
             get
             {
-                return pinTabCommand ??
-                    (pinTabCommand = new DelegateCommand(obj =>
+                return new DelegateCommand(obj =>
                     {
                         var tab = (FileTabViewModel)obj;
                         var indexOfTab = TabFileItems.IndexOf(tab);
@@ -87,107 +79,87 @@ namespace Noty.Shared.ViewModels
 
                             tab.IsPinned = false;
                         }
-                    }));
+                    });
             }
         }
 
-        private DelegateCommand closeTabCommand;
         public DelegateCommand CloseTabFileCommand
         {
             get
             {
-                return closeTabCommand ??
-                    (closeTabCommand = new DelegateCommand(obj =>
+                return new DelegateCommand(obj =>
                     {
                         var tab = ((FileTabViewModel)obj);
                         TabFileItems.Remove(tab);
+
                         if (tab == CurrentTabFileItem)
-                        CurrentTabFileItem = TabFileItems.LastOrDefault();
-                    }));
+                            CurrentTabFileItem = TabFileItems.LastOrDefault();
+                    });
             }
         }
 
         #endregion
 
         #region Menu
-
-        private DelegateCommand newCommand;
         public DelegateCommand NewFileCommand
         {
             get
             {
-                return newCommand ?? 
-                    (newCommand = new DelegateCommand(obj =>
+                return new DelegateCommand(obj =>
                     {
                         if (dialogService.SaveFileDialog() == true)
                         {
                             CurrentTabFileItem = new FileTabViewModel(string.Empty, new FileInfo(dialogService.FilePath).Name, dialogService.FilePath);                          
                             TabFileItems.Add(CurrentTabFileItem);
                             txtFileService.NewFile(dialogService.FilePath, CurrentTabFileItem.FileName);
-
-                            //dialogService.ShowMessage("Файл открыт");
                         }
-                    }));
+                    });
             }
         }
-
-        private DelegateCommand increaseSizeCommand;
         public DelegateCommand IncreaseFontSizeCommand
         {
             get
             {
-                return increaseSizeCommand ??
-                    (increaseSizeCommand = new DelegateCommand(obj =>
+                return new DelegateCommand(obj =>
                     {
                         CurrentTabFileItem.TextFontSize += 1.0;
-                    }));
+                    });
             }
         }
-
-        private DelegateCommand openCommand;
         public DelegateCommand OpenFileCommand
         {
             get
             {
-                return openCommand ??
-                    (openCommand = new DelegateCommand(obj =>
+                return new DelegateCommand(obj =>
                     {
                         if (dialogService.OpenFileDialog() == true)
                         {
                             CurrentTabFileItem = new FileTabViewModel(txtFileService.Open(dialogService.FilePath), 
                                 new FileInfo(dialogService.FilePath).Name, dialogService.FilePath);
                             TabFileItems.Add(CurrentTabFileItem);
-                            //dialogService.ShowMessage("Файл открыт");
                         }
-                    }));
+                    });
             }
         }
-
-        private DelegateCommand saveCommand;
         public DelegateCommand SaveFileCommand
         {
             get
             {
-                return saveCommand ??
-                    (saveCommand = new DelegateCommand(obj =>
+                return new DelegateCommand(obj =>
                     {
                         lock(CurrentTabFileItem)
                         {
                             txtFileService.Save(CurrentTabFileItem.FilePath, CurrentTabFileItem.TextContent);
                         }                 
-                        
-                        //dialogService.ShowMessage("Файл сохранен");
-                    }));
+                    });
             }
         }
 
-        private DelegateCommand saveAsCommand;
         public DelegateCommand SaveAsFileCommand
         {
             get
             {
-                return saveAsCommand ??
-                    (saveAsCommand = new DelegateCommand(obj =>
+                return new DelegateCommand(obj =>
                     {
                         if (dialogService.SaveFileDialog() == true)
                         {
@@ -195,26 +167,22 @@ namespace Noty.Shared.ViewModels
                                 txtFileService.Save(dialogService.FilePath, CurrentTabFileItem.TextContent);
                             else
                                 rtfFileService.Save(dialogService.FilePath, CurrentTabFileItem.TextContent);
-                        //dialogService.ShowMessage("Файл сохранен");
-                    }
-                }));
+                        }
+                    });
             }
         }
 
         #endregion
 
         #region Application OnCloseLogic
-
-        private DelegateCommand closeCommand;
         public DelegateCommand CloseAppCommand
         {
             get
             {
-                return closeCommand ??
-                    (closeCommand = new DelegateCommand(obj =>
+                return new DelegateCommand(obj =>
                     {
 
-                    }));
+                    });
             }
         }
 
