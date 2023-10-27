@@ -16,9 +16,8 @@ namespace Noty
         { 
             InitializeComponent();
 
-            mainVM = new MainWindowViewModel(new FileIdentifier<BaseFileService>());
+            mainVM = new MainWindowViewModel(new FileServiceCreator<BaseFileService>());
             DataContext = mainVM;
-
         }
         #endregion
 

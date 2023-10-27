@@ -1,6 +1,6 @@
 ﻿using Noty.Shared.FileOperations;
 using System.IO;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using System.Text;
 
 namespace Noty.Services

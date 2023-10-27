@@ -1,6 +1,6 @@
 ﻿namespace Noty.Shared.FileOperations
 {
-    public interface IFileIdentifier
+    public interface IFileServiceCreator
     {
         IFileService CreateService(string filePath);
     }

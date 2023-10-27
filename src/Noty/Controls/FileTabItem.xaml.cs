@@ -1,4 +1,7 @@
-﻿namespace Noty
+﻿using System.Collections.Specialized;
+using System.Windows.Controls;
+
+namespace Noty
 {
     public partial class FileTabItem 
     {

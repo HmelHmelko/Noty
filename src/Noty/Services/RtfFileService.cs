@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Noty.Services
@@ -7,7 +6,7 @@ namespace Noty.Services
     public class RtfFileService : BaseFileService
     {
         public RtfFileService(string filePath) : base(filePath) { }
-        public override void NewFile() => File.Create(FilePath);
+        public override void NewFile() => base.NewFile();
         public override string Open()
         {
             //Тут должен вызывать форматтер, который преобразует файл в другое расширение

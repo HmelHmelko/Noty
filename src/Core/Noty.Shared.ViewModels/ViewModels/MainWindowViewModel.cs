@@ -6,8 +6,9 @@ namespace Noty.Shared.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         #region private Properties
-        private IFileIdentifier FileServiceCreator;
-        private int LastPinnedTab 
+        private IFileServiceCreator FileServiceCreator;
+        private IFileService FileService => FileServiceCreator.CreateService(CurrentTabFileItem.FilePath);
+        private int LastPinnedTab
         {
             get
             {
@@ -40,8 +41,26 @@ namespace Noty.Shared.ViewModels
 
         #region DelegateCommands
         #region Tabs
-        public DelegateCommand AddTabItemCommand =>
-            new DelegateCommand(obj => TabFileItems.Add(CurrentTabFileItem = new FileTabViewModel()));
+        public DelegateCommand AddTabItemCommand
+        {
+            get
+            {
+                return new DelegateCommand(obj =>
+                {
+                    var untitledCount = 0;
+                    var fileName = $"Untitled.txt";
+                    var filePath = Directory.GetParent(Directory.GetCurrentDirectory()).ToString() + "\\";
+
+                    while (File.Exists(filePath + fileName))
+                    {
+                        untitledCount++;
+                        fileName = $"Untitled ({untitledCount}).txt";
+                    }
+
+                    NewFileCommand.Execute(filePath + fileName);
+                });
+            }
+        }
         public DelegateCommand PinTabFileCommand
         {
             get
@@ -90,28 +109,31 @@ namespace Noty.Shared.ViewModels
         public DelegateCommand NewFileCommand => new DelegateCommand(obj =>
         {
             var path = obj.ToString();
-            CurrentTabFileItem = new FileTabViewModel(string.Empty, Path.GetFileName(path), path);                          
+            CurrentTabFileItem = new FileTabViewModel(string.Empty, path);                          
             TabFileItems.Add(CurrentTabFileItem);
 
-            FileServiceCreator.CreateService(path).NewFile();
+            FileService.NewFile();
         });
 
         public DelegateCommand OpenFileCommand =>  new DelegateCommand(obj => 
         {
             var path = obj.ToString();
-            CurrentTabFileItem = new FileTabViewModel(FileServiceCreator.CreateService(path).Open(), Path.GetFileName(path), path);
+            CurrentTabFileItem = new FileTabViewModel();
+            CurrentTabFileItem.FilePath = path;
+            CurrentTabFileItem.FileName = Path.GetFileName(path);
+            CurrentTabFileItem.TextContent = FileService.Open();
 
             TabFileItems.Add(CurrentTabFileItem);
         });
 
         public DelegateCommand SaveFileCommand => 
-            new DelegateCommand(obj => FileServiceCreator.CreateService(CurrentTabFileItem.FilePath).Save(CurrentTabFileItem.TextContent));
+            new DelegateCommand(obj => FileService.Save(CurrentTabFileItem.TextContent));
 
         public DelegateCommand SaveAsFileCommand => new DelegateCommand(obj =>
         {
             var path = obj.ToString();
             SaveFileCommand.Execute(path);
-            FileServiceCreator.CreateService(path).SaveAs(CurrentTabFileItem.TextContent, Path.GetExtension(path));
+            FileService.SaveAs(CurrentTabFileItem.TextContent, Path.GetExtension(path));
         });
         #endregion
 
@@ -121,9 +143,9 @@ namespace Noty.Shared.ViewModels
         #endregion
 
         #region Constructor
-        public MainWindowViewModel(IFileIdentifier FileService)
+        public MainWindowViewModel(IFileServiceCreator fileServiceCreator)
         {
-            this.FileServiceCreator = FileService;
+            this.FileServiceCreator = fileServiceCreator;
         }
 
         #endregion

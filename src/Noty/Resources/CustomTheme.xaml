@@ -9,13 +9,30 @@
     <SolidColorBrush x:Key="HeaderFooterText" Color="#FFD6D6D6"/>
     <SolidColorBrush x:Key="BodyText" Color="#FFE6E6E6"/>
     <SolidColorBrush x:Key="SubButtonText" Color="#FFB2B2B2"/>
+    <SolidColorBrush x:Key="CaretBrush" Color="Aquamarine"/>
 
     <SolidColorBrush x:Key="Borders" Color="#FF424242" />
     <SolidColorBrush x:Key="BordersTransparent" Color="Transparent"/>
 
     <SolidColorBrush x:Key="SpecialBorders" Color="#FF7160E8" />
     
-    <SolidColorBrush x:Key="SubPanels" Color="#FF333333"/>
+    <SolidColorBrush x:Key="SubPanels" Color="#FF4D4D4D"/>
     <SolidColorBrush x:Key="Tabs" Color="#FF2E2E2E" />
+
+    <SolidColorBrush x:Key="ScrollBar.Static.Background" Color="#FF2E2E2E"/>
+    <SolidColorBrush x:Key="ScrollBar.Static.Border" Color="#FF3D3D3D"/>
+    <SolidColorBrush x:Key="ScrollBar.Static.Glyph" Color="#FF999999"/>
+    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#FF4D4D4D"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Background" Color="#FF2E2E2E"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Border" Color="#FF3D3D3D"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Glyph" Color="#000000"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#A6A6A6"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Background" Color="#FF2E2E2E"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Border" Color="#FF3D3D3D"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#606060"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Glyph" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Background" Color="#FF2E2E2E"/>
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Border" Color="#FF3D3D3D"/>
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Glyph" Color="#BFBFBF"/>
 
 </ResourceDictionary>
