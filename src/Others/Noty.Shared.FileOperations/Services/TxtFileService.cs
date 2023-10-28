@@ -1,4 +1,4 @@
-﻿namespace Noty.Services
+﻿namespace Noty.Shared.FileOperations
 {
     public class TxtFileService : BaseFileService
     {

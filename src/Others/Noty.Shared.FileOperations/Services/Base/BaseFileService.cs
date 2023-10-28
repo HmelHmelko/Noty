@@ -1,9 +1,6 @@
-﻿using Noty.Shared.FileOperations;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
-namespace Noty.Services
+namespace Noty.Shared.FileOperations
 {
     public class BaseFileService : IFileService
     {

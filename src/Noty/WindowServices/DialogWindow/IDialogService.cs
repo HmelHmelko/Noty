@@ -1,4 +1,4 @@
-﻿namespace Noty.Shared.FileOperations
+﻿namespace Noty
 {
     public interface IDialogService
     {

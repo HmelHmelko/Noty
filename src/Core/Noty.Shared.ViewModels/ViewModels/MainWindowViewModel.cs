@@ -3,11 +3,22 @@ using Noty.Shared.FileOperations;
 
 namespace Noty.Shared.ViewModels
 {
+    /// <summary> This class receives DataContext from MainWindow
+    /// The main goal is to process the received information and provide the result of that process
+    /// Processing and providing is determined by two processes:
+    /// 1. Creating correct FileTabItem objects by providing correct info from FileServices by delegateCommands
+    /// 2. Observing FileTabItem objects by ObservableCollection (TabFileItems) (observing changes in their properties)
+    /// Also class provide info about current active fileTab;
+    /// </summary>
     public class MainWindowViewModel : BaseViewModel
     {
         #region private Properties
-        private IFileServiceCreator FileServiceCreator;
-        private IFileService FileService => FileServiceCreator.CreateService(CurrentTabFileItem.FilePath);
+        private IFileServiceCreator FileServiceCreator; //Specify the required service
+        private IFileService FileService => FileServiceCreator.CreateService(CurrentTabFileItem.FilePath); //Get this service (create object)
+
+        /// <summary>
+        /// Logic for correct arrangement of TabItems in TabControl
+        /// </summary>
         private int LastPinnedTab
         {
             get
@@ -34,11 +45,18 @@ namespace Noty.Shared.ViewModels
         #endregion
 
         #region Properties
+
+        //Observe FileTabItem objects
         public ObservableCollection<FileTabViewModel> TabFileItems { get; set; } =
             new ObservableCollection<FileTabViewModel>();
         public FileTabViewModel CurrentTabFileItem { get; set; }
         #endregion
 
+        /// <summary>
+        /// Commands that handle user interaction with menus that require additional logic
+        /// it all commands that require FileService objects or set changes in FileTabItem properties directly
+        /// or must be executed during global application processes (app closing for example)
+        /// </summary>
         #region DelegateCommands
         #region Tabs
         public DelegateCommand AddTabItemCommand
@@ -87,7 +105,6 @@ namespace Noty.Shared.ViewModels
                     });
             }
         }
-
         public DelegateCommand CloseTabFileCommand
         {
             get
@@ -109,7 +126,7 @@ namespace Noty.Shared.ViewModels
         public DelegateCommand NewFileCommand => new DelegateCommand(obj =>
         {
             var path = obj.ToString();
-            CurrentTabFileItem = new FileTabViewModel(string.Empty, path);                          
+            CurrentTabFileItem = new FileTabViewModel(path);                          
             TabFileItems.Add(CurrentTabFileItem);
 
             FileService.NewFile();
@@ -118,9 +135,7 @@ namespace Noty.Shared.ViewModels
         public DelegateCommand OpenFileCommand =>  new DelegateCommand(obj => 
         {
             var path = obj.ToString();
-            CurrentTabFileItem = new FileTabViewModel();
-            CurrentTabFileItem.FilePath = path;
-            CurrentTabFileItem.FileName = Path.GetFileName(path);
+            CurrentTabFileItem = new FileTabViewModel(path);
             CurrentTabFileItem.TextContent = FileService.Open();
 
             TabFileItems.Add(CurrentTabFileItem);

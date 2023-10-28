@@ -1,7 +1,4 @@
-﻿using System.Collections.Specialized;
-using System.IO;
-
-namespace Noty.Shared.ViewModels
+﻿namespace Noty.Shared.ViewModels
 {
     public class FileTabViewModel : BaseViewModel
     {
@@ -32,12 +29,11 @@ namespace Noty.Shared.ViewModels
         #endregion
 
         #region Constructors
-        public FileTabViewModel() => FileName = "Untitled.txt";
-        public FileTabViewModel(string textFromFile, string filePath)
+        public FileTabViewModel(string filePath, string textFromFile = "", string fileName = "Untitled.txt")
         {
+            this.FilePath = filePath;
             this.TextContent = textFromFile;
             this.FileName = Path.GetFileName(filePath);
-            this.FilePath = filePath;
         }
         #endregion
     }

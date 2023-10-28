@@ -1,7 +1,4 @@
-﻿using Noty.Shared.FileOperations;
-using System.IO;
-
-namespace Noty.Services
+﻿namespace Noty.Shared.FileOperations
 {
     public class FileServiceCreator<TFileService> : IFileServiceCreator where TFileService : IFileService
     {

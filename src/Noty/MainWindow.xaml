@@ -288,7 +288,7 @@
                 <TabControl.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Background="{StaticResource Transparent}">
-                            <TextBlock DockPanel.Dock="Left" Text="{Binding FileName}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
                             <Button Command="{Binding DataContext.PinTabFileCommand, ElementName=MainAppWindow}"
                                     CommandParameter="{Binding}"

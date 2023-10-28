@@ -1,7 +1,6 @@
-﻿using System.IO;
-using System.Text;
+﻿using System.Text;
 
-namespace Noty.Services
+namespace Noty.Shared.FileOperations
 {
     public class RtfFileService : BaseFileService
     {
