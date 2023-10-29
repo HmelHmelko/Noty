@@ -1,4 +1,6 @@
-﻿namespace Noty.Shared.ViewModels
+﻿using System.Collections.Specialized;
+
+namespace Noty.Shared.ViewModels
 {
     public class FileTabViewModel : BaseViewModel
     {
@@ -9,23 +11,6 @@
         public string FilePath { get; set; }
         public bool IsPinned { get; set; } = false;
         public string CurrentMethod { get; set; } = "TEST";
-        public string CurrentTextLine { get; set; } = "TEST";
-        public string CurrentTextChar { get; set; } = "TEST";
-
-/*        StringCollection GetLinesCollectionFromTextBox(string textBox)
-        {
-            StringCollection lines = new StringCollection();
-
-            // lineCount may be -1 if TextBox layout info is not up-to-date.
-            int lineCount = textBox.LineCount;
-
-            for (int line = 0; line < lineCount; line++)
-                // GetLineText takes a zero-based line index.
-                lines.Add(textBox.GetLineText(line));
-
-            return lines;
-        }*/
-
         #endregion
 
         #region Constructors
