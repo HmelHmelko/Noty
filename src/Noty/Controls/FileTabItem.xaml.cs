@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace Noty
@@ -14,7 +15,11 @@ namespace Noty
         public string CurrentLnNumber
         { 
             get => currentLnNumber;
-            set { currentLnNumber = value; OnPropertyChanged("CurrentLnNumber"); }        
+            set 
+            {   
+                currentLnNumber = value;
+                OnPropertyChanged("CurrentLnNumber"); 
+            }        
         }
 
         private string currentChNumber;
@@ -23,14 +28,15 @@ namespace Noty
             get => currentChNumber;
             set { currentChNumber = value; OnPropertyChanged("CurrentChNumber"); }
         }
-        private void TextArea_MouseDown(object sender, MouseButtonEventArgs e)
+        private void TextArea_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            var chNumberFromMousePos = TextArea.GetCharacterIndexFromPoint(e.GetPosition(this), true);
-            var line = TextArea.GetLineIndexFromCharacterIndex(chNumberFromMousePos);
+            var caret = TextArea.CaretIndex;
+            //var chNumberFromMousePos = TextArea.GetCharacterIndexFromPoint(Mouse.GetPosition(this), true);
+            var line = TextArea.GetLineIndexFromCharacterIndex(caret);
             var ch = TextArea.GetCharacterIndexFromLineIndex(line);
 
-            if (line == 0) ch = chNumberFromMousePos;
-            else ch = chNumberFromMousePos - TextArea.GetCharacterIndexFromLineIndex(line);
+            if (line == 0) ch = caret;
+            else ch = caret - TextArea.GetCharacterIndexFromLineIndex(line);
 
             CurrentLnNumber = (line + 1).ToString();
             CurrentChNumber = (ch + 1).ToString();
