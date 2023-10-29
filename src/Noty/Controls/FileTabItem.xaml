@@ -347,12 +347,15 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
     </UserControl.Resources>
 
     <Grid>
         <!--Content midle side-->
-        <ScrollViewer x:Name="test" Style="{DynamicResource ScrollViewerStyle}" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-            <TextBox x:Name="TextArea" 
+            <ScrollViewer x:Name="test" Style="{DynamicResource ScrollViewerStyle}" 
+                      HorizontalScrollBarVisibility="Visible" 
+                      VerticalScrollBarVisibility="Visible">
+                <TextBox x:Name="TextArea" 
                         Grid.Row="0"
                         Grid.ColumnSpan="3"
                         BorderThickness="0" 
@@ -366,7 +369,7 @@
                         SpellCheck.IsEnabled="False"
                         FontSize="{Binding TextFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                         Text="{Binding TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
-            </TextBox>
-        </ScrollViewer>
+                </TextBox>
+            </ScrollViewer>
     </Grid>
 </UserControl>

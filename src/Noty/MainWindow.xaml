@@ -14,7 +14,7 @@
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"
         AllowsTransparency="False">
-    
+
     <!--For Resize Window-->
     <WindowChrome.WindowChrome>
         <WindowChrome     
@@ -58,13 +58,8 @@
         </Style>
 
         <!--Tab Menu Template-->
-        <ControlTemplate x:Key="TabTemplate" TargetType="{x:Type TabControl}">
-            <Grid Background="{StaticResource HeaderFooter}" 
-                  x:Name="templateRoot" 
-                  ClipToBounds="true" 
-                  SnapsToDevicePixels="true" 
-                  KeyboardNavigation.TabNavigation="Local">
-
+        <ControlTemplate x:Key="TabControlTemplate" TargetType="{x:Type TabControl}">
+            <Grid x:Name="templateRoot" Background="{StaticResource HeaderFooter}" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition x:Name="ColumnDefinition0"/>
                     <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
@@ -73,67 +68,73 @@
                     <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
                     <RowDefinition x:Name="RowDefinition1" Height="*"/>
                 </Grid.RowDefinitions>
-
-                <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
-
-                    <TabPanel x:Name="headerPanel"           
-                          IsItemsHost="true"    
-                          Margin="2,2,2,0"                             
-                          KeyboardNavigation.TabIndex="1" 
-                          Panel.ZIndex="1"/>
-
-                    <Button Margin="2 0 0 0"
-                            Command="{Binding AddTabItemCommand}"
-                            Content="+"
-                            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                            BorderBrush="{StaticResource BordersTransparent}"
-                            Background="{StaticResource Tabs}"
-                            Foreground="{StaticResource SubButtonText}">
-                    </Button>
-
-                </StackPanel>
-
+                <DockPanel Grid.Column="0" Grid.Row="0" >
+                    
+                    <TabPanel x:Name="headerPanel" 
+                              IsItemsHost="true" 
+                              KeyboardNavigation.TabIndex="1"
+                              Panel.ZIndex="0"
+                              Margin="0,0,0,-1"
+                              Background="{StaticResource Transparent}"/>
+                    
+                    <Button Background="{StaticResource Tabs}" 
+                            BorderBrush="{StaticResource BordersTransparent}" 
+                            Command="{Binding AddTabItemCommand}" 
+                            HorizontalAlignment="Left"
+                            Content="+" 
+                            Foreground="{StaticResource SubButtonText}" 
+                            Margin="2 0 0 -1" 
+                            Width="{Binding ActualHeight, RelativeSource={RelativeSource Mode=Self}}"/>
+                </DockPanel>
                 <Border x:Name="contentPanel" Background="{StaticResource Body}" BorderBrush="{StaticResource Borders}" BorderThickness="{TemplateBinding BorderThickness}" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
-                    <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                 </Border>
-
             </Grid>
-
-            <ControlTemplate.Triggers>
-                <Trigger Property="TabStripPlacement" Value="Bottom">
-                    <Setter Property="Grid.Row" TargetName="headerPanel" Value="1"/>
-                    <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
-                    <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
-                    <Setter Property="Height" TargetName="RowDefinition1" Value="Auto"/>
-                    <Setter Property="Margin" TargetName="headerPanel" Value="2,0,2,2"/>
-                </Trigger>
-                <Trigger Property="TabStripPlacement" Value="Left">
-                    <Setter Property="Grid.Row" TargetName="headerPanel" Value="0"/>
-                    <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
-                    <Setter Property="Grid.Column" TargetName="headerPanel" Value="0"/>
-                    <Setter Property="Grid.Column" TargetName="contentPanel" Value="1"/>
-                    <Setter Property="Width" TargetName="ColumnDefinition0" Value="Auto"/>
-                    <Setter Property="Width" TargetName="ColumnDefinition1" Value="*"/>
-                    <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
-                    <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
-                    <Setter Property="Margin" TargetName="headerPanel" Value="2,2,0,2"/>
-                </Trigger>
-                <Trigger Property="TabStripPlacement" Value="Right">
-                    <Setter Property="Grid.Row" TargetName="headerPanel" Value="0"/>
-                    <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
-                    <Setter Property="Grid.Column" TargetName="headerPanel" Value="1"/>
-                    <Setter Property="Grid.Column" TargetName="contentPanel" Value="0"/>
-                    <Setter Property="Width" TargetName="ColumnDefinition0" Value="*"/>
-                    <Setter Property="Width" TargetName="ColumnDefinition1" Value="Auto"/>
-                    <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
-                    <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
-                    <Setter Property="Margin" TargetName="headerPanel" Value="0,2,2,2"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="false">
-                    <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
         </ControlTemplate>
+
+        <!--Tabs style-->
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+
+                        <Border x:Name="Border" 
+                                BorderThickness="0 2 0 0"     
+                                Margin="1.5 0 0 0" 
+                                Padding="5 0 0 0"
+                                BorderBrush="{StaticResource Transparent}">
+
+                            <ContentPresenter x:Name="ContentSite" 
+                                            ContentSource="Header" 
+                                            Margin="0" 
+                                            TextBlock.Foreground="{StaticResource SubButtonText}" />
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource SpecialBorders}"/>
+                                <Setter TargetName="Border" Property="Background" Value="#FF3D3D3D"/>
+                                <Setter TargetName="ContentSite" Property="TextBlock.Foreground" Value="{StaticResource HeaderFooterText}"/>
+                                <Setter Property="Height" Value="22"/>
+                            </Trigger>
+
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="#FF2E2E2E" />
+                                <Setter Property="Height" Value="20"/>
+                            </Trigger>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FF3D3D3D"/>
+                                <Setter TargetName="ContentSite" Property="TextBlock.Foreground" Value="{StaticResource HeaderFooterText}"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Window.Resources>
 
@@ -282,13 +283,18 @@
             </Border>
 
             <!--Tab files menu-->
-            <TabControl x:Name="tabControl" Template="{DynamicResource TabTemplate}" Grid.Row="1" Grid.Column="1"
+            <TabControl x:Name="tabControl" Template="{DynamicResource TabControlTemplate}" Grid.Row="1" Grid.Column="1"
                         ItemsSource="{Binding TabFileItems}"
                         SelectedItem="{Binding CurrentTabFileItem, UpdateSourceTrigger=PropertyChanged}">
+
                 <TabControl.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Background="{StaticResource Transparent}">
-                            <TextBlock DockPanel.Dock="Left" Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                            <TextBlock DockPanel.Dock="Left" 
+                                       Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
 
                             <Button Command="{Binding DataContext.PinTabFileCommand, ElementName=MainAppWindow}"
                                     CommandParameter="{Binding}"
@@ -310,11 +316,13 @@
                                     BorderBrush="{StaticResource Transparent}" 
                                     BorderThickness="0" 
                                     Background="{StaticResource Transparent}" HorizontalAlignment="Right" VerticalAlignment="Stretch" >
-                                
+
                                 <Image Source="Resources/Icons/icons_close_tab_button.png" Stretch="Fill" Height="15" Width="15" />
                             </Button>
+
                         </DockPanel>
                     </DataTemplate>
+
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
                     <DataTemplate>
