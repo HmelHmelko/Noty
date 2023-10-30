@@ -1,4 +1,6 @@
-﻿namespace Noty.Shared.ViewModels
+﻿using System.IO;
+
+namespace Noty.ViewModels
 {
     public class FileTabViewModel : BaseViewModel
     {

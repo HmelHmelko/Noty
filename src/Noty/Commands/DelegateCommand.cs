@@ -1,6 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 
-namespace Noty.Shared.ViewModels
+namespace Noty.Commands
 {
     public class DelegateCommand : ICommand
     {

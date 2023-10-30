@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Documents;
-using System.Windows.Input;
 
 namespace Noty
 {
@@ -11,35 +9,36 @@ namespace Noty
             InitializeComponent();
         }
 
-        private string currentLnNumber;
+        #region CurrentLineNumber and CurrentCharNumber
+
+        private string currentLnNumber = "1";
         public string CurrentLnNumber
         { 
             get => currentLnNumber;
-            set 
-            {   
-                currentLnNumber = value;
-                OnPropertyChanged("CurrentLnNumber"); 
-            }        
+            set { currentLnNumber = value; OnPropertyChanged("CurrentLnNumber"); }        
         }
 
-        private string currentChNumber;
+        private string currentChNumber = "1";
         public string CurrentChNumber
         { 
             get => currentChNumber;
             set { currentChNumber = value; OnPropertyChanged("CurrentChNumber"); }
         }
-        private void TextArea_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
+        public void TextArea_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {  
             var caret = TextArea.CaretIndex;
-            //var chNumberFromMousePos = TextArea.GetCharacterIndexFromPoint(Mouse.GetPosition(this), true);
             var line = TextArea.GetLineIndexFromCharacterIndex(caret);
             var ch = TextArea.GetCharacterIndexFromLineIndex(line);
 
             if (line == 0) ch = caret;
             else ch = caret - TextArea.GetCharacterIndexFromLineIndex(line);
+            
+            
 
             CurrentLnNumber = (line + 1).ToString();
             CurrentChNumber = (ch + 1).ToString();
         }
+
+        #endregion
     }
 }
