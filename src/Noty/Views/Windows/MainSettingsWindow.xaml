@@ -1,0 +1,87 @@
+﻿<Window x:Class="Noty.Views.Windows.MainSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:media="clr-namespace:System.Windows.Media;assembly=PresentationCore"
+        xmlns:window="clr-namespace:System.Windows;assembly=PresentationCore"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:Noty.Views.Windows"
+        mc:Ignorable="d"
+        Title="Settings" Height="350" Width="400"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+    <Window.Resources>
+
+        <ObjectDataProvider x:Key="FontFamilies" 
+                            ObjectType="{x:Type media:Fonts}" 
+                            MethodName="get_SystemFontFamilies"/>
+
+        <col:ArrayList x:Key="FontSizes">
+            <sys:Double>6</sys:Double>
+            <sys:Double>8</sys:Double>
+            <sys:Double>10</sys:Double>
+            <sys:Double>12</sys:Double>
+            <sys:Double>14</sys:Double>
+            <sys:Double>16</sys:Double>
+            <sys:Double>18</sys:Double>
+            <sys:Double>20</sys:Double>
+            <sys:Double>22</sys:Double>
+            <sys:Double>24</sys:Double>
+        </col:ArrayList>
+
+        <col:ArrayList x:Key="FontWeights">
+            <window:FontWeight>Normal</window:FontWeight>
+            <window:FontWeight>Bold</window:FontWeight>
+            <window:FontWeight>ExtraBold</window:FontWeight>
+        </col:ArrayList>
+
+        <col:ArrayList x:Key="FontStyles">
+            <window:FontStyle>Normal</window:FontStyle>
+            <window:FontStyle>Italic</window:FontStyle>
+            <window:FontStyle>Oblique</window:FontStyle>
+        </col:ArrayList>
+
+    </Window.Resources>
+
+    <Grid Background="{StaticResource HeaderFooter}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Row="0" Grid.Column="0" Margin="8 0 8 0">
+            <TextBlock DockPanel.Dock="Top" Foreground="{StaticResource HeaderFooterText}">Font Family</TextBlock>
+            <ComboBox ItemsSource="{Binding Source={StaticResource FontFamilies}}"
+                      SelectedItem="{Binding FontFamily}"
+                      SelectedIndex="1"
+                      Background="{StaticResource Tabs}"
+                      Foreground="{StaticResource HeaderFooterText}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontFamily="{Binding}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </DockPanel>
+
+        <DockPanel Grid.Row="0" Grid.Column="1" Margin="8 0 8 0">
+            <TextBlock DockPanel.Dock="Top" Foreground="{StaticResource HeaderFooterText}">Font Size</TextBlock>
+            <ComboBox ItemsSource="{Binding Source={StaticResource FontSizes}}"
+                      SelectedItem="{Binding FontSize}"
+                      SelectedIndex="1"
+                      Background="{StaticResource Tabs}"
+                      Foreground="{StaticResource HeaderFooterText}">
+            </ComboBox>
+        </DockPanel>
+
+    </Grid>
+
+</Window>

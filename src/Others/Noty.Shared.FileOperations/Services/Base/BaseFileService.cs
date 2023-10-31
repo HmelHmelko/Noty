@@ -23,7 +23,11 @@ namespace Noty.Shared.FileOperations
             }
         }
 
-        public virtual void Save(string content) => File.WriteAllText(FilePath, content);
+        public async virtual void Save(string content)
+        {
+            using (var writer = new StreamWriter(new FileStream(FilePath, FileMode.Create, FileAccess.Write)))
+                await writer.WriteAsync(content).ConfigureAwait(false);
+        }
         public virtual void SaveAs(string content, string extension)
         {
             FileStream fs = new FileStream(FilePath, FileMode.CreateNew);

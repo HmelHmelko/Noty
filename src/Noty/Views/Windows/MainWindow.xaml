@@ -17,7 +17,7 @@
         AllowsTransparency="False">
 
     <Window.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel x:Name="mainVM"/>
     </Window.DataContext>
     
     <!--For Resize Window-->
@@ -182,11 +182,12 @@
                     </Grid.ColumnDefinitions>
 
                     <!--MainMenu-->
-                    <Menu  Grid.Column="0" 
-                            Style="{StaticResource textMenu_ProgressiveGrey}" 
-                            IsMainMenu="True" 
-                            VerticalAlignment="Center" 
-                            TextOptions.TextFormattingMode="Display">
+                    <Menu Grid.Column="0"
+                          Style="{StaticResource textMenu_ProgressiveGrey}" 
+                          IsMainMenu="True" 
+                          VerticalAlignment="Center" 
+                          TextOptions.TextFormattingMode="Display">
+                        
                         <Menu.Items>
                             <MenuItem Header="File" DataContext="{Binding FileTabVM}">
                                 <MenuItem Command="{Binding NewFileCommand}" Header="New" InputGestureText="Ctrl+N" ></MenuItem>
@@ -194,6 +195,8 @@
                                 <Separator></Separator>
                                 <MenuItem Command="{Binding SaveFileCommand}" Header="Save" InputGestureText="Ctrl+S" ></MenuItem>
                                 <MenuItem Command="{Binding SaveAsFileCommand}" Header="Save As"></MenuItem>
+                                <Separator></Separator>
+                                <MenuItem Command="{Binding OpenSettingsCommand}" Header="Settings"></MenuItem>
                                 <Separator></Separator>
                                 <MenuItem Command="{StaticResource CloseApplicationCommand}" Header="Exit" InputGestureText="Alt+F4"></MenuItem>
                             </MenuItem>
@@ -213,10 +216,6 @@
                                 <MenuItem Header="Replace All" InputGestureText="Ctrl+R"></MenuItem>
                             </MenuItem>
 
-                            <MenuItem Header="Format">
-                                <MenuItem Header="Word Wrap" IsCheckable="True" IsChecked="True"></MenuItem>
-                            </MenuItem>
-
                             <MenuItem Header="View">
                                 <MenuItem Header="Zoom">
                                     <MenuItem Header="Zoom In"></MenuItem>
@@ -230,7 +229,7 @@
 
                     <!--Right side App buttons-->
                     <DockPanel Grid.Column="2">
-                        <Button Command="{StaticResource MinimizeWindowCommand}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0" >
+                        <Button Command="{StaticResource MinimizeWindowCommand}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="{StaticResource Transparent}" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0" >
                             <Image Source="/Views/Windows/icons_collapse_button.png" Margin="2,2,2,2" Stretch="Fill" />
                         </Button>
                         <Button Command="{StaticResource ChangeWindowStateCommand}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0" >
@@ -308,18 +307,26 @@
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"/>
 
-                            <Button Command="{Binding PinTabFileCommand }"
-                                    CommandParameter="{Binding}"
+                            <Button Command="{Binding DataContext.PinTabCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabControl}}}"
+                                    CommandParameter="{Binding}"  
                                     MinHeight="10"
                                     MinWidth="10"
                                     Margin="5,0,0,0" 
                                     BorderBrush="{StaticResource Transparent}"
                                     BorderThickness="0" 
-                                    Background="{StaticResource Transparent}" HorizontalAlignment="Right" VerticalAlignment="Stretch" >
-                                <Image Source="/Views/Windows/icons_pin_tab_button.png" Stretch="Fill" Height="15" Width="15" />
+                                    Background="{StaticResource Transparent}" 
+                                    HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                                    RenderTransformOrigin="0.5,0.5">
+
+                                <Button.RenderTransform>
+                                    <RotateTransform Angle="{Binding PinButtonAngle}"/>
+                                </Button.RenderTransform>
+
+                                <Image Source="/Views/Windows/icons_pin_tab_button.png" Stretch="Fill" Height="15" Width="15"/>
+
                             </Button>
 
-                            <Button Command="{Binding CloseTabFileCommand }" 
+                            <Button Command="{Binding DataContext.CloseTabCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabControl}}}"
                                     CommandParameter="{Binding}"
                                     DockPanel.Dock="Right"
                                     MinHeight="10"

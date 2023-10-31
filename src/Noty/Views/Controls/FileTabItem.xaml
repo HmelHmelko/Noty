@@ -358,6 +358,7 @@
             
             <TextBox x:Name="TextArea" 
                         Grid.Row="0"
+                        DataContext="{Binding Editor}"
                         Grid.ColumnSpan="3"
                         BorderThickness="0" 
                         BorderBrush="{StaticResource Transparent}"
@@ -369,8 +370,11 @@
                         AcceptsReturn="True"   
                         SpellCheck.IsEnabled="False"  
                         TextChanged="TextArea_TextChanged"
-                        FontSize="{Binding TextFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                        Text="{Binding Editor.Document.TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                        FontFamily="{Binding Format.FontFamily}"
+                        FontStyle="{Binding Format.FontStyle}"
+                        FontWeight="{Binding Format.FontWeight}"
+                        FontSize="{Binding Format.FontSize}" 
+                        Text="{Binding Document.TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
             </TextBox>
             
         </ScrollViewer>
