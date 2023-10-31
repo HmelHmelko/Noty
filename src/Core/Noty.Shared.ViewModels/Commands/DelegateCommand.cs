@@ -6,6 +6,7 @@ namespace Noty.Shared.ViewModels
     {
         private Action<object> execute;
         private Func<object, bool> canExecute;
+        public event EventHandler? CanExecuteChanged;
         public DelegateCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             this.execute = execute;
@@ -14,8 +15,5 @@ namespace Noty.Shared.ViewModels
 
         public bool CanExecute(object parameter) => this.canExecute == null || this.canExecute(parameter);
         public void Execute(object parameter) => this.execute(parameter);
-
-        public event EventHandler? CanExecuteChanged;
-        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 }

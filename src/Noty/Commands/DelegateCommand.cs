@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Windows.Input;
 
 namespace Noty.Commands
 {
-    public class DelegateCommand : ICommand
+    public class DelegateCommand : BaseCommand
     {
-        private Action<object> execute;
-        private Func<object, bool> canExecute;
+        private readonly Action<object> execute;
+        private readonly Func<object, bool> canExecute;
         public DelegateCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            this.execute = execute;
+            this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
             this.canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter) => this.canExecute == null || this.canExecute(parameter);
-        public void Execute(object parameter) => this.execute(parameter);
-
-        public event EventHandler? CanExecuteChanged;
-        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        public override bool CanExecute(object parameter) => this.canExecute?.Invoke(parameter) ?? true;
+        public override void Execute(object parameter) => this.execute(parameter);
     }
 }

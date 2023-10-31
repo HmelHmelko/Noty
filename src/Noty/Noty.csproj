@@ -9,10 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Model\**" />
     <Compile Remove="ViewModel\**" />
+    <Compile Remove="View\**" />
+    <EmbeddedResource Remove="Model\**" />
     <EmbeddedResource Remove="ViewModel\**" />
+    <EmbeddedResource Remove="View\**" />
+    <None Remove="Model\**" />
     <None Remove="ViewModel\**" />
+    <None Remove="View\**" />
+    <Page Remove="Model\**" />
     <Page Remove="ViewModel\**" />
+    <Page Remove="View\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,8 +31,10 @@
     <None Remove="Resources\Icons\icons_expand_button1.png" />
     <None Remove="Resources\Icons\icons_pin_tab_button.png" />
     <None Remove="Views\Windows\icons_close_button.png" />
+    <None Remove="Views\Windows\icons_close_tab_button.png" />
     <None Remove="Views\Windows\icons_collapse_button.png" />
     <None Remove="Views\Windows\icons_expand_button.png" />
+    <None Remove="Views\Windows\icons_pin_tab_button.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,11 +43,7 @@
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.1" />
-    <PackageReference Include="Fody" Version="6.8.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.75" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
     <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
   </ItemGroup>
 
@@ -46,20 +52,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-	<Folder Include="ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="Resources\Icons\icons_close_button.png" />
-    <CodeAnalysisDictionary Include="Resources\Icons\icons_close_tab_button.png" />
-    <CodeAnalysisDictionary Include="Resources\Icons\icons_collapse_button.png" />
-    <CodeAnalysisDictionary Include="Resources\Icons\icons_expand_button.png" />
-    <CodeAnalysisDictionary Include="Resources\Icons\icons_pin_tab_button.png" />
+    <Resource Include="Resources\Icons\icons_close_tab_button.png" />
+    <Resource Include="Resources\Icons\icons_collapse_button.png" />
+    <Resource Include="Resources\Icons\icons_close_button.png" />
+    <Resource Include="Resources\Icons\icons_expand_button.png" />
     <Resource Include="Resources\Icons\icons_expand_button1.png" />
+    <Resource Include="Resources\Icons\icons_pin_tab_button.png" />
     <Resource Include="Views\Windows\icons_close_button.png" />
+    <Resource Include="Views\Windows\icons_close_tab_button.png" />
     <Resource Include="Views\Windows\icons_collapse_button.png" />
     <Resource Include="Views\Windows\icons_expand_button.png" />
+    <Resource Include="Views\Windows\icons_pin_tab_button.png" />
   </ItemGroup>
 
 </Project>

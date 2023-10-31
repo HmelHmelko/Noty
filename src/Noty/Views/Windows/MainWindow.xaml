@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Noty"
         xmlns:vm="clr-namespace:Noty.ViewModels"
+        xmlns:commands="clr-namespace:Noty.Commands"
         xmlns:wpfToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
-        mc:Ignorable="d"
         x:Name="MainAppWindow" 
         Title="{Binding Title}" 
         Height="720" Width="1024" MinHeight="400" MinWidth="700"
@@ -15,11 +15,11 @@
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"
         AllowsTransparency="False">
-    
+
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-
+    
     <!--For Resize Window-->
     <WindowChrome.WindowChrome>
         <WindowChrome     
@@ -36,6 +36,9 @@
     
     <!--Styles and Templates-->
     <Window.Resources>
+        <commands:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
+        <commands:ChangeWindowStateCommand x:Key="ChangeWindowStateCommand"/>
+        <commands:MinimizeWindowCommand x:Key="MinimizeWindowCommand"/>
         <!--Text Menu-->
         <Style x:Key="textMenu_ProgressiveGrey">
             <Setter Property="Control.Background" Value="{StaticResource Transparent}"/>
@@ -74,12 +77,12 @@
                     <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
                     <RowDefinition x:Name="RowDefinition1" Height="*"/>
                 </Grid.RowDefinitions>
-                <DockPanel Grid.Column="0" Grid.Row="0" >
+
+                <DockPanel Grid.Column="0" Grid.Row="0">
                     
                     <TabPanel x:Name="headerPanel" 
                               IsItemsHost="true" 
                               KeyboardNavigation.TabIndex="1"
-                              Panel.ZIndex="0"
                               Margin="0,0,0,-1"
                               Background="{StaticResource Transparent}"/>
                     
@@ -162,14 +165,16 @@
                 <!--Main side-->
                 <ColumnDefinition Width="*" MinWidth="10" />
             </Grid.ColumnDefinitions>
-
+            
             <!--Header-->
-            <!--MainMenu-->
+            <!--Top menu-->
             <Border x:Name="mainBorder" Grid.Row="0" Grid.Column="2" 
                     Style="{StaticResource overhead_ProgressiveGrey}"
-                    MouseLeftButtonDown="mainBorder_MouseLeftButtonDown" BorderBrush="AliceBlue">
-
+                    MouseLeftButtonDown="mainBorder_MouseLeftButtonDown" BorderBrush="AliceBlue" >
+                
+                <!--Top menu-->
                 <Grid>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
@@ -177,71 +182,72 @@
                     </Grid.ColumnDefinitions>
 
                     <!--MainMenu-->
-                    <Menu x:Name="TopMainMenu" Grid.Column="0" 
+                    <Menu  Grid.Column="0" 
                             Style="{StaticResource textMenu_ProgressiveGrey}" 
                             IsMainMenu="True" 
                             VerticalAlignment="Center" 
                             TextOptions.TextFormattingMode="Display">
-
-                        <MenuItem Header="File">
-                            <MenuItem Command="{Binding SaveFileDialogCommand, ElementName=MainAppWindow}" Header="New" InputGestureText="Ctrl+N" ></MenuItem>
-                            <MenuItem Command="{Binding OpenFileDialogCommand, ElementName=MainAppWindow}" Header="Open" InputGestureText="Ctrl+O" ></MenuItem>
-                            <Separator></Separator>
-                            <MenuItem Command="{Binding SaveFileCommand}" Header="Save" InputGestureText="Ctrl+S" ></MenuItem>
-                            <MenuItem Command="{Binding SaveAsNewFileDialogCommand, ElementName=MainAppWindow}" Header="Save As"></MenuItem>
-                            <Separator></Separator>
-                            <MenuItem Command="{Binding CloseApplicationCommand , ElementName=MainAppWindow}" CommandParameter="{Binding ElementName=MainAppWindow}"  Header="Exit" InputGestureText="Alt+F4"></MenuItem>
-                        </MenuItem>
-
-                        <MenuItem Header="Edit">
-                            <MenuItem Header="Undo" InputGestureText="Ctrl+Z" Command="ApplicationCommands.Undo"></MenuItem>
-                            <Separator></Separator>
-                            <MenuItem Header="Cut" InputGestureText="Ctrl+X" Command="ApplicationCommands.Cut"></MenuItem>
-                            <MenuItem Header="Copy" InputGestureText="Ctrl+C" Command="ApplicationCommands.Copy"></MenuItem>
-                            <MenuItem Header="Paste" InputGestureText="Ctrl+V" Command="ApplicationCommands.Paste"></MenuItem>
-                            <MenuItem Header="Delete" InputGestureText="Del" Command="ApplicationCommands.Delete"></MenuItem>
-                            <Separator></Separator>
-                            <MenuItem Header="Select All" InputGestureText="Ctrl+A"  Command="ApplicationCommands.SelectAll"></MenuItem>
-                            <Separator></Separator>
-                            <MenuItem Header="Find" InputGestureText="Ctrl+F" Command="ApplicationCommands.Find"></MenuItem>
-                            <Separator></Separator>
-                            <MenuItem Header="Replace All" InputGestureText="Ctrl+R"></MenuItem>
-                        </MenuItem>
-
-                        <MenuItem Header="Format">
-                            <MenuItem Header="Word Wrap" IsCheckable="True" IsChecked="True"></MenuItem>
-                        </MenuItem>
-
-                        <MenuItem Header="View">
-                            <MenuItem Header="Zoom">
-                                <MenuItem Header="Zoom In"></MenuItem>
-                                <MenuItem Header="Zoom Out"></MenuItem>
-                                <MenuItem Header="Restore Default Zoom"></MenuItem>
+                        <Menu.Items>
+                            <MenuItem Header="File" DataContext="{Binding FileTabVM}">
+                                <MenuItem Command="{Binding NewFileCommand}" Header="New" InputGestureText="Ctrl+N" ></MenuItem>
+                                <MenuItem Command="{Binding OpenFileCommand}" Header="Open" InputGestureText="Ctrl+O" ></MenuItem>
+                                <Separator></Separator>
+                                <MenuItem Command="{Binding SaveFileCommand}" Header="Save" InputGestureText="Ctrl+S" ></MenuItem>
+                                <MenuItem Command="{Binding SaveAsFileCommand}" Header="Save As"></MenuItem>
+                                <Separator></Separator>
+                                <MenuItem Command="{StaticResource CloseApplicationCommand}" Header="Exit" InputGestureText="Alt+F4"></MenuItem>
                             </MenuItem>
-                            <MenuItem Header="Status Bar"></MenuItem>
-                        </MenuItem>
+
+                            <MenuItem Header="Edit">
+                                <MenuItem Header="Undo" InputGestureText="Ctrl+Z" Command="ApplicationCommands.Undo"></MenuItem>
+                                <Separator></Separator>
+                                <MenuItem Header="Cut" InputGestureText="Ctrl+X" Command="ApplicationCommands.Cut"></MenuItem>
+                                <MenuItem Header="Copy" InputGestureText="Ctrl+C" Command="ApplicationCommands.Copy"></MenuItem>
+                                <MenuItem Header="Paste" InputGestureText="Ctrl+V" Command="ApplicationCommands.Paste"></MenuItem>
+                                <MenuItem Header="Delete" InputGestureText="Del" Command="ApplicationCommands.Delete"></MenuItem>
+                                <Separator></Separator>
+                                <MenuItem Header="Select All" InputGestureText="Ctrl+A"  Command="ApplicationCommands.SelectAll"></MenuItem>
+                                <Separator></Separator>
+                                <MenuItem Header="Find" InputGestureText="Ctrl+F" Command="ApplicationCommands.Find"></MenuItem>
+                                <Separator></Separator>
+                                <MenuItem Header="Replace All" InputGestureText="Ctrl+R"></MenuItem>
+                            </MenuItem>
+
+                            <MenuItem Header="Format">
+                                <MenuItem Header="Word Wrap" IsCheckable="True" IsChecked="True"></MenuItem>
+                            </MenuItem>
+
+                            <MenuItem Header="View">
+                                <MenuItem Header="Zoom">
+                                    <MenuItem Header="Zoom In"></MenuItem>
+                                    <MenuItem Header="Zoom Out"></MenuItem>
+                                    <MenuItem Header="Restore Default Zoom"></MenuItem>
+                                </MenuItem>
+                                    <MenuItem Header="Status Bar"></MenuItem>
+                                </MenuItem>
+                        </Menu.Items>
                     </Menu>
 
-                    <!--Right side-->
+                    <!--Right side App buttons-->
                     <DockPanel Grid.Column="2">
-                        <Button Command="{Binding MinimizeWindowCommand, ElementName=MainAppWindow}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0" >
+                        <Button Command="{StaticResource MinimizeWindowCommand}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0" >
                             <Image Source="/Views/Windows/icons_collapse_button.png" Margin="2,2,2,2" Stretch="Fill" />
                         </Button>
-                        <Button Command="{Binding ChangeWindowStateCommand, ElementName=MainAppWindow}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0" >
+                        <Button Command="{StaticResource ChangeWindowStateCommand}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0" >
                             <Image Source="/Views/Windows/icons_expand_button.png" Margin="2,2,2,2"/>
                         </Button>
-                        <Button Command="{Binding CloseApplicationCommand, ElementName=MainAppWindow}" CommandParameter="{Binding ElementName=MainAppWindow}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0">
+                        <Button Command="{StaticResource CloseApplicationCommand}" BorderBrush="Transparent" BorderThickness="0" Background="{StaticResource HeaderFooter}" Margin="5,0,5,0">
                             <Image Source="/Views/Windows/icons_close_button.png" Margin="2,2,2,2"/>
                         </Button>
                     </DockPanel>
 
                 </Grid>
+                
             </Border>
 
             <!--Body-->
             <!--Left Side-->
             <Border Grid.Row="1" Grid.Column="0" >
-
                 <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="0 0 5 0">
                     <DockPanel>
 
@@ -289,20 +295,20 @@
             </Border>
 
             <!--Tab files menu-->
-            <TabControl x:Name="tabControl" Template="{DynamicResource TabControlTemplate}" Grid.Row="1" Grid.Column="1"
-                        ItemsSource="{Binding TabFileItems}"
-                        SelectedItem="{Binding CurrentTabFileItem, UpdateSourceTrigger=PropertyChanged}">
+            <TabControl DataContext="{Binding FileTabVM}" Template="{DynamicResource TabControlTemplate}" Grid.Row="1" Grid.Column="1"
+                        ItemsSource="{Binding TabItems}"
+                        SelectedItem="{Binding CurrentTab, UpdateSourceTrigger=PropertyChanged}">
 
                 <TabControl.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Background="{StaticResource Transparent}">
 
                             <TextBlock DockPanel.Dock="Left" 
-                                       Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Text="{Binding TabName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"/>
 
-                            <Button Command="{Binding DataContext.PinTabFileCommand, ElementName=MainAppWindow}"
+                            <Button Command="{Binding PinTabFileCommand }"
                                     CommandParameter="{Binding}"
                                     MinHeight="10"
                                     MinWidth="10"
@@ -310,10 +316,10 @@
                                     BorderBrush="{StaticResource Transparent}"
                                     BorderThickness="0" 
                                     Background="{StaticResource Transparent}" HorizontalAlignment="Right" VerticalAlignment="Stretch" >
-                                <Image Source="Resources/Icons/icons_pin_tab_button.png" Stretch="Fill" Height="15" Width="15" />
+                                <Image Source="/Views/Windows/icons_pin_tab_button.png" Stretch="Fill" Height="15" Width="15" />
                             </Button>
 
-                            <Button Command="{Binding DataContext.CloseTabFileCommand, ElementName=MainAppWindow}" 
+                            <Button Command="{Binding CloseTabFileCommand }" 
                                     CommandParameter="{Binding}"
                                     DockPanel.Dock="Right"
                                     MinHeight="10"
@@ -323,23 +329,22 @@
                                     BorderThickness="0" 
                                     Background="{StaticResource Transparent}" HorizontalAlignment="Right" VerticalAlignment="Stretch" >
 
-                                <Image Source="Resources/Icons/icons_close_tab_button.png" Stretch="Fill" Height="15" Width="15" />
+                                <Image Source="/Views/Windows/icons_close_tab_button.png" Stretch="Fill" Height="15" Width="15" />
                             </Button>
 
                         </DockPanel>
                     </DataTemplate>
-
                 </TabControl.ItemTemplate>
+                
                 <TabControl.ContentTemplate>
                     <DataTemplate>
-                        <local:FileTabItem/>
+                        <local:FileTabItem />
                     </DataTemplate>
                 </TabControl.ContentTemplate>
+                
             </TabControl>
 
             <!--Footer-->
-            <!--<Border Grid.Row="2" Grid.ColumnSpan="2" ></Border>-->
-
         </Grid>
     </Border>
 </Window>

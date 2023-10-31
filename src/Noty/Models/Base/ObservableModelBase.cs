@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Noty.ViewModels
+namespace Noty.Models
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class ObservableModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string property = null) =>
