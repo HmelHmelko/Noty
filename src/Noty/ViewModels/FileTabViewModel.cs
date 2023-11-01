@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
+using Noty.Properties;
+using System.Configuration;
 
 namespace Noty.ViewModels
 {
@@ -90,11 +92,19 @@ namespace Noty.ViewModels
         private bool CanOpenSettingsCommandExecute(object parameter) => true;
         private void OnOpenSettingCommandExecuted(object parameter)
         {
-            var editor = CurrentTab.Editor;
-            var dataContextToSettingsWindow = editor.Format;
             var settingsWindow = new MainSettingsWindow();
-            settingsWindow.DataContext = dataContextToSettingsWindow;
+            
+            if (CurrentTab != null)
+            {
+                var editor = CurrentTab.Editor;
+                var dataContextToSettingsWindow = editor.Format;
+                settingsWindow.DataContext = dataContextToSettingsWindow;
+            }
+            else
+                settingsWindow.DataContext = Settings.Default;
+
             settingsWindow.ShowDialog();
+            Settings.Default.Save();
         }
 
         public ICommand SaveFileCommand { get; }

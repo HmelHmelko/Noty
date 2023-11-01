@@ -352,7 +352,7 @@
 
     <Grid>
         <!--Content midle side-->
-        <ScrollViewer x:Name="ScrollViewerTest" Style="{StaticResource ScrollViewerStyle}"
+        <ScrollViewer Style="{StaticResource ScrollViewerStyle}"
                       HorizontalScrollBarVisibility="Visible" 
                       VerticalScrollBarVisibility="Visible">
             

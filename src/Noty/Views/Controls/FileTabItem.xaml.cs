@@ -10,7 +10,7 @@ namespace Noty
             InitializeComponent();
         }
 
-        private string currentLnNumber;
+        private string currentLnNumber = "1";
         public string CurrentLnNumber
         { 
             get => currentLnNumber;
@@ -21,8 +21,7 @@ namespace Noty
             }        
         }
 
-        private string currentChNumber;
-
+        private string currentChNumber = "1";
         public string CurrentChNumber
         {
             get => currentChNumber;
@@ -36,7 +35,6 @@ namespace Noty
         private void TextArea_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             var caret = TextArea.CaretIndex;
-            //var chNumberFromMousePos = TextArea.GetCharacterIndexFromPoint(Mouse.GetPosition(this), true);
             var line = TextArea.GetLineIndexFromCharacterIndex(caret);
             var ch = TextArea.GetCharacterIndexFromLineIndex(line);
 

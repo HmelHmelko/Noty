@@ -5,7 +5,7 @@ namespace Noty.Commands
 {
     public abstract class BaseCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
