@@ -29,9 +29,9 @@ namespace Noty.Views.Theme
 
         private void UpdateSource()
         {
-            var val = App.Skin == Skin.Red ? DarkGraySource : DarkBlueSource;
+  /*          var val = App.Skin == Skin.Red ? DarkGraySource : DarkBlueSource;
             if (val != null && base.Source != val)
-                base.Source = val;
+                base.Source = val;*/
         }
     }
 }
