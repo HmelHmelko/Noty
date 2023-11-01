@@ -5,21 +5,8 @@ using Noty.AppSettings;
 
 namespace Noty.Models
 {
-    public class FormatModel
+    public class FormatModel : ObservableModel
     {
-        public static Dictionary<string, FontStyle> FontStylesMap = new Dictionary<string, FontStyle>
-        {
-            { "Normal", FontStyles.Normal },
-            { "Italic", FontStyles.Italic },
-            { "Oblique", FontStyles.Oblique }
-        };
-
-        public static Dictionary<string, FontWeight> FontWeightsMap = new Dictionary<string, FontWeight>
-        {
-            { "Bold", FontWeights.Bold },
-            { "Thin", FontWeights.Thin },
-            { "Normal", FontWeights.Normal},
-        };
         public double FontSize
         {
             get => Settings.Default.FontSize;

@@ -5,6 +5,6 @@
         void NewFile();
         string Open();
         void Save(string content);      
-        void SaveAs(string content, string extension);
+        void SaveAs(string content);
     }
 }

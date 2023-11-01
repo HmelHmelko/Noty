@@ -1,4 +1,5 @@
-﻿using Noty.Views.Windows;
+﻿using Noty.Structure.Commands.Base;
+using Noty.Views.Windows;
 using System.Windows;
 
 namespace Noty.Commands

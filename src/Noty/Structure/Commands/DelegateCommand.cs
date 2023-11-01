@@ -1,4 +1,5 @@
 ﻿using System;
+using Noty.Structure.Commands.Base;
 
 namespace Noty.Commands
 {

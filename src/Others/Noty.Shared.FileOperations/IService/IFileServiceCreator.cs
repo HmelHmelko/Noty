@@ -2,6 +2,6 @@
 {
     public interface IFileServiceCreator
     {
-        IFileService CreateService(string filePath);
+        IFileService CreateService(string filePath, string extension);
     }
 }

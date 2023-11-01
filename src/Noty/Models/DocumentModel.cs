@@ -1,6 +1,6 @@
 ﻿namespace Noty.Models
 {
-    public class DocumentModel
+    public class DocumentModel : ObservableModel
     {
         public string TextContent { get; set; }
         public string FileName { get; set; }

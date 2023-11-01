@@ -7,6 +7,8 @@
         xmlns:vm="clr-namespace:Noty.ViewModels"
         xmlns:commands="clr-namespace:Noty.Commands"
         xmlns:fontA="http://schemas.fontawesome.com/icons/"
+        xmlns:interaction="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:behaviors="clr-namespace:Noty.Structure.Behaviours"
         xmlns:wpfToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         x:Name="MainAppWindow" 
         Height="720" Width="1024" MinHeight="400" MinWidth="700"
@@ -69,12 +71,16 @@
             
             <!--Header-->
             <!--Top menu-->
-            <Border x:Name="mainBorder" Grid.Row="0" Grid.Column="2" 
-                    Style="{DynamicResource RegularBorderNoBorders}">
+            <Border Grid.Row="0" Grid.Column="2" 
+                    Style="{DynamicResource RegularBorderNoBorders}"
+                    Background="{StaticResource Transparent}">
+                <interaction:Interaction.Behaviors>
+                    <behaviors:WindowTopBorderBehavior/>
+                </interaction:Interaction.Behaviors>
                 
                 <!--Top menu-->
-                <Grid>
-                    
+                <Grid Background="{StaticResource Transparent}">
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
@@ -101,16 +107,16 @@
                             </MenuItem>
 
                             <MenuItem Header="Edit" DataContext="{Binding FileTabVM}">
-                                <MenuItem Header="Undo" InputGestureText="Ctrl+Z" Command="ApplicationCommands.Undo" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Undo" InputGestureText="Ctrl+Z" Command="Undo" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
                                 <Separator Background="{DynamicResource MenuSeparator}"></Separator>
-                                <MenuItem Header="Cut" InputGestureText="Ctrl+X" Command="ApplicationCommands.Cut" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
-                                <MenuItem Header="Copy" InputGestureText="Ctrl+C" Command="ApplicationCommands.Copy" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
-                                <MenuItem Header="Paste" InputGestureText="Ctrl+V" Command="ApplicationCommands.Paste" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
-                                <MenuItem Header="Delete" InputGestureText="Del" Command="ApplicationCommands.Delete" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Cut" InputGestureText="Ctrl+X" Command="Cut" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Copy" InputGestureText="Ctrl+C" Command="Copy" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Paste" InputGestureText="Ctrl+V" Command="Paste" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Delete" InputGestureText="Del" Command="Delete" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
                                 <Separator Background="{DynamicResource MenuSeparator}"></Separator>
-                                <MenuItem Header="Select All" InputGestureText="Ctrl+A"  Command="ApplicationCommands.SelectAll" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Select All" InputGestureText="Ctrl+A"  Command="SelectAll" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
                                 <Separator Background="{DynamicResource MenuSeparator}"></Separator>
-                                <MenuItem Header="Find" InputGestureText="Ctrl+F" Command="ApplicationCommands.Find" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Find" InputGestureText="Ctrl+F" Command="Find" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
                                 <Separator Background="{DynamicResource MenuSeparator}"></Separator>
                                 <MenuItem Header="Replace All" InputGestureText="Ctrl+R" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
                             </MenuItem>
@@ -246,13 +252,13 @@
             <!--Footer-->
             <Border Grid.Row="2" Grid.ColumnSpan="2" Margin="0 4 0 0">
                 <DockPanel>
-                    <StatusBar Background="{DynamicResource BorderSubBackground}">
+                    <StatusBar Background="{DynamicResource BordersBrushPale}">
                         <fontA:ImageAwesome Icon="Brands_Flipboard" Foreground="Red" />
                         <fontA:ImageAwesome Icon="Brands_Bandcamp"/>
-
                     </StatusBar>
                 </DockPanel>
             </Border>
         </Grid>
     </Border>
+    
 </Window>

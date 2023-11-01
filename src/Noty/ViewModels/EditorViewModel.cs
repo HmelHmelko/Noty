@@ -6,6 +6,7 @@ namespace Noty.ViewModels
     {
         public DocumentModel Document { get; private set; }
         public FormatModel Format { get; private set; }
+
         public EditorViewModel(DocumentModel document)
         {
             Document = document;

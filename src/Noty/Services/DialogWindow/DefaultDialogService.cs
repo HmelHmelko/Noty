@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System.IO;
 
 namespace Noty.Services
 {
@@ -6,6 +7,9 @@ namespace Noty.Services
     {
         private string dialogFilter = "Txt files (*.txt)|*.txt|Rtf files (*rtf)|*.rtf|JSON files (*.json*)|*.json|XAML files (*.xaml)|*.xaml|All files (*.*)|*.*";
         public string FilePath { get; private set; }
+        public string FileName { get; private set; }
+        public string FileExtension { get; private set; }
+
         public bool OpenFileDialog()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -16,7 +20,11 @@ namespace Noty.Services
 
             if (openFileDialog.ShowDialog() == true)
             {
-                FilePath = openFileDialog.FileName;
+                FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
+                FilePath = fileInfo.FullName;
+                FileName = fileInfo.Name;
+                FileExtension = fileInfo.Extension;
+
                 return true;
             }
             return false;
@@ -26,13 +34,14 @@ namespace Noty.Services
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-            saveFileDialog.Filter = dialogFilter;
+            saveFileDialog.Filter = "Txt files (*.txt)|*.txt|All files (*.*)|*.*";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                FilePath = saveFileDialog.FileName;
+                FileInfo fileInfo = new FileInfo(saveFileDialog.FileName);
+                FilePath = fileInfo.FullName;
                 return true;
             }
             return false;

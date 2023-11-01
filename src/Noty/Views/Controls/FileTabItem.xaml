@@ -26,7 +26,7 @@
                         AcceptsTab="True"
                         AcceptsReturn="True"   
                         SpellCheck.IsEnabled="False"  
-                        TextChanged="TextArea_TextChanged"
+                        SelectionChanged="TextArea_SelectionChanged"
                         FontFamily="{Binding Format.FontFamily}"
                         FontStyle="{Binding Format.FontStyle}"
                         FontWeight="{Binding Format.FontWeight}"

@@ -32,7 +32,7 @@ namespace Noty
         protected virtual void OnPropertyChanged([CallerMemberName] string property = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 
-        private void TextArea_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void TextArea_SelectionChanged(object sender, System.Windows.RoutedEventArgs e)
         {
             var caret = TextArea.CaretIndex;
             var line = TextArea.GetLineIndexFromCharacterIndex(caret);

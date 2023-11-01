@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using System;
 
-namespace Noty.Commands
+namespace Noty.Structure.Commands.Base
 {
     public abstract class BaseCommand : ICommand
     {

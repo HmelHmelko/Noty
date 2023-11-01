@@ -24,10 +24,10 @@ namespace Noty.Shared.FileOperations
         }
 
         public override void Save(string content) => File.WriteAllText(FilePath, content);
-        public override void SaveAs(string content, string extension)
+        public override void SaveAs(string content)
         {
             //Тут должен вызывать форматтер, который преобразует файл в другое расширение
-            base.SaveAs(content, extension);
+            base.SaveAs(content);
         }
     }
 }
