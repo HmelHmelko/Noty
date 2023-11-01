@@ -16,7 +16,7 @@
     <Window.DataContext>
         <settings:Settings/>
     </Window.DataContext>
-    
+
     <Window.Resources>
 
         <ObjectDataProvider x:Key="FontFamilies" 
@@ -47,7 +47,8 @@
             <window:FontStyle>Italic</window:FontStyle>
             <window:FontStyle>Oblique</window:FontStyle>
         </col:ArrayList>
-        
+
+
     </Window.Resources>
 
     <Grid Background="{DynamicResource HeaderFooterBackground}">
@@ -108,6 +109,22 @@
                           SelectedItem="{Binding FontWeight}"
                           Background="{DynamicResource TabsBackground}"
                           Foreground="{DynamicResource HeaderFooterText}">
+                </ComboBox>
+            </DockPanel>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top" Foreground="{DynamicResource HeaderFooterText}">Theme</TextBlock>
+                <ComboBox Style="{DynamicResource ComboBoxStyle}" ItemsSource="{Binding Source={StaticResource FontFamilies}}"
+                      SelectedItem="{Binding FontFamily}"
+                      Background="{DynamicResource TabsBackground}"
+                      Foreground="{DynamicResource HeaderFooterText}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontFamily="{Binding}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
             </DockPanel>
         </Grid>
