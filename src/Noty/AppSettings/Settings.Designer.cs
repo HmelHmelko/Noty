@@ -8,9 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Windows;
-using System.Windows.Media;
-
 namespace Noty.AppSettings {
     
     
@@ -28,10 +25,10 @@ namespace Noty.AppSettings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Comic Sans MS")]
-        public FontFamily FontFamily {
+        [global::System.Configuration.DefaultSettingValueAttribute("Comic Sans MS\r\n")]
+        public string FontFamily {
             get {
-                return ((FontFamily)(this["FontFamily"]));
+                return ((string)(this["FontFamily"]));
             }
             set {
                 this["FontFamily"] = value;
@@ -41,9 +38,9 @@ namespace Noty.AppSettings {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public FontStyle FontStyle {
+        public string FontStyle {
             get {
-                return ((FontStyle)(this["FontStyle"]));
+                return ((string)(this["FontStyle"]));
             }
             set {
                 this["FontStyle"] = value;
@@ -53,9 +50,9 @@ namespace Noty.AppSettings {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public FontWeight FontWeight {
+        public string FontWeight {
             get {
-                return ((FontWeight)(this["FontWeight"]));
+                return ((string)(this["FontWeight"]));
             }
             set {
                 this["FontWeight"] = value;

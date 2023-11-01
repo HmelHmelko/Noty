@@ -3,7 +3,8 @@
   <Profiles />
   <Settings>
     <Setting Name="FontFamily" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Comic Sans MS</Value>
+      <Value Profile="(Default)">Comic Sans MS
+</Value>
     </Setting>
     <Setting Name="FontStyle" Type="System.String" Scope="User">
       <Value Profile="(Default)">Normal</Value>

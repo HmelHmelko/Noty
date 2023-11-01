@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Media;
-using Noty.AppSettings;
+﻿using Noty.AppSettings;
 
 namespace Noty.Models
 {
@@ -12,22 +9,22 @@ namespace Noty.Models
             get => Settings.Default.FontSize;
             set { Settings.Default.FontSize = value; }
         }
-        public FontStyle FontStyle
+        public string FontStyle
         {
             get => Settings.Default.FontStyle;
             set { Settings.Default.FontStyle = value; }
         }
-        public FontWeight FontWeight
+        public string FontWeight
         {
             get => Settings.Default.FontWeight;
             set { Settings.Default.FontWeight = value; }
         }
-        public FontFamily FontFamily
+        public string FontFamily
         {
             get => Settings.Default.FontFamily;
             set { Settings.Default.FontFamily = value; }
         }
-        public TextWrapping TextWrapping { get; set; } = TextWrapping.NoWrap;
+
         public FormatModel()
         {
             Settings.Default.SettingsSaving += RefreshPropertiesOnSettingSaving;
