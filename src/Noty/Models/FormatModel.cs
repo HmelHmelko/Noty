@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+using Noty.AppSettings;
 
 namespace Noty.Models
 {
@@ -21,53 +22,53 @@ namespace Noty.Models
         };
         public double FontSize
         {
-            get => Properties.Settings.Default.FontSize;
+            get => Settings.Default.FontSize;
             set
             {
-                Properties.Settings.Default.FontSize = value;
-                Properties.Settings.Default.Save();
+                Settings.Default.FontSize = value;
+                Settings.Default.Save();
             }
         }
         public FontStyle FontStyle
         {
-            get => Properties.Settings.Default.FontStyle;
+            get => Settings.Default.FontStyle;
             set
             {
-                Properties.Settings.Default.FontStyle = value;
-                Properties.Settings.Default.Save();
+                Settings.Default.FontStyle = value;
+                Settings.Default.Save();
             }
         }
         public FontWeight FontWeight
         {
-            get => Properties.Settings.Default.FontWeight;
+            get => Settings.Default.FontWeight;
             set
             {
-                Properties.Settings.Default.FontWeight = value;
-                Properties.Settings.Default.Save();
+                Settings.Default.FontWeight = value;
+                Settings.Default.Save();
             }
         }
         public FontFamily FontFamily
         {
-            get => Properties.Settings.Default.FontFamily;
+            get => Settings.Default.FontFamily;
             set
             {
-                Properties.Settings.Default.FontFamily = value;
-                Properties.Settings.Default.Save();
+                Settings.Default.FontFamily = value;
+                Settings.Default.Save();
             }
         }
         public TextWrapping TextWrapping { get; set; } = TextWrapping.NoWrap;
         public FormatModel()
         {
-            Properties.Settings.Default.SettingsSaving += RefreshPropertiesOnSettingSaving;
+            Settings.Default.SettingsSaving += RefreshPropertiesOnSettingSaving;
 
         }
 
         private void RefreshPropertiesOnSettingSaving(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            FontSize = Properties.Settings.Default.FontSize;
-            FontFamily = Properties.Settings.Default.FontFamily;
-            FontStyle = Properties.Settings.Default.FontStyle;
-            FontWeight = Properties.Settings.Default.FontWeight;
+            FontSize = Settings.Default.FontSize;
+            FontFamily = Settings.Default.FontFamily;
+            FontStyle = Settings.Default.FontStyle;
+            FontWeight = Settings.Default.FontWeight;
         }
     }
 }

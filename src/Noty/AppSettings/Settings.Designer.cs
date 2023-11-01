@@ -11,7 +11,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace Noty.Properties {
+namespace Noty.AppSettings {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

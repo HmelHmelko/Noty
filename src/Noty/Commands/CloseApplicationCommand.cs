@@ -1,4 +1,4 @@
-﻿using Noty.Properties;
+﻿using Noty.AppSettings;
 using System.Windows;
 
 namespace Noty.Commands

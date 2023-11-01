@@ -7,8 +7,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
-using Noty.Properties;
-using System.Configuration;
+using Noty.AppSettings;
 
 namespace Noty.ViewModels
 {
@@ -93,7 +92,7 @@ namespace Noty.ViewModels
         private void OnOpenSettingCommandExecuted(object parameter)
         {
             var settingsWindow = new MainSettingsWindow();
-            
+
             if (CurrentTab != null)
             {
                 var editor = CurrentTab.Editor;

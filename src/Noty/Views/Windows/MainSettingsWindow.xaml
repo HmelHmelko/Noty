@@ -8,7 +8,7 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Noty.Views.Windows"
-        xmlns:settings="clr-namespace:Noty.Properties"
+        xmlns:settings="clr-namespace:Noty.AppSettings"
         xmlns:vm="clr-namespace:Noty.ViewModels"
         mc:Ignorable="d"
         Title="Settings" Height="350" Width="400"
