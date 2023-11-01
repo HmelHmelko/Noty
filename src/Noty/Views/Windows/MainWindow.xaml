@@ -687,6 +687,13 @@
             </TabControl>
 
             <!--Footer-->
+            <Border Grid.Row="2" Grid.ColumnSpan="2" Margin="0 4 0 0">
+                <DockPanel>
+                    <StatusBar Background="{StaticResource SubPanels}">
+                    
+                    </StatusBar>
+                </DockPanel>
+            </Border>
         </Grid>
     </Border>
 </Window>
