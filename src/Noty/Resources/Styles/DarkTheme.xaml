@@ -689,7 +689,7 @@
 
     <!--#endregion-->
     
-    <!--ScrollViewer and Scroll bars-->
+    <!--#region ScrollViewer and Scroll bars-->
 
     <Style x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
@@ -1005,4 +1005,5 @@
     </Style>
 
     <!--#endregion-->
+    
 </ResourceDictionary>
