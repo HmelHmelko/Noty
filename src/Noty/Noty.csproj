@@ -10,34 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Model\**" />
-    <Compile Remove="ViewModel\**" />
-    <Compile Remove="View\**" />
-    <EmbeddedResource Remove="Model\**" />
-    <EmbeddedResource Remove="ViewModel\**" />
-    <EmbeddedResource Remove="View\**" />
-    <None Remove="Model\**" />
-    <None Remove="ViewModel\**" />
-    <None Remove="View\**" />
-    <Page Remove="Model\**" />
-    <Page Remove="ViewModel\**" />
-    <Page Remove="View\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\Icons\icons_close_button.png" />
-    <None Remove="Resources\Icons\icons_close_tab_button.png" />
-    <None Remove="Resources\Icons\icons_collapse_button.png" />
-    <None Remove="Resources\Icons\icons_expand_button.png" />
-    <None Remove="Resources\Icons\icons_expand_button1.png" />
-    <None Remove="Resources\Icons\icons_pin_tab_button.png" />
-    <None Remove="Resources\Icons\icons_settings_button.png" />
-    <None Remove="Views\Windows\icons_close_button.png" />
-    <None Remove="Views\Windows\icons_close_tab_button.png" />
-    <None Remove="Views\Windows\icons_collapse_button.png" />
-    <None Remove="Views\Windows\icons_expand_button.png" />
-    <None Remove="Views\Windows\icons_pin_tab_button.png" />
-    <None Remove="Views\Windows\icons_settings_button.png" />
+    <Folder Include="Model\**" />
+    <Folder Include="ViewModel\**" />
+    <Folder Include="View\**" />
+	<Folder Include="Commands\*" />
+	<Folder Include="WindowServices\*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.1" />
+    <PackageReference Include="FontAwesome5" Version="2.1.11" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
     <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
   </ItemGroup>

@@ -5,7 +5,7 @@ using Noty.AppSettings;
 
 namespace Noty.Models
 {
-    public class FormatModel : ObservableModel
+    public class FormatModel
     {
         public static Dictionary<string, FontStyle> FontStylesMap = new Dictionary<string, FontStyle>
         {
@@ -23,44 +23,27 @@ namespace Noty.Models
         public double FontSize
         {
             get => Settings.Default.FontSize;
-            set
-            {
-                Settings.Default.FontSize = value;
-                Settings.Default.Save();
-            }
+            set { Settings.Default.FontSize = value; }
         }
         public FontStyle FontStyle
         {
             get => Settings.Default.FontStyle;
-            set
-            {
-                Settings.Default.FontStyle = value;
-                Settings.Default.Save();
-            }
+            set { Settings.Default.FontStyle = value; }
         }
         public FontWeight FontWeight
         {
             get => Settings.Default.FontWeight;
-            set
-            {
-                Settings.Default.FontWeight = value;
-                Settings.Default.Save();
-            }
+            set { Settings.Default.FontWeight = value; }
         }
         public FontFamily FontFamily
         {
             get => Settings.Default.FontFamily;
-            set
-            {
-                Settings.Default.FontFamily = value;
-                Settings.Default.Save();
-            }
+            set { Settings.Default.FontFamily = value; }
         }
         public TextWrapping TextWrapping { get; set; } = TextWrapping.NoWrap;
         public FormatModel()
         {
             Settings.Default.SettingsSaving += RefreshPropertiesOnSettingSaving;
-
         }
 
         private void RefreshPropertiesOnSettingSaving(object sender, System.ComponentModel.CancelEventArgs e)

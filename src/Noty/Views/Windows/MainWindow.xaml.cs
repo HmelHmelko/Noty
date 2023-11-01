@@ -10,6 +10,5 @@ namespace Noty.Views.Windows
             InitializeComponent();
         }
         #endregion
-        private void mainBorder_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
     }
 }
