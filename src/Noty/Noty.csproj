@@ -33,13 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Icons\icons_close_tab_button.png" />
-    <Resource Include="Resources\Icons\icons_collapse_button.png" />
-    <Resource Include="Resources\Icons\icons_close_button.png" />
-    <Resource Include="Resources\Icons\icons_expand_button.png" />
-    <Resource Include="Resources\Icons\icons_expand_button1.png" />
-    <Resource Include="Resources\Icons\icons_pin_tab_button.png" />
-    <Resource Include="Resources\Icons\icons_settings_button.png" />
     <Resource Include="Views\Windows\icons_close_button.png" />
     <Resource Include="Views\Windows\icons_close_tab_button.png" />
     <Resource Include="Views\Windows\icons_collapse_button.png" />

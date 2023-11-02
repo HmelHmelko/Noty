@@ -253,8 +253,6 @@
             <Border Grid.Row="2" Grid.ColumnSpan="2" Margin="0 4 0 0">
                 <DockPanel>
                     <StatusBar Background="{DynamicResource BordersBrushPale}">
-                        <fontA:ImageAwesome Icon="Brands_Flipboard" Foreground="Red" />
-                        <fontA:ImageAwesome Icon="Brands_Bandcamp"/>
                     </StatusBar>
                 </DockPanel>
             </Border>
