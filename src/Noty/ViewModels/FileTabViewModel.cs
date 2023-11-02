@@ -1,4 +1,5 @@
-﻿using Noty.Commands;
+﻿using Noty.AppSettings;
+using Noty.Commands;
 using Noty.Models;
 using Noty.Services;
 using Noty.Shared.FileOperations;
@@ -7,7 +8,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
-using Noty.AppSettings;
 
 namespace Noty.ViewModels
 {
@@ -18,10 +18,10 @@ namespace Noty.ViewModels
         #endregion
 
         #region Properties
-        public DocumentModel Document { get; private set; }
+        public DocumentModel? Document { get; private set; }
         public ObservableCollection<TabViewModel> TabItems { get; set; } =
             new ObservableCollection<TabViewModel>();
-        public TabViewModel CurrentTab { get; set; }
+        public TabViewModel? CurrentTab { get; set; }
         public string CurrentMethod { get; set; } = "TEST";
         #endregion
 
@@ -38,7 +38,7 @@ namespace Noty.ViewModels
 
             if (tabIndex == lastPinnedIndex + 1 || tabIndex == lastPinnedIndex)
             {
-                tab.IsPinned = tab.IsPinned == true ? false : true;
+                tab.IsPinned = tab.IsPinned ? false : true;
                 return;
             }
 
@@ -65,7 +65,7 @@ namespace Noty.ViewModels
         private bool CanAddTabItemCommandExecute(object parameter) => true;
         private void OnAddTabItemCommandExecuted(object parameter)
         {
-            var filePath = Directory.GetParent(Directory.GetCurrentDirectory()).ToString() + "\\";
+            var filePath = Directory.GetParent(Directory.GetCurrentDirectory()) + "\\";
             var defaultFileName = "Untitled.txt";
             var untitledCount = 0;
 
@@ -75,10 +75,12 @@ namespace Noty.ViewModels
                 defaultFileName = $"Untitled ({untitledCount}).txt";
             }
 
-            Document = new DocumentModel();
-            Document.FileName = defaultFileName;
-            Document.FilePath = filePath + defaultFileName;
-            Document.TextContent = string.Empty;
+            Document = new DocumentModel
+            {
+                FileName = defaultFileName,
+                FilePath = filePath + defaultFileName,
+                TextContent = string.Empty
+            };
 
             FileServiceCreator.CreateService(Document.FilePath, Document.FileExtension).NewFile();
             TabItems.Add(CurrentTab = new TabViewModel(Document));
@@ -127,18 +129,20 @@ namespace Noty.ViewModels
         private void OnNewFileCommandExecuted(object parameter)
         {
             var dialog = new DefaultDialogService();
-            if (dialog.SaveFileDialog())
+            
+            if (!dialog.SaveFileDialog()) return;
+            
+            Document = new DocumentModel
             {
-                Document = new DocumentModel();
-                Document.FilePath = dialog.FilePath;
-                Document.FileName = dialog.FileName;
-                Document.FileExtension = dialog.FileExtension;
-                Document.TextContent = string.Empty;
+                FilePath = dialog.FilePath,
+                FileName = dialog.FileName,
+                FileExtension = dialog.FileExtension,
+                TextContent = string.Empty
+            };
 
-                TabItems.Add(new TabViewModel(Document));
+            TabItems.Add(new TabViewModel(Document));
 
-                FileServiceCreator.CreateService(dialog.FilePath, Document.FileExtension).NewFile();
-            }
+            FileServiceCreator.CreateService(dialog.FilePath, Document.FileExtension).NewFile();
         }
 
         public ICommand OpenFileCommand { get; }
@@ -146,16 +150,18 @@ namespace Noty.ViewModels
         private void OnOpenFileCommandExecuted(object parameter)
         {
             var dialog = new DefaultDialogService();
-            if (dialog.OpenFileDialog())
+            if (!dialog.OpenFileDialog()) return;
+            
+            Document = new DocumentModel
             {
-                Document = new DocumentModel();
-                Document.FilePath = dialog.FilePath;
-                Document.FileName = dialog.FileName;
-                Document.FileExtension = dialog.FileExtension;
-                Document.TextContent = FileServiceCreator.CreateService(Document.FilePath, Document.FileExtension).Open();
+                FilePath = dialog.FilePath,
+                FileName = dialog.FileName,
+                FileExtension = dialog.FileExtension
+            };
 
-                TabItems.Add(CurrentTab = new TabViewModel(Document));
-            }
+            Document.TextContent = FileServiceCreator.CreateService(Document.FilePath, Document.FileExtension).Open();
+
+            TabItems.Add(CurrentTab = new TabViewModel(Document));
         }
         #endregion
 

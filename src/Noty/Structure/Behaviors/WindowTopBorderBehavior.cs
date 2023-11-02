@@ -7,7 +7,7 @@ namespace Noty.Structure.Behaviors
 {
     public class WindowTopBorderBehavior : Behavior<UIElement>
     {
-        private Window window;
+        private Window? window;
         protected override void OnAttached()
         {
             window = AssociatedObject as Window ?? AssociatedObject.FindLogicalAncestor<Window>();

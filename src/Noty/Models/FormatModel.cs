@@ -2,7 +2,7 @@
 
 namespace Noty.Models
 {
-    public class FormatModel : ObservableModel
+    public class FormatModel
     {
         public double FontSize
         {
