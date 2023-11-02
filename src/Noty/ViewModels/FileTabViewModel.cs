@@ -14,7 +14,7 @@ namespace Noty.ViewModels
     public class FileTabViewModel : BaseViewModel
     {
         #region private Fields
-        private IFileServiceCreator FileServiceCreator;
+        private readonly IFileServiceCreator _fileServiceCreator;
         #endregion
 
         #region Properties
@@ -82,7 +82,7 @@ namespace Noty.ViewModels
                 TextContent = string.Empty
             };
 
-            FileServiceCreator.CreateService(Document.FilePath, Document.FileExtension).NewFile();
+            _fileServiceCreator.CreateService(Document.FilePath, Document.FileExtension).NewFile();
             TabItems.Add(CurrentTab = new TabViewModel(Document));
         }
 
@@ -111,7 +111,7 @@ namespace Noty.ViewModels
         public ICommand SaveFileCommand { get; }
         private bool CanSaveFileCommandExecute(object parameter) => CurrentTab != null;
         private void OnSaveFileCommandExecuted(object parameter) => 
-            FileServiceCreator.CreateService(Document.FilePath, Document.FileExtension).Save(Document.TextContent);
+            _fileServiceCreator.CreateService(Document.FilePath, Document.FileExtension).Save(Document.TextContent);
 
         public ICommand SaveAsFileCommand { get; }
         private bool CanSaveAsFileCommandExecute(object parameter) => CurrentTab != null;
@@ -121,7 +121,7 @@ namespace Noty.ViewModels
 
             var dialog = new DefaultDialogService();
             if (dialog.SaveFileDialog())
-                FileServiceCreator.CreateService(dialog.FilePath, Document.FileExtension).SaveAs(Document.TextContent);
+                _fileServiceCreator.CreateService(dialog.FilePath, Document.FileExtension).SaveAs(Document.TextContent);
         }
 
         public ICommand NewFileCommand { get; }
@@ -142,7 +142,7 @@ namespace Noty.ViewModels
 
             TabItems.Add(new TabViewModel(Document));
 
-            FileServiceCreator.CreateService(dialog.FilePath, Document.FileExtension).NewFile();
+            _fileServiceCreator.CreateService(dialog.FilePath, Document.FileExtension).NewFile();
         }
 
         public ICommand OpenFileCommand { get; }
@@ -159,7 +159,7 @@ namespace Noty.ViewModels
                 FileExtension = dialog.FileExtension
             };
 
-            Document.TextContent = FileServiceCreator.CreateService(Document.FilePath, Document.FileExtension).Open();
+            Document.TextContent = _fileServiceCreator.CreateService(Document.FilePath, Document.FileExtension).Open();
 
             TabItems.Add(CurrentTab = new TabViewModel(Document));
         }
@@ -170,7 +170,7 @@ namespace Noty.ViewModels
         #region Constructors
         public FileTabViewModel()
         {
-            FileServiceCreator = new FileServiceCreator<TxtFileService>();
+            _fileServiceCreator = new FileServiceCreator<TxtFileService>();
 
             #region Commands init
             SaveFileCommand = new DelegateCommand(OnSaveFileCommandExecuted, CanSaveFileCommandExecute);
