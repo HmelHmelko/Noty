@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using Xceed.Wpf.AvalonDock.Controls;
 
-namespace Noty.Structure.Behaviours
+namespace Noty.Structure.Behaviors
 {
     public class WindowTopBorderBehavior : Behavior<UIElement>
     {
