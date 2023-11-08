@@ -6,6 +6,6 @@
         public string? FileName { get; set; }
         public string? FilePath { get; set; }
         public string? FileExtension { get; set; }
-        public bool IsEmpty => string.IsNullOrEmpty(FilePath) || string.IsNullOrEmpty(FileName) ? true : false;
+        public bool IsEmpty => string.IsNullOrEmpty(FilePath) || string.IsNullOrEmpty(FileName);
     }
 }

@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:Noty"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" x:Name="fileTabControl">
-
     <Grid>
         <!--Content midle side-->
         <ScrollViewer Style="{DynamicResource ScrollViewerStyle}"
@@ -14,24 +13,23 @@
                       VerticalScrollBarVisibility="Visible">
             
             <TextBox x:Name="TextArea" 
-                        Grid.Row="0"
-                        DataContext="{Binding Editor}"
-                        Grid.ColumnSpan="3"
-                        BorderThickness="0" 
-                        BorderBrush="{DynamicResource Transparent}"
-                        Background="{DynamicResource Transparent}"
-                        Foreground="{DynamicResource BodyText}"
-                        CaretBrush="{DynamicResource CaretBrushAquamarine}"
-                        TextWrapping="NoWrap"
-                        AcceptsTab="True"
-                        AcceptsReturn="True"   
-                        SpellCheck.IsEnabled="False"  
-                        SelectionChanged="TextArea_SelectionChanged"
-                        FontFamily="{Binding Format.FontFamily}"
-                        FontStyle="{Binding Format.FontStyle}"
-                        FontWeight="{Binding Format.FontWeight}"
-                        FontSize="{Binding Format.FontSize}" 
-                        Text="{Binding Document.TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                    BorderThickness="0" 
+                    BorderBrush="{DynamicResource Transparent}"
+                    Background="{DynamicResource Transparent}"
+                    Foreground="{DynamicResource BodyText}"
+                    CaretBrush="{DynamicResource CaretBrushAquamarine}"
+                    TextWrapping="NoWrap"
+                    AcceptsTab="True"
+                    AcceptsReturn="True"   
+                    SpellCheck.IsEnabled="False"  
+                    SelectionChanged="TextArea_SelectionChanged"
+                    FontFamily="{Binding FontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    FontStyle="{Binding FontStyle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    FontWeight="{Binding FontWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    FontSize="{Binding FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    Text="{Binding TextContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
             </TextBox>
             
         </ScrollViewer>

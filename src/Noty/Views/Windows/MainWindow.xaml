@@ -241,7 +241,7 @@
                 
                 <TabControl.ContentTemplate>
                     <DataTemplate>
-                        <local:FileTabItem />
+                        <local:FileTabItem DataContext="{Binding Editor}"/>
                     </DataTemplate>
                 </TabControl.ContentTemplate>
                 

@@ -8,15 +8,9 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Noty.Views.Windows"
-        xmlns:settings="clr-namespace:Noty.AppSettings"
         xmlns:vm="clr-namespace:Noty.ViewModels"
         mc:Ignorable="d"
         Title="Settings" Height="350" Width="400">
-    
-    <Window.DataContext>
-        <settings:Settings/>
-    </Window.DataContext>
-
     <Window.Resources>
 
         <ObjectDataProvider x:Key="FontFamilies" 
@@ -66,7 +60,8 @@
 
         <DockPanel Grid.Row="0" Grid.Column="0" Margin="8 0 8 0">
             <TextBlock DockPanel.Dock="Top" Foreground="{DynamicResource HeaderFooterText}">Font Family</TextBlock>
-            <ComboBox Style="{DynamicResource ComboBoxStyle}" ItemsSource="{Binding Source={StaticResource FontFamilies}}"
+            <ComboBox Style="{DynamicResource ComboBoxStyle}" 
+                      ItemsSource="{Binding Source={StaticResource FontFamilies}}"
                       SelectedItem="{Binding FontFamily}"
                       Background="{DynamicResource TabsBackground}"
                       Foreground="{DynamicResource HeaderFooterText}">
@@ -81,7 +76,7 @@
         <DockPanel Grid.Row="0" Grid.Column="1" Margin="8 0 8 0">
             <TextBlock DockPanel.Dock="Top" Foreground="{DynamicResource HeaderFooterText}">Font Size</TextBlock>
             <ComboBox Style="{DynamicResource ComboBoxStyle}" ItemsSource="{Binding Source={StaticResource FontSizes}}"
-                      SelectedItem="{Binding FontSize}"
+                      SelectedItem="{Binding FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       Background="{DynamicResource TabsBackground}"
                       Foreground="{DynamicResource HeaderFooterText}">
             </ComboBox>
@@ -97,7 +92,7 @@
             <DockPanel Grid.Column="0" Margin="8 0 8 0">
                 <TextBlock DockPanel.Dock="Top" Foreground="{DynamicResource HeaderFooterText}">Font Style</TextBlock>
                 <ComboBox Style="{DynamicResource ComboBoxStyle}" ItemsSource="{Binding Source={StaticResource FontStyles}}"
-                          SelectedItem="{Binding FontStyle}"
+                          SelectedItem="{Binding  FontStyle}"
                           Background="{DynamicResource TabsBackground}"
                           Foreground="{DynamicResource HeaderFooterText}">
                 </ComboBox>

@@ -12,6 +12,7 @@
   <ItemGroup>
     <Folder Include="Model\**" />
     <Folder Include="Structure\Extansions\" />
+    <Folder Include="Structure\Converters\" />
     <Folder Include="ViewModel\**" />
     <Folder Include="View\**" />
 	<Folder Include="Services\*" />
@@ -39,21 +40,6 @@
     <Resource Include="Views\Windows\icons_expand_button.png" />
     <Resource Include="Views\Windows\icons_pin_tab_button.png" />
     <Resource Include="Views\Windows\icons_settings_button.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="AppSettings\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="AppSettings\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
 
 </Project>

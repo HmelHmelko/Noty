@@ -1,28 +1,10 @@
-﻿using Noty.AppSettings;
-
-namespace Noty.Models
+﻿namespace Noty.Models
 {
     public class FormatModel
     {
-        public double FontSize
-        {
-            get => Settings.Default.FontSize;
-            set => Settings.Default.FontSize = value;
-        }
-        public string FontStyle
-        {
-            get => Settings.Default.FontStyle;
-            set => Settings.Default.FontStyle = value;
-        }
-        public string FontWeight
-        {
-            get => Settings.Default.FontWeight;
-            set => Settings.Default.FontWeight = value;
-        }
-        public string FontFamily
-        {
-            get => Settings.Default.FontFamily;
-            set => Settings.Default.FontFamily = value;
-        }
+        public double FontSize { get; set; } = 18;
+        public string? FontStyle { get; set; }
+        public string? FontWeight { get; set; }
+        public string? FontFamily { get; set; }
     }
 }

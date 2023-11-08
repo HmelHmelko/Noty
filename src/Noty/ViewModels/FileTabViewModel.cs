@@ -1,4 +1,4 @@
-﻿using Noty.AppSettings;
+﻿
 using Noty.Commands;
 using Noty.Models;
 using Noty.Services;
@@ -98,14 +98,11 @@ namespace Noty.ViewModels
             if (CurrentTab != null)
             {
                 var editor = CurrentTab.Editor;
-                var dataContextToSettingsWindow = editor.Format;
+                var dataContextToSettingsWindow = editor;
                 settingsWindow.DataContext = dataContextToSettingsWindow;
             }
-            else
-                settingsWindow.DataContext = Settings.Default;
 
             settingsWindow.ShowDialog();
-            Settings.Default.Save();
         }
 
         public ICommand SaveFileCommand { get; }
