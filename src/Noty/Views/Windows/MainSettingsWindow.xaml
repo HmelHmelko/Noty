@@ -62,7 +62,7 @@
             <TextBlock DockPanel.Dock="Top" Foreground="{DynamicResource HeaderFooterText}">Font Family</TextBlock>
             <ComboBox Style="{DynamicResource ComboBoxStyle}" 
                       ItemsSource="{Binding Source={StaticResource FontFamilies}}"
-                      SelectedItem="{Binding FontFamily}"
+                      SelectedItem="{Binding FontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       Background="{DynamicResource TabsBackground}"
                       Foreground="{DynamicResource HeaderFooterText}">
                 <ComboBox.ItemTemplate>
@@ -92,7 +92,7 @@
             <DockPanel Grid.Column="0" Margin="8 0 8 0">
                 <TextBlock DockPanel.Dock="Top" Foreground="{DynamicResource HeaderFooterText}">Font Style</TextBlock>
                 <ComboBox Style="{DynamicResource ComboBoxStyle}" ItemsSource="{Binding Source={StaticResource FontStyles}}"
-                          SelectedItem="{Binding  FontStyle}"
+                          SelectedItem="{Binding  FontStyle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Background="{DynamicResource TabsBackground}"
                           Foreground="{DynamicResource HeaderFooterText}">
                 </ComboBox>
@@ -101,7 +101,7 @@
             <DockPanel Grid.Column="1" Margin="8 0 8 0">
                 <TextBlock DockPanel.Dock="Top" Foreground="{DynamicResource HeaderFooterText}">Font Weight</TextBlock>
                 <ComboBox Style="{DynamicResource ComboBoxStyle}" Grid.Column="1" ItemsSource="{Binding Source={StaticResource FontWeights}}"
-                          SelectedItem="{Binding FontWeight}"
+                          SelectedItem="{Binding FontWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Background="{DynamicResource TabsBackground}"
                           Foreground="{DynamicResource HeaderFooterText}">
                 </ComboBox>

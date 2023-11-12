@@ -11,8 +11,8 @@
 
   <ItemGroup>
     <Folder Include="Model\**" />
-    <Folder Include="Structure\Extansions\" />
     <Folder Include="Structure\Converters\" />
+    <Folder Include="Structure\Extansions\" />
     <Folder Include="ViewModel\**" />
     <Folder Include="View\**" />
 	<Folder Include="Services\*" />

@@ -380,12 +380,14 @@
                               Background="{DynamicResource Transparent}"/>
 
                 <Button Style="{DynamicResource RegularButtonNoBorder}"
-                            Command="{Binding AddTabItemCommand}" 
-                            HorizontalAlignment="Left"
-                            Content="+" 
-                            Margin="2 0 0 -1"/>
-            </DockPanel>
+                        Command="{Binding AddTabItemCommand}" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Content="+" 
+                        Margin="2 0 0 -1"/>
 
+            </DockPanel>
+  
             <Border Style="{DynamicResource RegularBorderPaleBorder}" 
                         Grid.Column="0" 
                         KeyboardNavigation.DirectionalNavigation="Contained" 
