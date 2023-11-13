@@ -1,5 +1,4 @@
-﻿
-using Noty.Commands;
+﻿using Noty.Commands;
 using Noty.Models;
 using Noty.Services;
 using Noty.Shared.FileOperations;
@@ -22,9 +21,8 @@ namespace Noty.ViewModels
         public ObservableCollection<TabViewModel> TabItems { get; set; } =
             new ObservableCollection<TabViewModel>();
         public TabViewModel? CurrentTab { get; set; }
-        public string CurrentMethod { get; set; } = "TEST";
         #endregion
-
+       
         #region Commands
 
         #region Tabs

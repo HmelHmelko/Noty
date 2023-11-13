@@ -7,16 +7,16 @@ namespace Noty.Structure.Behaviors
 {
     public class WindowTopBorderBehavior : Behavior<UIElement>
     {
-        private Window? window;
+        private Window? _window;
         protected override void OnAttached()
         {
-            window = AssociatedObject as Window ?? AssociatedObject.FindLogicalAncestor<Window>();
+            _window = AssociatedObject as Window ?? AssociatedObject.FindLogicalAncestor<Window>();
             AssociatedObject.MouseLeftButtonDown += OnMouseDown;
         }
         protected override void OnDetaching()
         {
             AssociatedObject.MouseLeftButtonDown -= OnMouseDown;
-            window = null;
+            _window = null;
         }
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {

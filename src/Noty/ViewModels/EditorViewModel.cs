@@ -1,5 +1,5 @@
 ﻿using Noty.Models;
-using System.Windows;
+using System.Windows.Controls;
 
 namespace Noty.ViewModels
 {
@@ -14,7 +14,6 @@ namespace Noty.ViewModels
             get => Document.TextContent;
             set => Document.TextContent = value;
         }
-
         public double FontSize
         {
             get => Format.FontSize;

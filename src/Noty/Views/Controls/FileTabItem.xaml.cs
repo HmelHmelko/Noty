@@ -10,22 +10,22 @@ namespace Noty
             InitializeComponent();
         }
 
-        private string currentLnNumber = "1";
+        private string _currentLnNumber = "1";
         public string CurrentLnNumber
         { 
-            get => currentLnNumber;
+            get => _currentLnNumber;
             set 
             {   
-                currentLnNumber = value;
+                _currentLnNumber = value;
                 OnPropertyChanged(); 
             }        
         }
 
-        private string currentChNumber = "1";
+        private string _currentChNumber = "1";
         public string CurrentChNumber
         {
-            get => currentChNumber;
-            set { currentChNumber = value; OnPropertyChanged(); }
+            get => _currentChNumber;
+            set { _currentChNumber = value; OnPropertyChanged(); }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
