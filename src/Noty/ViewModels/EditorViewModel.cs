@@ -1,5 +1,4 @@
 ﻿using Noty.Models;
-using System.Windows.Controls;
 
 namespace Noty.ViewModels
 {
