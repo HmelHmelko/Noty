@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" x:Name="fileTabControl">
     <Grid>
-        <!--Content midle side-->
+        <!--Content middle side-->
         <ScrollViewer Style="{DynamicResource ScrollViewerStyle}"
                       HorizontalScrollBarVisibility="Visible" 
                       VerticalScrollBarVisibility="Visible">
