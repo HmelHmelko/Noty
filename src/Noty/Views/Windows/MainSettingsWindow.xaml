@@ -9,9 +9,13 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Noty.Views.Windows"
         xmlns:vm="clr-namespace:Noty.ViewModels"
+        xmlns:converters="clr-namespace:Noty.Structure.Converters"
         mc:Ignorable="d"
         Title="Settings" Height="350" Width="400">
     <Window.Resources>
+        <converters:FontStyleConverter x:Key="FontStyleConverter"/>
+        <converters:FontWeightConverter x:Key="FontWeightConverter"/>
+        <converters:FontFamilyConverter x:Key="FontFamilyConverter"/>
 
         <ObjectDataProvider x:Key="FontFamilies" 
                             ObjectType="{x:Type media:Fonts}" 
@@ -62,7 +66,7 @@
             <TextBlock DockPanel.Dock="Top" Foreground="{DynamicResource HeaderFooterText}">Font Family</TextBlock>
             <ComboBox Style="{DynamicResource ComboBoxStyle}" 
                       ItemsSource="{Binding Source={StaticResource FontFamilies}}"
-                      SelectedItem="{Binding FontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding FontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FontFamilyConverter}}"
                       Background="{DynamicResource TabsBackground}"
                       Foreground="{DynamicResource HeaderFooterText}">
                 <ComboBox.ItemTemplate>
@@ -92,7 +96,7 @@
             <DockPanel Grid.Column="0" Margin="8 0 8 0">
                 <TextBlock DockPanel.Dock="Top" Foreground="{DynamicResource HeaderFooterText}">Font Style</TextBlock>
                 <ComboBox Style="{DynamicResource ComboBoxStyle}" ItemsSource="{Binding Source={StaticResource FontStyles}}"
-                          SelectedItem="{Binding  FontStyle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding  FontStyle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FontStyleConverter}}"
                           Background="{DynamicResource TabsBackground}"
                           Foreground="{DynamicResource HeaderFooterText}">
                 </ComboBox>
@@ -101,7 +105,7 @@
             <DockPanel Grid.Column="1" Margin="8 0 8 0">
                 <TextBlock DockPanel.Dock="Top" Foreground="{DynamicResource HeaderFooterText}">Font Weight</TextBlock>
                 <ComboBox Style="{DynamicResource ComboBoxStyle}" Grid.Column="1" ItemsSource="{Binding Source={StaticResource FontWeights}}"
-                          SelectedItem="{Binding FontWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding FontWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FontWeightConverter}}"
                           Background="{DynamicResource TabsBackground}"
                           Foreground="{DynamicResource HeaderFooterText}">
                 </ComboBox>

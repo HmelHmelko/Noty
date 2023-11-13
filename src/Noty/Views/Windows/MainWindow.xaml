@@ -69,7 +69,7 @@
             
             <!--Header-->
             <!--Top menu-->
-            <Border Grid.Row="0" Grid.Column="2" 
+            <Border Grid.Row="0" Grid.Column="1" 
                     Style="{DynamicResource RegularBorderNoBorders}"
                     Background="{StaticResource Transparent}">
                 <interaction:Interaction.Behaviors>

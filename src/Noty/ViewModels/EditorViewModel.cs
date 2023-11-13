@@ -1,4 +1,5 @@
 ﻿using Noty.Models;
+using System.Windows;
 
 namespace Noty.ViewModels
 {
@@ -19,17 +20,17 @@ namespace Noty.ViewModels
             get => Format.FontSize;
             set => Format.FontSize = value;
         }
-        public string FontStyle
+        public string? FontStyle
         {
             get => Format.FontStyle;
             set => Format.FontStyle = value;
         }
-        public string FontWeight
+        public string? FontWeight
         {
             get => Format.FontWeight;
             set => Format.FontWeight = value;
         }
-        public string FontFamily
+        public string? FontFamily
         {
             get => Format.FontFamily;
             set => Format.FontFamily = value;
