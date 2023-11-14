@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Noty" 
+             xmlns:helpers="clr-namespace:Noty.Structure"
+             xmlns:global="clr-namespace:"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" x:Name="fileTabControl">
+             d:DesignHeight="450" d:DesignWidth="800" x:Name="FileTabControl">
     <Grid>
         <!--Content middle side-->
         <ScrollViewer Style="{DynamicResource ScrollViewerStyle}"
@@ -25,6 +27,8 @@
                      AcceptsReturn="True"   
                      SpellCheck.IsEnabled="False"
                      SelectionChanged="TextArea_SelectionChanged"
+                     SelectionTextBrush="Aquamarine"  
+                     helpers:TextBoxAssist.SelectedText="{Binding SelectedText}"
                      FontFamily="{Binding FontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      FontStyle="{Binding FontStyle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      FontWeight="{Binding FontWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

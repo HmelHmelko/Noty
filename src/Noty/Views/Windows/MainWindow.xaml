@@ -108,7 +108,7 @@
                                 <MenuItem Header="Undo" InputGestureText="Ctrl+Z" Command="{Binding CurrentTab.Editor.TextContent}" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
                                 <Separator Background="{DynamicResource MenuSeparator}"></Separator>
                                 <MenuItem Header="Cut" InputGestureText="Ctrl+X" Command="Cut" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
-                                <MenuItem Header="Copy" InputGestureText="Ctrl+C" Command="Copy" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
+                                <MenuItem Header="Copy" InputGestureText="Ctrl+C" Command="{Binding CurrentTab.Editor.CopyTextCommand}"></MenuItem>
                                 <MenuItem Header="Paste" InputGestureText="Ctrl+V" Command="Paste" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
                                 <MenuItem Header="Delete" InputGestureText="Del" Command="Delete" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
                                 <Separator Background="{DynamicResource MenuSeparator}"></Separator>
@@ -126,7 +126,10 @@
                                     <MenuItem Header="Restore Default Zoom"></MenuItem>
                                 </MenuItem>
                                     <MenuItem Header="Status Bar"></MenuItem>
-                                </MenuItem>
+                            </MenuItem>
+                            <MenuItem Header="TEST" Command="{Binding FileTabVM.CurrentTab.Editor.testCommand}">
+                                
+                            </MenuItem>
                         </Menu.Items>
                     </Menu>
 

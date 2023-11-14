@@ -7,8 +7,6 @@
         xmlns:window="clr-namespace:System.Windows;assembly=PresentationCore"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:local="clr-namespace:Noty.Views.Windows"
-        xmlns:vm="clr-namespace:Noty.ViewModels"
         xmlns:converters="clr-namespace:Noty.Structure.Converters"
         mc:Ignorable="d"
         Title="Settings" Height="350" Width="400">
