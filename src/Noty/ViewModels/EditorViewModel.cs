@@ -34,7 +34,6 @@ namespace Noty.ViewModels
             set => Format.FontFamily = value;
         }
         #endregion
-
         public EditorViewModel(DocumentModel document)
         {
             Document = document;

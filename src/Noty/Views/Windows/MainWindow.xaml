@@ -105,18 +105,18 @@
                             </MenuItem>
 
                             <MenuItem Header="Edit" DataContext="{Binding FileTabVM}">
-                                <MenuItem Header="Undo" InputGestureText="Ctrl+Z" Command="Undo" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Undo" InputGestureText="Ctrl+Z" Command="{Binding CurrentTab.Editor.TextContent}" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
                                 <Separator Background="{DynamicResource MenuSeparator}"></Separator>
-                                <MenuItem Header="Cut" InputGestureText="Ctrl+X" Command="Cut" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
-                                <MenuItem Header="Copy" InputGestureText="Ctrl+C" Command="Copy" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
-                                <MenuItem Header="Paste" InputGestureText="Ctrl+V" Command="Paste" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
-                                <MenuItem Header="Delete" InputGestureText="Del" Command="Delete" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Cut" InputGestureText="Ctrl+X" Command="Cut" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
+                                <MenuItem Header="Copy" InputGestureText="Ctrl+C" Command="Copy" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
+                                <MenuItem Header="Paste" InputGestureText="Ctrl+V" Command="Paste" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
+                                <MenuItem Header="Delete" InputGestureText="Del" Command="Delete" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
                                 <Separator Background="{DynamicResource MenuSeparator}"></Separator>
-                                <MenuItem Header="Select All" InputGestureText="Ctrl+A"  Command="SelectAll" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Select All" InputGestureText="Ctrl+A"  Command="SelectAll" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
                                 <Separator Background="{DynamicResource MenuSeparator}"></Separator>
-                                <MenuItem Header="Find" InputGestureText="Ctrl+F" Command="Find" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Find" InputGestureText="Ctrl+F" Command="Find" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
                                 <Separator Background="{DynamicResource MenuSeparator}"></Separator>
-                                <MenuItem Header="Replace All" InputGestureText="Ctrl+R" CommandTarget="{Binding CurrentTab.Editor.Document.TextContent}"></MenuItem>
+                                <MenuItem Header="Replace All" InputGestureText="Ctrl+R" CommandTarget="{Binding CurrentTab.Editor.TextContent}"></MenuItem>
                             </MenuItem>
 
                             <MenuItem Header="View">
